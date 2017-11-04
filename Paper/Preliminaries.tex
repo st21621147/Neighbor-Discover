@@ -1,0 +1,112 @@
+%\section{System Model and Problem Formulation}
+\section{Preliminaries}
+\label{sectionmodel}
+
+
+In this section, we first give some notion definitions and introduce the collision detection mechanis. Then we formulate the Neighbor Discovery problem formally.  
+
+
+
+\subsection{Sensor Node Model}
+
+
+In the wireless sensor networks, the deployed sensor nodes keep their most time in sleep mode to avoid quick energy consumption.
+
+For the sensor nodes, time is divided into slots. In each time slot, a node transform its state according to a pre-defined duty schedule.
+
+\begin{definition}
+\textbf{Duty schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
+$$ s^t=\left\{
+\begin{aligned}
+0  & & {sleep}\\
+1  &  &{wake }\\
+\end{aligned}
+\right.
+$$
+\end{definition}
+
+Each node repeats its duty schedule until finding all the neighbors.
+
+\begin{definition}
+\textbf{Duty circle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
+
+$$\theta=\frac{|\{ 0\leq t<T : s^t =1\}}{T}.
+$$
+  
+\end{definition}
+
+When the sensor is in 
+
+Notice that the neighbor discovery process is not bidirectional, which means a node discover one of its neighbor do
+
+
+
+
+
+
+
+\subsection{Collision Detection Mechanism}
+
+
+
+
+
+
+
+
+
+\subsection{Problem Definition}
+
+Before we formulate the problem, we introduce three important
+metrics of the performance of rendezvous methods. These metrics are
+often used to measure the performance of rendezvous between two users.
+%. Rendezvous is the process of establishing communication
+%link between two neighbors, the metrics are mainly adopted to evaluate
+%the performance between two users.
+To begin with, we define
+\textbf{Time to Rendezvous (TTR)} as:
+\begin{definition}
+Time to rendezvous is the number of time slots to select the
+same available channel simultaneously.% once both users have started.
+\end{definition}
+
+This metric is commonly used in existing rendezvous
+algorithms. Both \emph{maximum time to rendezvous (MTTR)} and
+\emph{average time to rendezvous (ATTR)} are used to evaluate the
+performance of the worst case and the average case
+respectively\cite{Gu2013,Liu2012a,Yang2015,Ch2014,Chen2014}.
+
+The second metric, \textbf{Rendezvous Degree (RD)}, is also widely
+used. It evaluates the number of channels that the users can rendezvous
+on.
+\begin{definition}
+Rendezvous degree is the percentage of possible rendezvous
+channels relative to the total number of the jointly available channels.
+\end{definition}
+
+As interference exists for each available channel, communications
+between the users could be inefficient if they rendezvous on a channel
+with a lot of interference.
+Therefore, we introduce a new metric \textbf{Rendezvous Interference (RI)} as:
+\begin{definition}
+Rendezvous interference is the product of the users' interference measurement at
+the channel that they rendezvous on.
+\end{definition}
+
+
+
+\begin{problem}
+For any channel set $C^*$ and interference set $I^*$, design the
+channel hopping algorithm $f: t\mapsto C^*$, such that for $C_a, C_b
+\subseteq C$, $C_a \bigcap C_b \neq \emptyset$, and any time drift
+$\delta$, there exists $T_{\delta}$ and channel $c \in C_a \bigcap
+C_b$ satisfying:
+\begin{equation*}
+f_{C_a, I_a}(T_{\delta}+\delta) = f_{C_b, I_b}(T_{\delta}) = c
+\end{equation*}
+\end{problem}
+
+The algorithms for continuous rendezvous can be different from those
+for the initial rendezvous. But the target is also to choose a quiet channel soon (small $RI$, small $TTR$ and large $RD$).
+
+
