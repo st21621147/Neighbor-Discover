@@ -12,7 +12,7 @@ The wireless sensor network consists of a number of sensors distributed separate
 The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
 and wake up timely to work on duty.
 
-We assume that each node has a unique identifier $ID_i$. Time is divided into slots of equal length $t_0$, 
+In our model the total number of sensors $N$  is not necessary to be known. We assume that each node has a unique identifier $ID_i$. Time is divided into slots of equal length $t_0$, 
 which is sufficient to finish communications. In each time slot, a node transform its pattern according to a pre-defined duty schedule.
 
 \begin{definition}
@@ -40,28 +40,33 @@ $$
 
 When a sensor wake up on a time slot, it can turn to either the transmitting state or listening state. 
 \begin{itemize}
-\item Transmitting state. A node turn to transmitting state will broadcast messages containing its own identify 
-information to all its neighbors.
-\item  Listening state. A node turn to listening state will monitor the frequency channel to collect its neighbors' information.
+\item \textbf{Transmitting state}. A node turn to transmitting state will broadcast messages containing its own identify 
+information to all neighbors.
+\item  \textbf{Listening state}. A node turn to listening state will monitor the frequency channel to collect its neighbors' information.
 However collision will occur when two or more neighbor nodes transmit concurrently and thus no valid information will be gathered
 \end{itemize}
 Transiting between the states only costs little time, compared to one complete time slot.
 
-
+%@@@
 \subsection{Collision Detection Mechanism}
 
+When a node wakes up and turns to the listening state, there are two possible 
 
 
 
+A collision detection mechanism allows the node to distinguish these two case, in turn is 
 
+
+A node turns to listening state when it wakes up
+%@@@
 
 
 
 
 \subsection{Problem Definition}
 
-We consider a partially-connected sensor network model, 
-where two nodes are neighbors if they locate within the radio range of each other. 
+We consider a partially-connected sensor network, 
+where two nodes are neighbors if they locate within the radio range of each other. the total number of sensors n
 A  symmetric matrix is used to record the neighboring relations as:
 
 $$ M_{i,j}=\left\{
@@ -72,13 +77,12 @@ $$ M_{i,j}=\left\{
 \right.
 $$
 
- each sensor follows its duty schedule to achieve neighbor discovery. 
-
-
+ Each sensor follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
+ sensors start their neighbor discovery process at the same time, while in a asynchronous  scenario
+ all nodes start at different time slots.
  
-
 Notice that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
-need to find each other separately. A sensor node $u_i$ find one of its neighbors $u_j$ can be formulated 
+need to find each other separately. The time slots within which a sensor node $u_i$ find one of its neighbors $u_j$ can be formulated 
 as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all neighbors as:
 
 \begin{definition}
@@ -88,11 +92,11 @@ $$
 \end{definition}
 
 Thus , the neighbor discovery problem can be formulated as:
-
+%@@@
 \begin{problem}
 Given a duty circle $\theta$, design a duty schedule and transiting strategy which optimizes $L(i)$ to the most extent. 
 \end{problem}
-
+%@@@
 
 
 
