@@ -19,8 +19,8 @@ which is sufficient to finish  one communication process(transmit or receive a p
 \textbf{Duty schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
 $$ s^t=\left\{
 \begin{aligned}
-0  & & {sleep}\\
-1  & & {wake}\\
+0  & & & {sleep}\\
+1  & & & {wake-up}\\
 \end{aligned}
 \right.
 $$
@@ -97,6 +97,27 @@ Thus the neighbor discovery problem can be formulated as:
 Given a duty circle $\theta$, design a duty schedule and transiting strategy which optimizes $L(i)$ to the most extent. 
 \end{problem}
 %@@@
+
+\begin{figure}[!t]
+\centering
+\subfigure[Topology]{\includegraphics[width=1.65in]{./Figure/topology.eps}}
+\vspace{0.03in}
+\subfigure[Neighbor discovery process]{\includegraphics[width=2.8in]{./Figure/NBexample.eps}}
+\caption{An example of neighbor discovering process. S, T and L represents Sleep pattern, 
+Transmitting state and Listening state in wake-up pattern.}
+\label{NDexample}
+%\vspace{-0.2in}
+\end{figure}
+
+An example of neighbor dicovery process is given in Fig.\ref{NDexample}. 
+Fig.\ref{NDexample}(a) shows the topology of a partially-connected 
+wireless sensor networks, which consists of $5$ sensor nodes. 
+Fig.\ref{NDexample}(b) describes the neighbor discovery process 
+in the asynchronous scenario, as we can see the nodes 
+start their process at different time slot. The duty schedule of 
+node $1$, for example, is $S_1=\{1,0,0,0,0,0,1,0,0,1,0,0,0,1,...\}$.  
+At time slot $12$, node 5 find its neighbor node $2$ while node $1$ 
+could not find node $2$ due to a collision from its another neighbor node $3$. 
 
 
 
