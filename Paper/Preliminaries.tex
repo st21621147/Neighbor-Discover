@@ -47,17 +47,17 @@ However collision will occur when two or more neighbor nodes transmit concurrent
 \end{itemize}
 Transiting between the states only costs little time, compared to one complete time slot.
 
-%@@@
+%@@@ to be modified
 \subsection{Collision Detection Mechanism}
 
-When a node wakes up and turns to the listening state, there are two possible 
+A collision detection mechanism allows a node to distinguish between 
+the case where two or more nodes are transmitting and one where no 
+node is transmitting. Indeed, practical solutions for collision detection 
+have been proposed in [5, 6]. In this paper, we study two neighbor 
+discovery algorithms, first when nodes do not have a collision detection 
+mechanism and next when nodes do and study the impact of collision 
+detection on algorithm performance.
 
-
-
-A collision detection mechanism allows the node to distinguish these two case, in turn is 
-
-
-A node turns to listening state when it wakes up
 %@@@
 
 
@@ -92,7 +92,7 @@ $$
 \end{definition}
 
 Thus the neighbor discovery problem can be formulated as:
-%@@@
+%@@@to be modified
 \begin{problem}
 Given a duty circle $\theta$, design a duty schedule and transiting strategy which optimizes $L(i)$ to the most extent. 
 \end{problem}
