@@ -12,7 +12,7 @@ The wireless sensor network consists of a number of sensors distributed separate
 The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
 and wake up timely to work on duty.
 
-We assume that each node has a unique identifier $ID_i$. Time is assumed to be divided into slots of equal length $t_0$, 
+We assume that each node has a unique identifier $ID_i$. Time is divided into slots of equal length $t_0$, 
 which is sufficient to finish communications. In each time slot, a node transform its pattern according to a pre-defined duty schedule.
 
 \begin{definition}
@@ -26,7 +26,7 @@ $$ s^t=\left\{
 $$
 \end{definition}
 
- Each node construct its own duty schedule according to a specific strategy and repeats its duty schedule 
+ Each node construct its own duty schedule according to a specific strategy and repeats it
  until finding all the neighbors. Since the waking-up duration has a significant affect on the battery's lifetime, 
  duty circle is defined to restrict the energy consumption.
 
@@ -48,14 +48,6 @@ However collision will occur when two or more neighbor nodes transmit concurrent
 Transiting between the states only costs little time, compared to one complete time slot.
 
 
-Notice that the neighbor discovery process is not bidirectional, which means a node discover one of its neighbor do
-
-
-
-
-
-
-
 \subsection{Collision Detection Mechanism}
 
 
@@ -68,16 +60,37 @@ Notice that the neighbor discovery process is not bidirectional, which means a n
 
 \subsection{Problem Definition}
 
+We consider a partially-connected sensor network model, 
+where two nodes are neighbors if they locate within the radio range of each other. 
+A  symmetric matrix is used to record the neighboring relations as:
+
+$$ M_{i,j}=\left\{
+\begin{aligned}
+1  & & {Neighbor}\\
+0  & & {Else}\\
+\end{aligned}
+\right.
+$$
+
+ each sensor follows its duty schedule to achieve neighbor discovery. 
+
+
+ 
+
+Notice that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
+need to find each other separately. A sensor node $u_i$ find one of its neighbors $u_j$ can be formulated 
+as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all neighbors as:
+
+\begin{definition}
+\textbf{Discovery latency} of node $u_i$ is the time to discover all neighbors:
+$$L(i) = \max_{M_{(i,j) = 1}} L (i,j).
+$$
+\end{definition}
+
+Thus , the neighbor discovery problem can be formulated as:
 
 \begin{problem}
-For any channel set $C^*$ and interference set $I^*$, design the
-channel hopping algorithm $f: t\mapsto C^*$, such that for $C_a, C_b
-\subseteq C$, $C_a \bigcap C_b \neq \emptyset$, and any time drift
-$\delta$, there exists $T_{\delta}$ and channel $c \in C_a \bigcap
-C_b$ satisfying:
-\begin{equation*}
-f_{C_a, I_a}(T_{\delta}+\delta) = f_{C_b, I_b}(T_{\delta}) = c
-\end{equation*}
+Given a duty circle $\theta$, design a duty schedule and transiting strategy which optimizes $L(i)$ to the most extent. 
 \end{problem}
 
 
