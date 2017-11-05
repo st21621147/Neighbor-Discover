@@ -12,8 +12,8 @@ The wireless sensor network consists of a number of sensors distributed separate
 The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
 and wake up timely to work on duty.
 
-In our model the total number of sensors $N$  is not necessary to be known. We assume that each node has a unique identifier $ID_i$. Time is divided into slots of equal length $t_0$, 
-which is sufficient to finish communications. In each time slot, a node transform its pattern according to a pre-defined duty schedule.
+In our model, we assume that each node has a unique identifier $ID_i$ which is aware by theirselves, while the total amount of sensors $N$  is not necessary to be known. Time is divided into slots of equal length $t_0$, 
+which is sufficient to finish  one communication process(transmit or receive a piece of package). In each time slot, a node transform its pattern according to a pre-defined duty schedule.
 
 \begin{definition}
 \textbf{Duty schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
@@ -40,9 +40,9 @@ $$
 
 When a sensor wake up on a time slot, it can turn to either the transmitting state or listening state. 
 \begin{itemize}
-\item \textbf{Transmitting state}. A node turn to transmitting state will broadcast messages containing its own identify 
+\item \textbf{Transmitting state}. A node turn to transmitting state will broadcast a package containing its own identify 
 information to all neighbors.
-\item  \textbf{Listening state}. A node turn to listening state will monitor the frequency channel to collect its neighbors' information.
+\item  \textbf{Listening state}. A node turn to listening state will monitor the frequency channel to collect its neighbors' packages.
 However collision will occur when two or more neighbor nodes transmit concurrently and thus no valid information will be gathered
 \end{itemize}
 Transiting between the states only costs little time, compared to one complete time slot.
@@ -66,13 +66,13 @@ A node turns to listening state when it wakes up
 \subsection{Problem Definition}
 
 We consider a partially-connected sensor network, 
-where two nodes are neighbors if they locate within the radio range of each other. the total number of sensors n
-A  symmetric matrix is used to record the neighboring relations as:
+where two nodes are neighbors if they locate within the radio range of each other. 
+A  symmetric matrix $M_{N\times N}$ is used to record the neighboring relations as:
 
 $$ M_{i,j}=\left\{
 \begin{aligned}
-1  & & {Neighbor}\\
-0  & & {Else}\\
+1  & & & & & & {connected}\\
+0  & & & & & & {disconnected}\\
 \end{aligned}
 \right.
 $$
@@ -87,7 +87,7 @@ as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all 
 
 \begin{definition}
 \textbf{Discovery latency} of node $u_i$ is the time to discover all neighbors:
-$$L(i) = \max_{M_{(i,j) = 1}} L (i,j).
+$$L(i) = \max_{M_{i,j = 1}} L (i,j).
 $$
 \end{definition}
 
