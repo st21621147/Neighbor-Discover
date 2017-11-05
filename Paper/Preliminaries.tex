@@ -77,9 +77,9 @@ $$ M_{i,j}=\left\{
 \right.
 $$
 
- Each sensor follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
- sensors start their neighbor discovery process at the same time, while in a asynchronous  scenario
- all nodes start at different time slots.
+Each sensor follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
+sensors start their neighbor discovery process at the same time, while in a asynchronous  scenario
+all nodes start at different time slots.
  
 Notice that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
 need to find each other separately. The time slots within which a sensor node $u_i$ find one of its neighbors $u_j$ can be formulated 
@@ -91,7 +91,7 @@ $$L(i) = \max_{M_{(i,j) = 1}} L (i,j).
 $$
 \end{definition}
 
-Thus , the neighbor discovery problem can be formulated as:
+Thus the neighbor discovery problem can be formulated as:
 %@@@
 \begin{problem}
 Given a duty circle $\theta$, design a duty schedule and transiting strategy which optimizes $L(i)$ to the most extent. 
