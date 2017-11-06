@@ -12,15 +12,26 @@ The wireless sensor network consists of a number of sensors distributed separate
 The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
 and wake up timely to work on duty.
 
+When a sensor wake up on a time slot, it can turn to either the transmitting state or listening state. 
+\begin{itemize}
+\item \textbf{Transmitting state}. A node turn to transmitting state will broadcast a package containing its own identify 
+information to all neighbors.
+\item  \textbf{Listening state}. A node turn to listening state will monitor the frequency channel to collect its neighbors' packages.
+However collision will occur when two or more neighbor nodes transmit concurrently and thus no valid information will be gathered
+\end{itemize}
+Transiting between the states only costs little time, compared to one complete time slot.
+
 In our model, we assume that each node has a unique identifier $ID_i$ which is aware by theirselves, while the total amount of sensors $N$  is not necessary to be known. Time is divided into slots of equal length $t_0$, 
 which is sufficient to finish  one communication process(transmit or receive a piece of package). In each time slot, a node transform its pattern according to a pre-defined duty schedule.
+
 
 \begin{definition}
 \textbf{Duty schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
 $$ s^t=\left\{
 \begin{aligned}
-0  & & & {sleep}\\
-1  & & & {wake-up}\\
+S  & & & {Sleep}\\
+T  & & & {Transmit}\\
+L  & & & {Listen}\\
 \end{aligned}
 \right.
 $$
@@ -33,19 +44,12 @@ $$
 \begin{definition}
 \textbf{Duty circle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
 
-$$\theta=\frac{|\{ 0\leq t<T : s^t =1\}}{T}.
+$$\theta=\frac{|\{ 0\leq t<T : s^t = T || s^t = L\}}{T}.
 $$
   
 \end{definition}
 
-When a sensor wake up on a time slot, it can turn to either the transmitting state or listening state. 
-\begin{itemize}
-\item \textbf{Transmitting state}. A node turn to transmitting state will broadcast a package containing its own identify 
-information to all neighbors.
-\item  \textbf{Listening state}. A node turn to listening state will monitor the frequency channel to collect its neighbors' packages.
-However collision will occur when two or more neighbor nodes transmit concurrently and thus no valid information will be gathered
-\end{itemize}
-Transiting between the states only costs little time, compared to one complete time slot.
+
 
 %@@@ to be modified
 \subsection{Collision Detection Mechanism}
@@ -84,20 +88,36 @@ as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all 
 
 \begin{definition}
 \textbf{Discovery latency} of node $u_i$ is the time to discover all neighbors:
-$$L(i) = \max_{M_{i,j = 1}} L (i,j).
+$$L(i) = \max_{M_{i,j}= 1} L (i,j).
 $$
 \end{definition}
 
 Thus the neighbor discovery problem can be formulated as:
 %@@@to be modified
 \begin{problem}
-Given a duty circle $\theta$, design a duty schedule and transiting strategy which optimizes $L(i)$ to the most extent. 
+For a sensor node with identifier $ID$  $i$, design a strategy of constructing a duty schedule with duty circle $\theta$, which satisfies : 
+for $\forall$ node $j_{M_{i,j}=1}$ :
+
+$\exists$ t s.t. : 
+
+\begin{equation*}
+S_i(t) = L 
+\end{equation*}
+\begin{equation*} 
+S_j(t) = T
+\end{equation*}  
+
+$\forall$ node $k_{M_{i,k}=1 \&\& k \neq j}$  : 
+\begin{equation*}
+S_k(t)= L || S_k(t)=S
+\end{equation*}
+
 \end{problem}
 %@@@
 
 \begin{figure}[!t]
 \centering
-\subfigure[Topology]{\includegraphics[width=1.65in]{./Figure/topology.eps}}
+\subfigure[The topology of a wireless sensor networks ]{\includegraphics[width=1.65in]{./Figure/topology.eps}}
 \vspace{0.03in}
 \subfigure[Neighbor discovery process]{\includegraphics[width=2.8in]{./Figure/NBexample.eps}}
 \caption{An example of neighbor discovering process. S, T and L represents Sleep pattern, 
@@ -112,7 +132,7 @@ wireless sensor networks, which consists of $5$ sensor nodes.
 Fig.\ref{NDexample}(b) describes the neighbor discovery process 
 in the asynchronous scenario, as we can see the nodes 
 start their process at different time slot. The duty schedule of 
-node $1$, for example, is $S_1=\{1,0,0,0,0,0,1,0,0,1,0,0,0,1,...\}$.  
+node $1$, for example, is $S_1 = \{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, ... \}$.  
 At time slot $12$, node 5 find its neighbor node $2$ while node $1$ 
 could not find node $2$ due to a collision from its another neighbor node $3$. 
 
