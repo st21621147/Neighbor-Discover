@@ -173,7 +173,7 @@ battery-management with local duty circle $\theta_i$.
 We propose a traversing pointer based Alano algorithm(TP-Alano) in Alg. \ref{P-ND}.
 In each period $T$, every node wakes up in two different time slots, one of which is the
 first slot of each period and another is a traversing slot different from period to period, 
-as Alg. \ref{P-ND} Line. \ref{P-NDline1}.  
+as Alg. \ref{P-ND} Line . \ref{P-NDline1} indicates. 
 
 %Prime Based Neighbor Discovery Algorithm
 \begin{algorithm}
@@ -197,20 +197,20 @@ as Alg. \ref{P-ND} Line. \ref{P-NDline1}.
 
 We call the first time slot in each period $T$ as a \emph{fixed pointer} and the traversing
 slots as a \emph{traversing point}. These pointers are used to guarantee a wake-up time rendezvous
-in every period $T_iT_j$.
+in every period $T_iT_j$. A sketch of the pointers is described in Fig. \ref{TP}.
  
-Note that, since the periof $T$ is selected as: 
+Note that, since the period of $T$ is selected as: 
 \emph{find the smallest prime $\geq \frac{2}{\theta_i}$},
 which is likely to result in the consequence that the duty 
 circle $\widetilde{\theta_i}$ in Alg. \ref{P-ND} is smaller than the expected
-$\theta_i$. This can be easily solved by selecting some random wake-up time slot 
+$\theta$. This can be easily solved by selecting some random wake-up time slots 
 in each period $T$ to conform to duty circle $\theta$.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=2.5in]{./Figure/TP}
 \caption{An Sketch of TP construction in Alg. \ref{P-ND}}
-\label{matrix}
+\label{TP}
 \end{figure}
 
 %The correctness proof of the construction and the time bound analysis
@@ -229,9 +229,16 @@ a pair of neighbors (node $i$,node$j$) respectively.
 
 
 \begin{IEEEproof}
-\textbf{Case 1: $T_i \neq T_j$}.
+We first prove that any pair of nodes (node $i$,node$j$) will wake up 
+at the same time slot every period $T_iT_j$.
 
-\textbf{Case 2: $T_i = T_j$}.
+\textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes, 
+the fixed pointer of node $i$ in each period $T_i$ and the fixed pointer of 
+node $j$ in each period $T_j$ will rendezvous in every $T_iT_j$  according 
+to Chinese remainder theorem.
+
+\textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j$, the $k_i^{th}$ time slot in $T_i$ will
+always rendezvous with the $k_j^{th}$ time slot in $T_j$.
 
 Thus for any pair of neighbor (node $i$, node $j$), they can wake up
 at the same time slot at least once in every period $T_iT_j$. Regarding 
