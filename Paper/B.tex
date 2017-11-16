@@ -233,22 +233,33 @@ We first prove that any pair of nodes (node $i$,node$j$) will wake up
 at the same time slot every period $T_iT_j$.
 
 \textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes, 
-the fixed pointer of node $i$ in each period $T_i$ and the fixed pointer of 
-node $j$ in each period $T_j$ will rendezvous in every $T_iT_j$  according 
-to Chinese remainder theorem.
+according to Chinese remainder theorem, there exists a time slot $t_\tau \in \lbrack 0,T_iT_j ) $ satisfying:
+\begin{equation}
+\label{case1.1}
+0 = t_\tau  \quad mod \quad  T_i.
+\end{equation}
+\begin{equation}
+\label{case1.2}
+\delta = t_\tau  \quad mod \quad  T_j.
+\end{equation}
+where $\delta$ is the asynchronous drift between node $i$ and node $j$.
 
-\textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j$, the $k_i^{th}$ time slot in $T_i$ will
-always rendezvous with the $k_j^{th}$ time slot in $T_j$.
+Equation\ref{case1.1} and \ref{case1.2}  implies there exists a fixed pointer of node $i$ 
+and a fixed pointer of node $j$ will rendezvous in every $T_iT_j$  .
+
+\textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j = T$, if the asynchronous drift between 
+node $i$ and node $j$ $\delta = 0$, the fixed pointers of node $i$ and node $j$ will 
+rendezvous with each other in every period $T$.
+Otherwise since the traversing point will traverse all the time slot once in each period $(T-1)T$,
+the traversing point of node $i$ will consequentially rendezvous with the fixed pointer
+of node $j$ once every period $(T-1)T$, and the traversing point of node $j$ 
+will consequentially rendezvous with the fixed pointer
+of node $i$ once every period $(T-1)T$ as well.
 
 Thus for any pair of neighbor (node $i$, node $j$), they can wake up
 at the same time slot at least once in every period $T_iT_j$. Regarding 
-the whole period $T$ as a time slot in Alg. \ref{}, we obtain the latency 
+the whole period $T_iT_j$ as a time slot in Alg. \ref{}, we obtain the latency 
 bound as $O(\frac{nlogn}{\theta_i\theta_j})$.
-
-
-
-
-
 \end{IEEEproof}
 
 
