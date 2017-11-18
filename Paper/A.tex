@@ -1,32 +1,200 @@
 \section{Partially-Connected Networks}
 \label{PCN}
-%应用场景背景介绍
-%更符合实际情况
-%网络背景
-
-%Picture: 全连接和部分连接对比图
 
 
-%mobile device的探测距离
 
-%节点邻居数量的期望
-\subsection{Expectation Number Of Neighbor Nodes}
+%background and instances
+A practical scenario is that in a network,
+all the nodes are partially connected with each other
+In a partially-connected network, the nodes 
+within their 
+
+
+%density function and expectation of the neighbor number
+In a partially-connected network for $\forall$ node $u_i$, 
+its position coordinate $(x_i,y_i)$
+obeys a certain probability distribution depending on the 
+characteristic of the network, with the density function as :
+$$f(x,y)=
+\begin{cases}
+\varphi(x,y)& (x,y)\in D\\
+0& (x,y)\notin D
+\end{cases}$$
+where $D$ is the network covering area.
+
+$\forall$ node $u_i (x_i,y_i)$, its sensing range area $R_i$ can be formulated as:
+$$
+(x-x_i)^2+(y-y_i)^2 \leq r^2
+$$
+where $r$ is the the furthest detection distance.
+
+Thus, we can obtain the neighbor expectation number of node $u_i$ as :
+$$
+NB(u_i) = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
+$$
+
+We ignore the boundary area of the network and assume the
+nodes in the network is of an enormous quantity, thus the 
+expectation neighbors can be formulated as:
+$$
+NB(u_i) = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
+$$
+
+Note that, when the network area is far more larger than the
+sensing area of the nodes, we can approximately get:
+$$
+NB(u_i) = N\pi r^2 \varphi(x,y).
+$$
+
+
+
+
+%Alano
+Then we propose \textbf{Alano}, a randomized neighbor discovery algorithm. 
+We describe the algorithm for $\forall$ node $u_i$ as Alg. \ref{Alano}.
+Alano algorithm indicates that what probability for a node choose to turn to  
+tramisitting state or listening state is determined
+by the expectation neighbor number varying from node to node.
+
+
+\begin{algorithm}
+\caption{Alano Algorithm}
+\label{Alano}
+\begin{algorithmic}[1]
+\STATE $\hat{n_i} = N\iint_{R_i} \varphi(x,y)\,dx\,dy$;
+\STATE $p_t^i = \frac{1}{\hat{n_i}}$;
+\WHILE {$True$}
+	\STATE A random float $\epsilon \in (0,1)$;
+   	 \IF{$\epsilon < p_t$}
+    		\STATE Transmit a message containing node information of $u_i$;
+	\ELSE
+    		\STATE Listen on the channel and decode the node information if receive a message successfully;
+	\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+In the following section \ref{uniform}, we first consider a general situation that the nodes
+in the network are uniform distributed. We derive a proof that the probability
+chosen in Alano is the optimal one and show the bounded latency will not 
+be much larger than its expectation. Then in the section  \ref{normal} we describe a more
+common situation that the nodes in the network obey normal distribution, we present a 
+approximately analysis that the discovery latency will not be much larger than uniform distribution.
 
 
 \subsection{Uniform Distribution}
-%Picture: Uniform Distribution密度函数的三维坐标图和平面映射图
+\label{uniform}
+%background
+There are a part of partially-connected networks obeying uniform distribution. 
+For instance, consider there is a  wireless sensor network carrying out a task of
+measuring temperature and humidity in a target area. 
+Thus the sensors are supposed to be evenly deployed and the density function can be 
+formulated as:
+$$f(x)=
+\begin{cases}
+\frac{1}{A}& (x,y)\in D\\
+0& (x,y)\notin D
+\end{cases}$$
+where $A$ is the dimension of $D$.
+
+Every node in the network has the same expectation 
+of neighbor number and thus transmit with the same probability as:
+$$
+\hat{n} = \frac{N\pi r^2}{A}, \quad p_t = \frac{1}{\hat{n}}=\frac{A}{N\pi r^2}.
+$$  
+
+According to Alano, the probability that node $u_i$ discover a specific
+neighbor successfully in a time slot is:
+$$
+p_s = p_t{(1-p_t)}^{\hat{n}-1}.
+$$
+Let:
+$$
+p_s' = {(1-p_t)}^{\hat{n}-1}-(\hat{n}-1)p_t{(1-p_t)}^{\hat{n}-2}=0.
+$$
+It is easy to confirm that  when
+$$p_t=\frac{1}{\hat{n}}.$$ 
+$p_s$ gets maximum value:
+$$p_s = \frac{1}{\hat{n}}{(1-\frac{1}{\hat{n}})}^{\hat{n}-1} \approx \frac{1}{\hat{n}e}.$$
+
+Thus we can conclude that the probability chosen in Alano
+to transmit is the optimal one. 
+
+Next we analyse the expectation latency for a node to discover all its 
+neighbors. We denote $W_j$ to be a random variable that a new neighbor
+is discovered after the node has discovered $(j-1)$ neighbors, which follows 
+Geometric distribution with parameter $p(j): p(j)=(\hat{n}-j+1)p_s$. Then the expectation
+of $W_j$ is computed as:
+$$
+E[W_j]=\frac{1}{p(j)}=\frac{1}{(\hat{n}-j+1)p_t}
+$$
+
+The expectation time latency of discovering all the neighbors can be formulated as:
+$$
+E(W_j) = \sum_{j=1}^{\hat{n}}\frac{1}{p_s}H_n \approx ne(lnn + O(1)) = O(nlnn).
+$$
+where $H_n$ is the $n$-th Harmonic number, i.e.,
+$H_n = lnn + O(1)$.
+
+We get the expectation discovery lantecy is within O(nlogn) and then we
+show the bounded latency will not be much larger than its expectation.
+
+%To be modified later
+%%
+For $i\neq j$, $W_i$ and $W_j$ are independent by definition. As $Var[W_j]=\frac{1-p_{suc}(j)}{p^2_{suc}(j)}$ for Geometric distribution with parameter $p_{suc}(j)$, we obtain:
+
+\begin{displaymath}
+Var[W]=\sum_{j=1}^{n}Var[W_j]=\sum_{j=1}^{n}\frac{1}{p^2_{suc}(j)}-\sum_{j=1}^{n}\frac{1}{p_{suc}(j)}.
+\end{displaymath}
+We know that
+\begin{displaymath}
+\begin{split}
+\sum_{j=1}^{n}\frac{1}{p^2_{suc}(j)}%\leq\frac{e^2}{\theta^2}\sum_{j=1}^{p_nN}(\frac{p_nN+\alpha(j-1)}{p_nN-j+1})^2 \\
+ %& =\frac{e^2}{\theta^2}\sum_{j=1}^{p_nN}[\alpha^2-\frac{2\alpha p_nN+2\alpha^2p_nN}{j}+\frac{(1+\alpha)^2(p_nN)^2}{j^2}] \\
+ \leq\frac{e^2}{\theta^2}[ \alpha^2n-2\alpha n(1+\alpha)H_n
++\frac{\pi^2}{6}(1+\alpha^2)n^2].
+\end{split}
+\end{displaymath}
+
+According to \emph{Chebyshev¡¦s inequality}, the probability that the discovery time is $2$ times larger than the expectation is:
+
+\begin{displaymath}
+\begin{split}
+ P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]\le\frac{Var[W]}{E[W]^2} \\
+%& \le\frac{\sum_{j=1}^{p_nN}\frac{1}{p^2_{suc}(j)}}{(\sum_{j=1}^{p_nN}\frac{1}{p_{suc}(j)})^2}-\frac{1}{\sum_{j=1}^{p_nN}\frac{1}{p_{suc}(j)}} \\
+ \leq\frac{e^2\pi^2(1+\alpha^2)/6}{[(1+\alpha)H_n-\alpha]^2}-\frac{\theta/(en)}{[(\alpha+1)H_n-\alpha]}.
+\end{split}
+\end{displaymath}
+
+It is close to $0$ when $n$ is large. Hence, the latency is not likely to be $2$ times larger than the expectation. Therefore,
+\begin{equation}
+W=O(nlnn).
+\end{equation}
+
+In a word, Alano-NCD and Alano-WCD both are bounded by $O(nlnn)$.
+
+%%
+
+
+
+%*****************
+
+
+
+The expectation neighbor number of each node:
+
 
 
 
 
 \subsection{Normal Distribution}
-%Picture: Normal  Distribution密度函数的三维坐标图和平面映射图
+\label{normal}
 
+For , denote the neighbors of 
 
-\subsection{Alano: }
-%纯概率计算
-
-
+$$
+p_{suc} = (1-p_t^i)p_t^{ij}\prod_{ k=1}^{\hat{n_i}, k\neq j}(1-p_t^{ik})
+$$
 
 
 

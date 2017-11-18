@@ -121,7 +121,7 @@ in each wake-up slot.
 \STATE $t := 0$;
 \WHILE {$True$}
    	 \IF{$(t + 1) \in R$}
-    		\STATE Invoke Alg. \ref{} to determine transmission state;
+    		\STATE Invoke Alg. \ref{Alano} to determine transmission state;
 	\ELSE
     		\STATE Sleep;
 	\ENDIF
@@ -152,7 +152,7 @@ such that $r_i - r_j \equiv \delta_t$ (mode $T$),
 which indicates any neighbor pair can wake up
 in the same time slot at least once in every period $T$. 
 Regarding the whole period $T$ as a time
-slot in Alg. \ref{}, we obtain the latency bound as $O(\frac{nlogn}{\theta^2})$.
+slot in Alg. \ref{Alano}, we obtain the latency bound as $O(\frac{nlogn}{\theta^2})$.
 
 
 \end{IEEEproof}
@@ -186,7 +186,7 @@ as Alg. \ref{P-ND} Line . \ref{P-NDline1} indicates.
 	\STATE $t_1 := t \% T$;
 	\STATE $t_2 : =( t / T ) \% (T - 1) +1$;\label{P-NDline1}
    	 \IF{$t_1 = 0 || t = t_2$}
-    		\STATE Invoke Alg. \ref{} to determine transmission state;
+    		\STATE Invoke Alg. \ref{Alano} to determine transmission state;
 	\ELSE
     		\STATE Sleep;
 	\ENDIF
@@ -245,20 +245,20 @@ according to Chinese remainder theorem, there exists a time slot $t_\tau \in \lb
 where $\delta$ is the asynchronous drift between node $i$ and node $j$.
 
 Equation\ref{case1.1} and \ref{case1.2}  implies there exists a fixed pointer of node $i$ 
-and a fixed pointer of node $j$ will rendezvous in every $T_iT_j$  .
+and a fixed pointer of node $j$ rendezvous in every $T_iT_j$  .
 
 \textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j = T$, if the asynchronous drift between 
 node $i$ and node $j$ $\delta = 0$, the fixed pointers of node $i$ and node $j$ will 
 rendezvous with each other in every period $T$.
-Otherwise since the traversing point will traverse all the time slot once in each period $(T-1)T$,
-the traversing point of node $i$ will consequentially rendezvous with the fixed pointer
-of node $j$ once every period $(T-1)T$, and the traversing point of node $j$ 
-will consequentially rendezvous with the fixed pointer
+Otherwise since the traversing point will traverse all the time slots once during period $(T-1)T$,
+there exists a traversing point of node $i$ rendezvous with a fixed pointer
+of node $j$ every period $(T-1)T$, and a traversing point of node $j$ 
+will consequentially rendezvous with a fixed pointer
 of node $i$ once every period $(T-1)T$ as well.
 
 Thus for any pair of neighbor (node $i$, node $j$), they can wake up
 at the same time slot at least once in every period $T_iT_j$. Regarding 
-the whole period $T_iT_j$ as a time slot in Alg. \ref{}, we obtain the latency 
+the whole period $T_iT_j$ as a time slot in Alg. \ref{Alano}, we obtain the latency 
 bound as $O(\frac{nlogn}{\theta_i\theta_j})$.
 \end{IEEEproof}
 
