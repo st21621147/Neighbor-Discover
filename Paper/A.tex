@@ -5,10 +5,8 @@
 
 %background and instances
 A practical scenario is that in a network,
-all the nodes are partially connected with each other
-In a partially-connected network, the nodes 
-within their 
-
+all the nodes are partially connected with each other.
+A node can sense a rang
 
 %density function and expectation of the neighbor number
 In a partially-connected network for $\forall$ node $u_i$, 
@@ -22,19 +20,19 @@ $$f(x,y)=
 \end{cases}$$
 where $D$ is the network covering area.
 
-$\forall$ node $u_i (x_i,y_i)$, its sensing range area $R_i$ can be formulated as:
+For $\forall$ node $u_i (x_i,y_i)$, its sensing range area $R_i$ can be formulated as:
 $$
 (x-x_i)^2+(y-y_i)^2 \leq r^2
 $$
 where $r$ is the the furthest detection distance.
 
-Thus, we can obtain the neighbor expectation number of node $u_i$ as :
+Thus, we can obtain the expectation neighbor number of node $u_i$ as :
 $$
 NB(u_i) = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
 $$
 
 We ignore the boundary area of the network and assume the
-nodes in the network is of an enormous quantity, thus the 
+nodes in the network is of an enormous quantity, so the 
 expectation neighbors can be formulated as:
 $$
 NB(u_i) = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
@@ -51,7 +49,7 @@ $$
 
 %Alano
 Then we propose \textbf{Alano}, a randomized neighbor discovery algorithm. 
-We describe the algorithm for $\forall$ node $u_i$ as Alg. \ref{Alano}.
+We describe the algorithm for $\forall$ node $u_i$ in Alg. \ref{Alano}.
 Alano algorithm indicates that what probability for a node choose to turn to  
 tramisitting state or listening state is determined
 by the expectation neighbor number varying from node to node.
@@ -87,8 +85,8 @@ approximately analysis that the discovery latency will not be much larger than u
 %background
 There are a part of partially-connected networks obeying uniform distribution. 
 For instance, consider there is a  wireless sensor network carrying out a task of
-measuring temperature and humidity in a target area. 
-Thus the sensors are supposed to be evenly deployed and the density function can be 
+measuring temperature and humidity in a target area, 
+thus the sensors are supposed to be evenly deployed and the density function can be 
 formulated as:
 $$f(x)=
 \begin{cases}
@@ -98,13 +96,13 @@ $$f(x)=
 where $A$ is the dimension of $D$.
 
 Every node in the network has the same expectation 
-of neighbor number and thus transmit with the same probability as:
+of neighbor number and transmit with the same probability as:
 $$
 \hat{n} = \frac{N\pi r^2}{A}, \quad p_t = \frac{1}{\hat{n}}=\frac{A}{N\pi r^2}.
 $$  
 
 According to Alano, the probability that node $u_i$ discover a specific
-neighbor successfully in a time slot is:
+neighbor successfully in a time slot can be formulated as:
 $$
 p_s = p_t{(1-p_t)}^{\hat{n}-1}.
 $$
@@ -114,7 +112,7 @@ p_s' = {(1-p_t)}^{\hat{n}-1}-(\hat{n}-1)p_t{(1-p_t)}^{\hat{n}-2}=0.
 $$
 It is easy to confirm that  when
 $$p_t=\frac{1}{\hat{n}}.$$ 
-$p_s$ gets maximum value:
+$p_s$ gets the maximum value:
 $$p_s = \frac{1}{\hat{n}}{(1-\frac{1}{\hat{n}})}^{\hat{n}-1} \approx \frac{1}{\hat{n}e}.$$
 
 Thus we can conclude that the probability chosen in Alano
@@ -126,7 +124,7 @@ is discovered after the node has discovered $(j-1)$ neighbors, which follows
 Geometric distribution with parameter $p(j): p(j)=(\hat{n}-j+1)p_s$. Then the expectation
 of $W_j$ is computed as:
 $$
-E[W_j]=\frac{1}{p(j)}=\frac{1}{(\hat{n}-j+1)p_t}
+E[W_j]=\frac{1}{p(j)}=\frac{1}{(\hat{n}-j+1)p_s}
 $$
 
 The expectation time latency of discovering all the neighbors can be formulated as:
@@ -141,32 +139,26 @@ show the bounded latency will not be much larger than its expectation.
 
 %To be modified later
 %%
-For $i\neq j$, $W_i$ and $W_j$ are independent by definition. As $Var[W_j]=\frac{1-p_{suc}(j)}{p^2_{suc}(j)}$ for Geometric distribution with parameter $p_{suc}(j)$, we obtain:
-
-\begin{displaymath}
-Var[W]=\sum_{j=1}^{n}Var[W_j]=\sum_{j=1}^{n}\frac{1}{p^2_{suc}(j)}-\sum_{j=1}^{n}\frac{1}{p_{suc}(j)}.
-\end{displaymath}
-We know that
+If $W_i$ is given, the value of $W_j$ will not be affected for $i<j$. That is, for $i\ne j$, $W_i$ and $W_j$ are independent and they satisfy $P(W_j=w_j|W_i=w_i)=P(W_j=w_j)$. Since $W_j$ follows Geometric distribution, and $Var[W_j]=\frac{1-p_j}{p_j^2}$, the variance of $W$ is
 \begin{displaymath}
 \begin{split}
-\sum_{j=1}^{n}\frac{1}{p^2_{suc}(j)}%\leq\frac{e^2}{\theta^2}\sum_{j=1}^{p_nN}(\frac{p_nN+\alpha(j-1)}{p_nN-j+1})^2 \\
- %& =\frac{e^2}{\theta^2}\sum_{j=1}^{p_nN}[\alpha^2-\frac{2\alpha p_nN+2\alpha^2p_nN}{j}+\frac{(1+\alpha)^2(p_nN)^2}{j^2}] \\
- \leq\frac{e^2}{\theta^2}[ \alpha^2n-2\alpha n(1+\alpha)H_n
-+\frac{\pi^2}{6}(1+\alpha^2)n^2].
+ Var[W] %& =Var[\sum_{j=1}^{p_nN}W_j]=\sum_{j=1}^{p_nN}Var[W_j]+\sum_{j\ne k}Cov[W_j,W_k] \\
+ =\sum_{j=1}^{n}Var[W_j]
+%=\frac{1}{p_{suc}^2}\sum_{j=1}^{p_nN}\frac{1}{j^2}-\frac{1}{p_{suc}}\sum_{j=1}^{p_nN}\frac{1}{j} \\
+ \le\frac{\pi^2}{6p_{suc}^2}-\frac{H_n}{p_{suc}}.
 \end{split}
 \end{displaymath}
 
-According to \emph{Chebyshev¡¦s inequality}, the probability that the discovery time is $2$ times larger than the expectation is:
-
+With \emph{Chebyshev's inequality}, the probability that the discovery time is 2 times larger than the expectation is
 \begin{displaymath}
 \begin{split}
- P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]\le\frac{Var[W]}{E[W]^2} \\
-%& \le\frac{\sum_{j=1}^{p_nN}\frac{1}{p^2_{suc}(j)}}{(\sum_{j=1}^{p_nN}\frac{1}{p_{suc}(j)})^2}-\frac{1}{\sum_{j=1}^{p_nN}\frac{1}{p_{suc}(j)}} \\
- \leq\frac{e^2\pi^2(1+\alpha^2)/6}{[(1+\alpha)H_n-\alpha]^2}-\frac{\theta/(en)}{[(\alpha+1)H_n-\alpha]}.
+P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
+\le\frac{Var[W]}{E[W]^2}
+%&\le\frac{\frac{\pi^2}{6p_{suc}^2}-\frac{H_{p_nN}}{p_{suc}}}{\frac{H_{p_nN}^2}{p_{suc}^2}}=
+\le\frac{\pi^2}{6H_{n}^2}-\frac{p_{suc}}{H_n}.
 \end{split}
 \end{displaymath}
-
-It is close to $0$ when $n$ is large. Hence, the latency is not likely to be $2$ times larger than the expectation. Therefore,
+For large $n$, $P[W\ge2E[W]]$ is close to 0. That is, the time for a node to find all neighbors is very likely to be smaller than $2$ times of expected latency. Therefore,
 \begin{equation}
 W=O(nlnn).
 \end{equation}
