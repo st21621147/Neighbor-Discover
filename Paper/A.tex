@@ -6,7 +6,8 @@
 %background and instances
 A practical scenario is that in a network,
 all the nodes are partially connected with each other.
-A node can sense a rang
+A node can discover a fraction of nodes within its sensing 
+range.
 
 %density function and expectation of the neighbor number
 In a partially-connected network for $\forall$ node $u_i$, 
@@ -76,7 +77,7 @@ In the following section \ref{uniform}, we first consider a general situation th
 in the network are uniform distributed. We derive a proof that the probability
 chosen in Alano is the optimal one and show the bounded latency will not 
 be much larger than its expectation. Then in the section  \ref{normal} we describe a more
-common situation that the nodes in the network obey normal distribution, we present a 
+common situation that the nodes in the network obey Gaussian Distribution, we present a 
 approximately analysis that the discovery latency will not be much larger than uniform distribution.
 
 
@@ -129,12 +130,12 @@ $$
 
 The expectation time latency of discovering all the neighbors can be formulated as:
 $$
-E(W_j) = \sum_{j=1}^{\hat{n}}\frac{1}{p_s}H_n \approx ne(lnn + O(1)) = O(nlnn).
+E[W_j] = \sum_{j=1}^{\hat{n}}\frac{1}{p_s}H_n \approx ne(lnn + O(1)) = O(nlnn).
 $$
 where $H_n$ is the $n$-th Harmonic number, i.e.,
 $H_n = lnn + O(1)$.
 
-We get the expectation discovery lantecy is within O(nlogn) and then we
+We get the expectation discovery latency is within O(nlogn) and then we
 show the bounded latency will not be much larger than its expectation.
 
 %To be modified later
@@ -159,11 +160,9 @@ P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
 \end{split}
 \end{displaymath}
 For large $n$, $P[W\ge2E[W]]$ is close to 0. That is, the time for a node to find all neighbors is very likely to be smaller than $2$ times of expected latency. Therefore,
-\begin{equation}
+\begin{equation*}
 W=O(nlnn).
-\end{equation}
-
-In a word, Alano-NCD and Alano-WCD both are bounded by $O(nlnn)$.
+\end{equation*}
 
 %%
 
@@ -173,22 +172,69 @@ In a word, Alano-NCD and Alano-WCD both are bounded by $O(nlnn)$.
 
 
 
-The expectation neighbor number of each node:
 
 
 
 
 
-\subsection{Normal Distribution}
+\subsection{Gaussian Distribution}
 \label{normal}
+%background
+A common scenario is that the nodes in a network obey Gaussian distribution.
+For example, an intrusion detection application may need improved detection 
+probability around important entities\cite{wang2013gaussian}.
 
-For , denote the neighbors of 
+In this section, we present a theoretical proof that the latency performance
+will not be much larger than uniform distribution.
+The analysis is not only applicable for Gaussian distribution
+but also flexible for all the other distributions.
 
+We first denote the approximate neighbors of node $u_i$
+as set $S(u_i) = \{u_{i1},u_{i2},...,u_{i\hat{n_i}}\}$.
+When the nodes obey Gaussian distribution, according to Alano, 
+the probability that node $u_i$ discovers a certain 
+neighbor node $u_{ij}$ successfully in a time slot can be formulated as:
 $$
 p_{suc} = (1-p_t^i)p_t^{ij}\prod_{ k=1}^{\hat{n_i}, k\neq j}(1-p_t^{ik})
 $$
 
+Denote:
+$$
+p_t^{imax} = \max_{1 \leq j \leq n_i}\{p_t^{ij}\}, \quad p_t^{imin} = \min_{1 \leq j \leq n_i}\{p_t^{ij}\}.
+$$
 
+Thus for $\forall j$, $1 \leq j \leq n_i$:
+\begin{align*}
+&(1-p_t^i)p_t^{imin}{(1-p_t^{imax})}^{\hat{n_i}-1} \\
+\leq &(1-p_t^i)p_t^{ij}\prod_{ k=1}^{\hat{n_i}, k\neq j}(1-p_t^{ik}) \\
+\leq &(1-p_t^i)p_t^{imax}{(1-p_t^{imin})}^{\hat{n_i}-1} 
+\end{align*}
 
+Denote:
+\begin{align*}
+&P = (1-p_t^i)p_t^{imin}{(1-p_t^{imax})}^{\hat{n_i}-1}  \\
+&Q = (1-p_t^i)p_t^{imax}{(1-p_t^{imin})}^{\hat{n_i}-1} 
+\end{align*}
+
+Thus we get:
+\begin{align*}
+\frac{1}{\hat{n_i}Q} \quad \leq \quad &E[W_1] \quad \leq \quad \frac{1}{\hat{n_i}P} \\
+\frac{1}{(\hat{n_i}-1)Q} \quad \leq \quad &E[W_2] \quad \leq \quad \frac{1}{(\hat{n_i}-1)P} \\
+& ..........\\
+\frac{1}{Q} \quad \leq \quad &E[W_{\hat{n_i}}] \quad \leq \quad \frac{1}{P} 
+\end{align*}
+
+Sum all the equations above, and we will get:
+$$
+\frac{1}{Q}H_n  \quad \leq \quad E[\sum_{j=1}^{\hat{n_i}}W_j]  \quad \leq \quad \frac{1}{P}H_n
+$$
+
+Since the sensible neighbors are within a close distance of the node 
+compared to the total network area, 
+which implies the density function values are within the same order of magnitude.
+Thus we can conclude that the expectation of the time latency in the normal 
+distributed networks are still $E[W]=O(nlnn)$.
+Similarly the bounded latency can be proved to be $W=O(nlnn)$ in the same way as
+uniform distribution.
 
 

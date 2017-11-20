@@ -2,17 +2,27 @@
 \section{Preliminaries}
 \label{sectionmodel}
 
-In this section, we first give some notion definitions and introduce the collision detection mechanism. 
+In this section, we first describe the network and node model.
 Then we formulate the Neighbor Discovery problem formally.  
 
-%Communication device model
-\subsection{Sensor Node Model}
+\subsection{Network and Node Model}
 
+%distribution and networks
+In a network, the location of the nodes are likely to obey uniform distribution[][],
+Gaussian distribution[][] or other combinatorial distributions.
+
+In reality, since the network is deployed in a vast area, each node 
+has a capacity to sense a fraction of nodes within its sensing range.
+These networks are defined as \emph{Partially-Connected Networks}.
+
+Among the partially-connected networks, there is a particular type called \emph{Energy-Efficient Networks}.
+A typical one of energy-efficient networks is the wireless sensor network.
 The wireless sensor network consists of a number of sensors distributed separately in a target area.
 The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
 and wake up timely to work on duty.
 
-When a sensor wake up on a time slot, it can turn to either the transmitting state or listening state. 
+
+When a node wake up on a time slot, it can turn to either the transmitting state or listening state. 
 \begin{itemize}
 \item \textbf{Transmitting state}. A node turn to transmitting state will broadcast a package containing its own identify 
 information to all neighbors.
@@ -21,8 +31,11 @@ However collision will occur when two or more neighbor nodes transmit concurrent
 \end{itemize}
 Transiting between the states only costs little time, compared to one complete time slot.
 
-In our model, we assume that each node has a unique identifier $ID_i$ which is aware by theirselves, while the total amount of sensors $N$  is not necessary to be known. Time is divided into slots of equal length $t_0$, 
-which is sufficient to finish  one communication process(transmit or receive a piece of package). In each time slot, a node transform its pattern according to a pre-defined duty schedule.
+In our model, we denote the node set in the network as $U = \{u_1,u_2,...,u_N\}$.
+Time is divided into slots of equal length $t_0$, 
+which is sufficient to finish  one communication process
+(transmit or receive a piece of package). In each time slot, 
+a node transform its pattern according to a pre-defined duty schedule.
 
 
 \begin{definition}
@@ -39,7 +52,7 @@ $$
 
  Each node construct its own duty schedule according to a specific strategy and repeats it
  until finding all the neighbors. Since the waking-up duration has a significant affect on the battery's lifetime, 
- duty circle is defined to restrict the energy consumption.
+ duty circle is utilized to restrict the energy consumption.
 
 \begin{definition}
 \textbf{Duty circle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
@@ -49,24 +62,15 @@ $$
   
 \end{definition}
 
-
-
-%@@@ to be modified  Network model
-\subsection{Collision Detection Mechanism}
-
-A collision detection mechanism allows a node to distinguish between 
-the case where two or more nodes are transmitting and one where no 
-node is transmitting. Indeed, practical solutions for collision detection 
-have been proposed. 
-
-%@@@
-
-
+A homogeneous energy-arrangement case is that all the nodes
+in the network share a common global duty circle $\theta$,
+while each nodes holding a local duty circle $\theta_i$ is 
+a heterogeneous
 
 
 \subsection{Problem Definition}
 
-We consider a partially-connected sensor network, 
+We consider a partially-connected network, 
 where two nodes are neighbors if they locate within the radio range of each other. 
 A  symmetric matrix $M_{N\times N}$ is used to record the neighboring relations as:
 
@@ -78,14 +82,15 @@ $$ M_{i,j}=\left\{
 \right.
 $$
 
-Each sensor follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
-sensors start their neighbor discovery process at the same time, while in a asynchronous  scenario
-all nodes start at different time slots.
+Each node follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
+nodes start their neighbor discovery process at the same time, while in a asynchronous  scenario
+all nodes start at different time slots. We focus on the asynchronous case while still applicable for the
+synchronous situation.
+
  
 Notice that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
-need to find each other separately. The time slots within which a sensor node $u_i$ find one of its neighbors $u_j$ can be formulated 
+need to find each other separately. The time slots within which a node $u_i$ find one of its neighbors $u_j$ can be formulated 
 as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all neighbors as:
-
 \begin{definition}
 \textbf{Discovery latency} of node $u_i$ is the time to discover all neighbors:
 $$L(i) = \max_{M_{i,j}= 1} L (i,j).
@@ -95,27 +100,20 @@ $$
 Thus the neighbor discovery problem can be formulated as:
 %@@@to be modified
 \begin{problem}
-For a sensor node with identifier $ID$  $i$, design a strategy of constructing a duty schedule with duty circle $\theta$, which satisfies : 
-for $\forall$ node $j_{M_{i,j}=1}$ :
-
-$\exists$ t s.t. : 
-
-\begin{equation*}
-S_i(t) = L 
-\end{equation*}
-\begin{equation*} 
-S_j(t) = T
-\end{equation*}  
-
-$\forall$ node $k_{M_{i,k}=1 \&\& k \neq j}$  : 
-\begin{equation*}
-S_k(t)= L || S_k(t)=S
-\end{equation*}
+For a node $u_i$ with its neighbor set $S = \{u_{i1},u_{i2},...u_{ij},...\}$, 
+design a strategy to construct a duty schedule, which satisfies
+for $\forall$ neighbor nodes $u_{ij}$ :
+$$
+\exists t \ s.t. :  \quad
+S_i(t) = L ,
+S_{ij}(t) = T,
+\forall k \neq j : S_{ik}(t) = L || S.
+$$
 
 \end{problem}
 %@@@
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centering
 \subfigure[The topology of a wireless sensor networks ]{\includegraphics[width=1.65in]{./Figure/topology.eps}}
 \vspace{0.03in}
@@ -126,9 +124,9 @@ Transmitting state and Listening state in wake-up pattern respectively.}
 %\vspace{-0.2in}
 \end{figure}
 
-An example of neighbor dicovery process is given in Fig.\ref{NDexample}. 
+An example of neighbor discovery process is given in Fig.\ref{NDexample}. 
 Fig.\ref{NDexample}(a) shows the topology of a partially-connected 
-wireless sensor networks, which consists of $5$ sensor nodes. 
+wireless sensor network, which consists of $5$ sensor nodes. 
 Fig.\ref{NDexample}(b) describes the neighbor discovery process 
 in the asynchronous scenario, as we can see the nodes 
 start their process at different time slot. The duty schedule of 
