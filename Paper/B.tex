@@ -184,7 +184,7 @@ as Alg. \ref{P-ND} Line . \ref{P-NDline1} indicates.
 \STATE $t := 0$;
 \WHILE {$True$}
 	\STATE $t_1 := t \% T$;
-	\STATE $t_2 : =( t / T ) \% (T - 1) +1$;\label{P-NDline1}
+	\STATE $t_2 : =\lfloor t / T \rfloor \% (T - 1) +1$;\label{P-NDline1}
    	 \IF{$t_1 = 0 || t = t_2$}
     		\STATE Invoke Alg. \ref{Alano} to determine transmission state;
 	\ELSE

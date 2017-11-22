@@ -39,7 +39,7 @@ a node transform its pattern according to a pre-defined duty schedule.
 
 
 \begin{definition}
-\textbf{Duty schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
+\textbf{Duty Schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
 $$ s^t=\left\{
 \begin{aligned}
 S  & & & {Sleep}\\
@@ -55,9 +55,9 @@ $$
  duty circle is utilized to restrict the energy consumption.
 
 \begin{definition}
-\textbf{Duty circle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
+\textbf{Duty Circle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
 
-$$\theta=\frac{|\{ 0\leq t<T : s^t = T || s^t = L\}}{T}.
+$$\theta=\frac{|\{t: 0\leq t<T, s^t \in \{T,L\}\}|}{T}.
 $$
   
 \end{definition}
@@ -92,8 +92,8 @@ Notice that the neighbor discovery process is not bidirectional, which means any
 need to find each other separately. The time slots within which a node $u_i$ find one of its neighbors $u_j$ can be formulated 
 as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all neighbors as:
 \begin{definition}
-\textbf{Discovery latency} of node $u_i$ is the time to discover all neighbors:
-$$L(i) = \max_{M_{i,j}= 1} L (i,j).
+\textbf{Discovery Latency} of node $u_i$ is the time to discover all neighbors:
+$$L(i) = \max_{j:M_{i,j}=1} L(i,j).
 $$
 \end{definition}
 
@@ -102,12 +102,12 @@ Thus the neighbor discovery problem can be formulated as:
 \begin{problem}
 For a node $u_i$ with its neighbor set $S = \{u_{i1},u_{i2},...u_{ij},...\}$, 
 design a strategy to construct a duty schedule, which satisfies
-for $\forall$ neighbor nodes $u_{ij}$ :
+$\forall$ neighbor nodes $u_{ij}$ :
 $$
 \exists t \ s.t. :  \quad
 S_i(t) = L ,
 S_{ij}(t) = T,
-\forall k \neq j : S_{ik}(t) = L || S.
+\forall k \neq j : S_{ik}(t) \in \{L, S\}.
 $$
 
 \end{problem}
