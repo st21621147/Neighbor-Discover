@@ -1,0 +1,17 @@
+编译单个文件...
+--------
+- 文件名: F:\Cao\我的论文\SECON\code\alg2.cpp
+- 编译器名: TDM-GCC 4.8.1 64-bit Release
+
+处理 C++ 源文件...
+--------
+- C++ 编译器: C:\Program Files (x86)\Dev-Cpp\MinGW64\bin\c++.exe
+- 命令: c++.exe "F:\Cao\我的论文\SECON\code\alg2.cpp" -o "F:\Cao\我的论文\SECON\code\alg2.exe" -g3 -I"C:\Program Files (x86)\Dev-Cpp\MinGW64\include" -I"C:\Program Files (x86)\Dev-Cpp\MinGW64\x86_64-w64-mingw32\include" -L"C:\Program Files (x86)\Dev-Cpp\MinGW64\lib" -L"C:\Program Files (x86)\Dev-Cpp\MinGW64\x86_64-w64-mingw32\lib" -lodbc32 -g3
+
+编译结果...
+--------
+- 错误: 0
+- 警告: 0
+- 输出文件名: F:\Cao\我的论文\SECON\code\alg2.exe
+- 输出大小: 2.15256309509277 MiB
+- 编译时间: 4.99s
