@@ -9,15 +9,15 @@ $N=1000$, $t_0=20ms$, $p_n=0.5$, $\delta=1000$ slots. That is, the network is co
 
 These settings make the network more complicated and realistic than that in \cite{Kandhalu2010, Sun2014b, Qiu2016, Chen2015, Bakht2012, McGlynn2001, Vasudevan2009, Jiang2005, Dutta2008, You2011, Song2014}.
 
-We evaluated discovery latency of Alano, Aloha-like~\cite{You2011}, Hello~\cite{Sun2014b}, Hedis~\cite{}, and Searchlight~\cite{} in partially-connected network. Since Coupon~\cite{Vasudevan2009} and PND~\cite{Song2014} do not consider duty cycle, we evaluated the tradeoff of duty cycle and discovery latency among \Panacea, Aloha-like~\cite{You2011} and .
-This tradeoff could be quantified by \emph{power-latency product} in~\cite{Kandhalu2010}, which is the product of average power consumption (i.e., duty cycle) with discovery latency.
+We evaluated discovery latency of Alano, Aloha-like~\cite{You2011}, Hello~\cite{Sun2014b}, Hedis~\cite{}, and Searchlight~\cite{} in partially-connected network. 
 
 \subsection{Comparison of Discovery Latency}
+
 \begin{figure}[!t]
 \centering
-\subfigure[Synchronous Scenario]{\includegraphics[width=1.65in]{figure/time_rate_syn}}
+\subfigure[Uniform Distribution]{\includegraphics[width=1.65in]{Figure/latency_uniform}}
 \hspace{0.01in}
-\subfigure[Asynchronous Scenario]{\includegraphics[width=1.65in]{figure/time_rate_asyn}}
+\subfigure[Normal Distribution]{\includegraphics[width=1.65in]{Figure/latency_normal}}
 \caption{Panacea-WCD achieves higher discovery rate with CD.}
 \label{fig_timerate}
 \end{figure}
