@@ -2,9 +2,13 @@
 \section{Evaluation}
 \label{Evaluation}
 
+
 We implemented Alano in C++ and evaluated the algorithms in a cluster of 9 servers, each equipped with an Intel Xeon 2.6GHz CPU with 24 hyper-threading cores, 64GB memory and 1T SSD. 
 Each time slot represents 20ms. We simulated the network follows uniform distribution and normal distribution respectively. We consider 500 nodes with radio range 10 in $100\times100$ area following uniform distribution, and more generally, 1000 nodes with radio range 5 following normal distribution $N(50, 15^2)$. The duty cycle is $0.1$.
 % These settings make the network more complicated and realistic than that in \cite{Kandhalu2010, Sun2014b, Qiu2016, Chen2015, Bakht2012, McGlynn2001, Vasudevan2009, Jiang2005, Dutta2008, You2011, Song2014}.
+
+We implemented Alano in C++ and evaluated the algorithms in a cluster of 9 servers, each equipped with an Intel Xeon 2.6GHz CPU with 24 hyper-threading cores, 64GB memory and 1T SSD. The basic settings in the evaluation are: 
+
 
 We evaluated discovery latency of Alano, Aloha-like~\cite{You2011}, Hello~\cite{Sun2014b}, Hedis~\cite{}, and Searchlight~\cite{} in partially-connected network. As the deterministic algorithms, Hello, Hedis and Searchlight, only have two states, ￥{ON, OFF}, we generally assume that when nodes are in ON state, they transmit and listen with equal probability.
 We show that Alano has lower latency, higher discovery rate, and better scalability.
@@ -70,4 +74,5 @@ With different duty cycle, Fig. \ref{fig_dutycycle} shows that Alano has lower l
 \end{figure}
 
 When the number of nodes increases and the network becomes denser, Alano still shows $50.16\%$ to $4.52$ times lower latency than Aloha-like in uniform distribution and up to $47.03\%$ in normal distribution in Fig. \ref{fig_node}. Here we compare Alano with Aloha-like, because Hello, Hedis and Searchlight can hardly discover neighbors in denser networks. 
+
 
