@@ -1,118 +1,63 @@
 % Introduction
 \section{Introduction}
-%%
-\iffalse
-Main components in this section:
 
-\textbf{1.The significance of this research and the background:}
-\vspace{3mm}
+%Paper Flow
 
-\textbf{2.The weakness of the existing methods and the challenges:}
+%Since a large-scale is hard to implement, we make simulation instead.
 
-The existing methods can be divided into two categories :  deterministic or probabilistic.
-
-The deterministic approaches assume there are no collision or are only suitable for two nodes.
-Some assume all the nodes are the neighbor of each other.
-
-Some methods assume nodes have an estimate of $N$, which is the total amount of sensors in the network.
-
-The probabilistic approaches have a poor performance and can not guarantee a worst case bound. 
+%P1: Background  
+Information and Communication Technology (ICT) equipment \cite{zeadally2012energy} has exploded 
+on the scene in the last twenty years, leading to an obvious ascent of Internet-of-Things \cite{atzori2010internet},
+such as wireless sensor networks[], mobile campus networks[], mobile gaming community, etc.
 
 
-Challenge of my work:
-We consider the most demanding problem model in this work, which is also closest to the practical situation.
-
-\textbf{3.The main contribution and the key idea of my work:}
-
-Consider the partially-connected network, which is the most demanding problem model.
-
-Assume nodes do not have an estimate of $N$.
-
-Combine the advantages of both two category approaches.
-
-The Proposed algorithm guarantees achieving neighbor discovery within $O(nf(\theta))$, which holds a better
-performance than the state-of-the-art works.
-
-The core is to propose a deterministic approach to  align the sensors' wake-up time and then achieve neighbor discovery with a probabilistic approach.
-\fi
-%%
-%Picture1: 	热力图：说明网络中nodes的分布关系
-%Picture2:	邻居图：说明邻居的连接时部分连接的
-
-%********************start:
-
-%keywords: partially-connected networks,
-%energy-efficient networks: global & local duty circle
-%nodes distribution
-%combine the deterministic and probabilistic advantages.
-
- %Background application:
-Information and Communication Technology (ICT) equipment  
-has exploded on the scene in the last twenty years\cite{zeadally2012energy}. 
-Varying from their specific applications, these devices consists of a wide variety of networks.
+%P2: Problem
+%NB problem and a brief introduction of the existing works
+Neighbor discovery is a fundamental step of constructing a wireless network, based on 
+which the network can implement further applications such as routing and broadcasting.
+The core aim is for each node in the network to discover the nodes in its sensing range 
+with one-hop communication. A number of existing works \cite{dutta2008practical,kandhalu2010u,
+bakht2012searchlight,sun2014hello,chen2015heterogeneous,
+wang2015blinddate,qiu2016talk,mcglynn2001birthday,
+vasudevan2009neighbor,you2011aloha,song2014probabilistic} have been proposed 
+to deal with this issue, some of which are based on deterministic techniques while others
+are probabilistic methods.
 
 
-%Theme&&main topic: Neighbor discovery
-Neighbor discovery is a fundamental means for the devices 
-to participate in network communication.
-%introduction the existing  methods and their weakness
-A popular way to deal with this issue is to construct a deterministic 
-sequence of transmission state in each time slot
-\cite{wang2015blinddate,qiu2016talk,dutta2008practical,
-sun2014hello,bakht2012searchlight,chen2015heterogeneous,kandhalu2010u}. 
-It holds an obvious advantage that the time to discovery a neighbor 
-node can be bounded within a limited time. 
-Nevertheless, most deterministic approaches only consider two 
-nodes to discover each other, without further deliberating on the details 
-(e.g. collisions from neighbors) when applying for multi-nodes.
-Instead, there are some probability based algorithms showing an ideal expected time 
-bound for multi-nodes to find their neighbors. However, the weakness part 
-of this kind of methods lies in the poor performance of discovery latency in the worst case.
-
-
-
-
-
-%this paper focus on two points 
-
-
-%Partially-Connected Networks: Background&motivation&contribution 
-%Why Partially-Connected Networks is a practical assumption
-
-
-%why we consider partially-connected networks
-A more crucial issue is that neither deterministic or probabilistic approaches 
-consider a partially-connected networks in reality, 
-the devices of which can only possess a fraction neighbors among all the nodes.
-Deploying a fully-connected network in a large-scale area, 
-such as campus networks, wireless sensor networks,
-mobile gaming community, etc., is technically impractical 
+%P3 and P4: motivation & crucial challenges
+%key word: large-scale network partially-connected network
+%point out problem issue
+Unfortunately, the network model adopted in the current researches is disengagement from the reality networks.
+While the deterministic approaches is efficient to discovery the neighbor
+for two nodes, there exists some crucial problems when transferring to multiple node scenario.
+Some methods can not solve the collision issue when more than one neighbors are transmitting simultaneously. 
+Others follows a simple protocol that each node send a beacon at both beginning and end of an active slot, 
+which is assumed only costing little time compared to a complete time slot in two node scenario. Nevertheless,
+a node needs to sends a package containing all its information in a complete time slot in multiple node scenario,
+otherwise the neighbor can not identify which neighbor the received beacon belongs to.
+Relatively, the probabilistic approach can well deal with multiple node scenario but only consider
+the network is fully-connected, the topology of which is a complete graph. 
+Deploying a fully-connected network in a large-scale area is technically impractical 
 due to the limited sensing range of devices communication.
 How far the other nodes can be detected as a neighbor for a mobile equipment  
 depends on criterion such as the received signal strength.
-Thus a practical situation is that in a network , the nodes are partially connected with its  
-detectable neighbors.
+
+To our best knowledge, no relevant researches have focused on a more 
+practical scenario in a large-scale network, where nodes are partially-connected
+with each other. In other words, a node can only discover a fraction of nodes of the
+total network in its limited radio sensing range, which can be called its neighbors.
 
 
-\vspace{3mm}
- *********To be dealt with details later********
+
+
+
  
  
-\textbf{How we deal with partially-connected networks:}
+ %P4 distribution
+ 
 
-1. Consider distribution of network devices: uniform distribution normal distribution
-
-2. propose a distribution based Alano alogrithm
-
-*
-
-*
-
-*
-
-*
-
-\begin{figure}[!t]
+ 
+ \begin{figure}[!t]
 \centering
 \subfigure[Normal distribution density function]{\includegraphics[width=2.5in]{./Figure/normalDistribution.eps}}
 \vspace{0.03in}
@@ -121,20 +66,75 @@ detectable neighbors.
 \label{NDexample}
 %\vspace{-0.2in}
 \end{figure}
-
-
-\textbf{*Motivation of energy-efficient networks:}
-
-%Energy-Efficient Networks: Background&motivation&contribution
-
+ 
+%P5 energy-efficient network
+ 
 
 Among the partially-connected networks, there is a special 
-one named energy-efficent network.
-Nodes in this type of networks have to maintain 
+one named energy-efficient network.
+Wireless sensor network is a typical energy-efficient network that all the sensor nodes have to maintain 
 strict power budgets to attain years of lifetime\cite{dunkels2011contikimac}.
-Duty circle mechanism, the , is utilized to power-awareness ought to be fully taken into consideration.
+Duty cycle mechanism, the , is utilized to power-awareness ought to be fully taken into consideration.
 Correspondingly, the neighbor discovery process needs adjustment to deal with the dilemma between 
-a balance of energy-efficiency and low- latency.
+a balance of energy-efficiency and low-latency.
+
+%P5 why and how we can
+% treat the partially-connected scenario carefully and model the nodes distribution
+%we make analysis and calculate the optimal probability based on the specific distribution.
+%we utilized the initiative concept of deterministic approaches to 
+%to align the wake-up time slot of the neighbors and guarantee a bound.
+
+
+
+%P6 Brief Evaluation Analysis 
+%the simulation data to support && highlight our work
+
+%P7 Contribution
+%Model the distribution of nodes
+%for the global duty cycle scenario
+%for the local duty cycle scenario
+
+The contributions of this paper are as follows:
+%In this paper, we propose a new method to construct sequence
+%we propose improved algorithms for both scenarios and our contributions are as follows:
+\begin{itemize}
+\item[1)] We model the distribution of nodes in their networks and analyse the 
+expectation number of neighbors of a node in uniform distribution and normal
+distribution and then propose Alano, a strategy
+\item[2)] We propose a Relaxed DifferenceSet based Alano algorithm (RDS-Alano) 
+for the global duty cycle scenario. 
+\item[3)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) 
+for the local duty cycle scenario. 
+\end{itemize}
+
+
+
+%P8 Remaining structure
+
+The remainder of the paper is organized as follows.
+The next section highlights some related work and 
+puts forward some serious problems. 
+Some notion definitions and the system model are given in Section
+\ref{sectionmodel}. 
+We analyse the node's expectation number of neighbors and 
+propose Alano algorithm in \ref{PCN} as a foundation.
+Section \ref{EEN} describes the RDS-Alano algorithm for global
+duty cycle scenario and TP-Alano algorithm for local duty cycle scenario
+respectively in energy-efficient networks.
+We have conducted extensive simulations, and the results are shown in Section
+\ref{Evaluation}. Finally, we conclude the paper in Section
+\ref{Conclusion}.
+
+
+
+
+
+
+
+
+
+
+
 
 
 \textbf{Contribution conclusion}
@@ -148,45 +148,9 @@ as well as a TP-Alano algorithm for the energy-effienct networks.
 
 
 
-%power-awareness is fully taken into consideration in the design, implementation, deployment, and maintenance of ICT technologies. 
-
-
-%we use the technique to aline the wake-up slot and invoke the proposed 
-%第二章介绍现有模型和算法的缺陷
-
-%the advantage and disadvantage of D&P and why they can be combined.
 
 
 
-%本文的贡献
-The contributions of this paper are as follows:
-%In this paper, we propose a new method to construct sequence
-%we propose improved algorithms for both scenarios and our contributions are as follows:
-\begin{itemize}
-\item[1)] We model the distribution of nodes in their networks and analyse the 
-expectation number of neighbors of a node in uniform distribution and normal
-distribution and then propose Alano, a strategy
-\item[2)] We propose a Relaxed DifferenceSet based Alano algorithm (RDS-Alano) 
-for the global duty circle scenario. 
-\item[3)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) 
-for the local duty circle scenario. 
-\end{itemize}
 
-\textbf{*Rest part structure}
-
-%后文的结构
-The remainder of the paper is organized as follows.
-The next section highlights some related work and 
-puts forward some serious problems. 
-Some notion definitions and the system model are given in Section
-\ref{sectionmodel}. 
-We analyse the node's expectation number of neighbors and 
-propose Alano algorithm in \ref{PCN} as a foundation.
-Section \ref{EEN} describes the RDS-Alano algorithm for global
-duty circle scenario and TP-Alano algorithm for local duty circle scenario
-respectively in energy-efficient networks.
-We have conducted extensive simulations, and the results are shown in Section
-\ref{Evaluation}. Finally, we conclude the paper in Section
-\ref{Conclusion}.
 
 

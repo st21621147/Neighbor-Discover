@@ -2,28 +2,75 @@
 \section{Related Work}
 \label{RW}
 
-Introduce the representative existing algorithms.
+%Introduce the representative existing algorithms and the weakness.
 
-1. Birthday Alg.
+%cite
+%deterministic:
+%BlindDate #wang2015blinddate
+%Disco #dutta2008practical
+%Hello #sun2014hello
+%Searchlight #bakht2012searchlight
+%Talk More Listen Less  #qiu2016talk
+%Todis\&Hedis #chen2015heterogeneous
+%U-Connect  #kandhalu2010u
+%probabilistic:
+%Birthday #mcglynn2001birthday
+%ALOHA-like09 vasudevan2009neighbor
+%ALOHA-like11 2011 #you2011aloha
+%PND #song2014probabilistic
+%others
+%Normal Distribution #wang2013gaussian
 
-2. BlindDate Alg.
 
-3. Disco Alg.
 
-4. Hello Alg.
 
-5. Searchlight Alg.
 
-6. Talk More Listen Less Alg.
+Neighbor discovery problem has raised a great deal of attention of scholars \cite{sun2014energy}. 
+A number of neighbor discovery methods have been proposed in the past decade.
+Technically, these approaches can be classified into two categories, probabilistic and deterministic. 
 
-7. Todis\&Hedis Alg.
+In the deterministic methods \cite{dutta2008practical,kandhalu2010u,
+bakht2012searchlight,sun2014hello,chen2015heterogeneous,
+wang2015blinddate,qiu2016talk}, some mathematical techniques, such as
+co-primality, quorum system, etc., are utilized to promote the discovery performance.
+The deterministic methods holds an obvious advantage that they
+can achieve neighbor discovery process within a bounded time latency.
 
-8. U-Connect Alg.
+Nevertheless, there exists some crucial weak points in the deterministic algorithm.
+Firstly, Disco \cite{dutta2008practical} proposes a discovery protocol that
+each node has a capability to send a beacon at both beginning and end of
+an active slot, which is widely adopted by the later algorithms such as
+SearchLight \cite{bakht2012searchlight}, BlindDate \cite{wang2015blinddate}
+and Hello \cite{sun2014hello}, Nihao \cite{qiu2016talk}. It is quite an efficient way for two nodes to discover
+each other within an ideal time latency. However,  they do not solve the collision 
+issues when receiving packages from multiple neighbors. Furthermore, when they are 
+extended for multiple nodes, only sending a beacon to discover the neighbors is 
+totally insufficient. A node needs to send a complete package containing all its information,
+otherwise the neighbor can not  identify which neighbor the beacon belongs to[][][].
+Thus a complete time slot is necessary for a node to transmit a package or listen to 
+the channel to receive a package.
 
-9.  ALOHA-like Alg.
+Another category is probabilistic methods \cite{mcglynn2001birthday,
+vasudevan2009neighbor,you2011aloha,song2014probabilistic}. These
+approaches utilize probability techniques to promote the randomness 
+to discover the neighbors. Different from the deterministic algorithms, 
+this kind of method shows an significant strength in the multiple nodes scenario. 
+Relatively, probabilistic methods only present an expectation discovery latency and 
+can not guarantee a latency bound in the worst case.
+In addition, almost all the existing methods consider the network is fully-connected,
+the topology of which is a complete graph. From our analysis and simulations, 
+they have a poor performance in the partially-connected networks, which is more 
+practical in the reality world.
 
-%probabilistic  Algorithm and the weakness
+To the best of our knowledge, neighbor deterministic nor probabilistic methods are designed for
+partially-connected networks. In this paper, we present a low-latency, energy-efficient 
+neighbor discovery algorithm for partially-connected networks.
 
-%deterministic Algorithm and the weakness of the protocol
+The proposed RDS-Alano and TP-Alano in this paper are a combination of both two categories.
+We compare our proposed algorithm with both deterministic and probabilistic algorithms. 
+Particularly as mentioned above, the deterministic approaches need some adjustment 
+when transferred to partially-connected networks. Details will be introduced in Section \ref{Evaluation}
+
+
 
 

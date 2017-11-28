@@ -1,19 +1,19 @@
 \section{Energy-Efficient Networks}
 \label{EEN}
-%wireless sensor networks: duty circle 
+%wireless sensor networks: duty cycle 
 In an energy-efficient network (i.e., wireless sensor networks), 
 the battery-consumption is a crucial factor to be taken into account.
-Duty circle is a key technique to deal with the dilemma between a 
+Duty cycle is a key technique to deal with the dilemma between a 
 balance of energy-efficiency and low-latency.
 
 
 %the structure of the rest part in this section
 We first consider the homogeneous energy-arrangement situation
-that  all the nodes share a global duty circle $\theta$, and propose
+that  all the nodes share a global duty cycle $\theta$, and propose
 a RDS based Alano algorithm. Then we propose a traversing pointer 
 based Alano algorithm for a more general scenario, 
 where nodes have heterogeneous battery-scheduling 
-capability with local duty circle $\theta_i$.
+capability with local duty cycle $\theta_i$.
 
 %an overview of the motivation of the algorithm
 Our initiative idea is to align the wake-up slots of the neighbor nodes within a bounded time,
@@ -24,7 +24,7 @@ a wake-up slot rendezvous in each period $T$.
 \subsection{Global $\theta$: A RDS Based Alano Algorithm}
 
 %Consider Global Duty Circle
-When a global duty circle $\theta$ is shared by all the nodes in the network,
+When a global duty cycle $\theta$ is shared by all the nodes in the network,
 we utilize relaxed difference set (RDS) to align the wake-up time slots.
 
 
@@ -104,7 +104,7 @@ satisfying  $a_j - a_i \equiv d$.
 
 Next, we present a RDS based Alano algorithm (RDS-Alano) in Alg. \ref{RDS-ND},
 to achieve neighbor discovery process in a partially-connected
-and energy-efficient network with global duty circle $\theta$. 
+and energy-efficient network with global duty cycle $\theta$. 
 
 In Alg. \ref{RDS-ND}, RDS is used to construct a deterministic 
 schedule for the node to wake up in every period $T$, 
@@ -130,7 +130,7 @@ in each wake-up slot.
 \end{algorithmic}
 \end{algorithm}
 
-%The time bound analysis   dutycircle zhengming
+%The time bound analysis   dutycycle zhengming
 
 We show a proof of time latency bound for Alg. \ref{RDS-ND}  as following:
 
@@ -141,7 +141,7 @@ to be bounded within $O(\frac{nlog}{\theta^2})$ w.h.p.
 \end{theorem}
 
 \begin{IEEEproof}
-It is easy to confirm that the duty circle $\widetilde{\theta}$ in Alg. \ref{RDS-ND} corresponds to $\theta$ as:
+It is easy to confirm that the duty cycle $\widetilde{\theta}$ in Alg. \ref{RDS-ND} corresponds to $\theta$ as:
 $$
 \widetilde{\theta} = \frac{|RDS|}{|T|} = \frac{\lceil \frac{3\sqrt{T}}{2}  \rceil}{T} = \theta.
 $$
@@ -168,7 +168,7 @@ slot in Alg. \ref{Alano}, we obtain the latency bound as $O(\frac{nlogn}{\theta^
 For a more practical scenario, the nodes in a wireless sensor networks 
 for instance, are assigned to diverse tasks such as temperature measurement,
 sunshine collection, etc., and thus ought to have heterogenous capability of
-battery-management with local duty circle $\theta_i$.
+battery-management with local duty cycle $\theta_i$.
 
 We propose a traversing pointer based Alano algorithm(TP-Alano) in Alg. \ref{P-ND}.
 In each period $T$, every node wakes up in two different time slots, one of which is the
@@ -185,7 +185,7 @@ as Alg. \ref{P-ND} Line . \ref{P-NDline1} indicates.
 \WHILE {$True$}
 	\STATE $t_1 := t \% T$;
 	\STATE $t_2 : =\lfloor t / T \rfloor \% (T - 1) +1$;\label{P-NDline1}
-   	 \IF{$t_1 = 0 || t = t_2$}
+   	 \IF{$t_1 = 0 || t_1 = t_2$}
     		\STATE Invoke Alg. \ref{Alano} to determine transmission state;
 	\ELSE
     		\STATE Sleep;
@@ -202,9 +202,9 @@ in every period $T_iT_j$. A sketch of the pointers is described in Fig. \ref{TP}
 Note that, since the period of $T$ is selected as: 
 \emph{find the smallest prime $\geq \frac{2}{\theta_i}$},
 which is likely to result in the consequence that the duty 
-circle $\widetilde{\theta_i}$ in Alg. \ref{P-ND} is smaller than the expected
+cycle $\widetilde{\theta_i}$ in Alg. \ref{P-ND} is smaller than the expected
 $\theta$. This can be easily solved by selecting some random wake-up time slots 
-in each period $T$ to conform to duty circle $\theta$.
+in each period $T$ to conform to duty cycle $\theta$.
 
 \begin{figure}[htb]
 \centering
@@ -222,7 +222,7 @@ bound to achieve neighbor discovery process as following:
 \label{PBND1}
 Alg. \ref{P-ND} guarantees the discovery latency
 to be bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.,
-where $\theta_i$ and $\theta_j$ are the duty circles of 
+where $\theta_i$ and $\theta_j$ are the duty cycles of 
 a pair of neighbors (node $i$,node$j$) respectively.
 \end{theorem}
 
