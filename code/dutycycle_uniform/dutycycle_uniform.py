@@ -37,7 +37,7 @@ def paintRate():
     # ax.set_xticks([10000, 20000, 30000, 40000, 50000])
     # ax.set_xticklabels([1, 2, 3, 4])
     # ax.set_xticklabels(['1$\\times 10^4$', '2$\\times 10^4$', '3$\\times 10^4$', '4$\\times 10^4$', '5$\\times 10^4$'])
-    # plt.yscale('logit')
+    plt.yscale('log')
     plt.xlim(0.1, 0.5)
     # plt.ylim(0, 1)
     plt.savefig('dutycycle_uniform.eps', format='eps', bbox_inches='tight')
