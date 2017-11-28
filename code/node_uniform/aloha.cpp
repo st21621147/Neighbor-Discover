@@ -13,13 +13,15 @@ using namespace std;
 
 const int RADIORANGE = 5;
 const int SCOPE = 100;
-const int N = 500;//the number of nodes 
 const int STARTRANGE = 250;
+const int NN = 10000;
+const double dutycycle = 0.1; 
 
-double dutycycle;
+int N;
+
 double pt;
-int neighborMap[N][N];
-int latencyMap[N][N];
+int neighborMap[NN][NN];
+int latencyMap[NN][NN];
 
 class node{
 public:
@@ -70,7 +72,7 @@ void setLatency(int i, int j, int time)
 void init()
 {
 	
-	
+	pt = 1.0/N/dutycycle;
 	for(int i = 0; i < N; i++) 
 	{
 		node* newnode = new node(i);
@@ -100,15 +102,14 @@ void init()
 
 void Alano(int i) 
 {
-	int r = rand()%100;
-	if(r < pt*100){
+	double r = rand()/(RAND_MAX+1.0);
+	if(r < pt){
 		nodelist[i].state = 1;
 	}
 	else{
 		nodelist[i].state = 2;
 	}
 }
-
 
 
 void Aloha(int timeInterval)
@@ -186,13 +187,13 @@ void Aloha(int timeInterval)
 	}
 
 //	cout<<"discovery rate:"<<(N-un)*1.0/N<<endl;
-	ff<<dutycycle<<","<<ave*1.0/N<<endl; 
+	ff<<N<<","<<ave*1.0/N<<endl; 
+	cout<<N<<","<<ave*1.0/N<<endl; 
 }
 
-void Duty()
+void NodeIncrease()
 {
-	for(dutycycle = 0.1; dutycycle < 0.51; dutycycle += 0.05){
-		pt = 1.0/N/dutycycle;
+	for(N = 1000; N < 10000; N += 1000){
 		Aloha(100000);
 	}
 	
@@ -202,7 +203,7 @@ void Duty()
 int main()
 {
 	srand(time(NULL));
-	Duty();
+	NodeIncrease();
 
 	return 0;
 }

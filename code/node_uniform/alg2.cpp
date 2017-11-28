@@ -203,7 +203,7 @@ void RDSAlano(int timeInterval)
 
 void NodeIncrease()
 {
-	for(N = 1000; N < 10000; N += 100){
+	for(N = 1000; N < 10000; N += 1000){
 		RDSAlano(100000);
 	}
 }
