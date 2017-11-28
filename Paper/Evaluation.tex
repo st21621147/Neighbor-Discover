@@ -4,13 +4,12 @@
 
 
 We implemented Alano in C++ and evaluated the algorithms in a cluster of 9 servers, each equipped with an Intel Xeon 2.6GHz CPU with 24 hyper-threading cores, 64GB memory and 1T SSD. 
-Each time slot represents 20ms. We simulated the network follows uniform distribution and normal distribution respectively. We consider 500 nodes with radio range 10 in $100\times100$ area following uniform distribution, and more generally, 1000 nodes with radio range 5 following normal distribution $N(50, 15^2)$. The duty cycle is $0.1$.
-% These settings make the network more complicated and realistic than that in \cite{Kandhalu2010, Sun2014b, Qiu2016, Chen2015, Bakht2012, McGlynn2001, Vasudevan2009, Jiang2005, Dutta2008, You2011, Song2014}.
-
-We implemented Alano in C++ and evaluated the algorithms in a cluster of 9 servers, each equipped with an Intel Xeon 2.6GHz CPU with 24 hyper-threading cores, 64GB memory and 1T SSD. The basic settings in the evaluation are: 
+We simulated the network that follows uniform distribution and normal distribution respectively. We consider 500 nodes with radio range 10 in $100\times100$ area following uniform distribution, and more generally, 1000 nodes with radio range 5 following normal distribution $N(50, 15^2)$. The duty cycle is $0.1$, and each time slot represents $20ms$. 
+These settings make the network more complicated and realistic than that in \cite{wang2015blinddate, qiu2016talk, sun2014hello, bakht2012searchlight, chen2015heterogeneous, kandhalu2010u, you2011aloha, mcglynn2001birthday, song2014probabilistic, vasudevan2009neighbor}.
 
 
-We evaluated discovery latency of Alano, Aloha-like~\cite{You2011}, Hello~\cite{Sun2014b}, Hedis~\cite{}, and Searchlight~\cite{} in partially-connected network. As the deterministic algorithms, Hello, Hedis and Searchlight, only have two states, ￥{ON, OFF}, we generally assume that when nodes are in ON state, they transmit and listen with equal probability.
+
+We evaluated discovery latency of Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in partially-connected network. As the deterministic algorithms, Hello, Hedis and Searchlight, only have two states, $\{ON, OFF\}$, we generally assume that when nodes are in $\{ON\}$ state, they transmit and listen with equal probability.
 We show that Alano has lower latency, higher discovery rate, and better scalability.
 
 \subsection{Speed: Discovery Latency}
@@ -45,12 +44,12 @@ The deterministic algorithms Hello, Hedis and Searchlight have high latency, bec
 \end{figure}
 
 
-Fig. \ref{fig_timerate} shows Alano has higher discovery rate. The deterministic algorithms Hello, Hedis and Searchlight cannot discover all channels, because of the occurence of collisions. Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because the pure probabilistic algorithm lacks the mechanism to deal with the "long tail".
+Fig. \ref{fig_timerate} shows Alano with either global or local duty cycle, has higher discovery rate during the whole course of neighbor discovery in both uniform and normal distribution. The deterministic algorithms Hello, Hedis and Searchlight cannot discover all channels, because of the occurence of collisions. Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because it is difficult for pure probabilistic algorithm to deal with the small amount of   undiscovered neighbors.
 
 
 
 
-\subsection{Scalability}
+\subsection{Scalability: Duty Cycle and Network Density}
 
 \begin{figure}[!t]
 \centering
@@ -60,6 +59,8 @@ Fig. \ref{fig_timerate} shows Alano has higher discovery rate. The deterministic
 \caption{Alano achieves lower latency in different duty cycle.}
 \label{fig_dutycycle}
 \end{figure}
+
+\emph{Duty Cycle} 
 
 With different duty cycle, Fig. \ref{fig_dutycycle} shows that Alano has lower latency. Compared with Aloha, Alano has from $53.66\%$ to $11.23$ times lower latency. The latency of Alano and Aloha generally decreases as the duty cycle increases, while Hello, Hedis and Searchlight have high latency due to the collision. In normal distribution, Alano has a small twist with duty cycle $0.35$, because when the duty cycle increases, nodes are more likely to transmit and therefore collide.
 
@@ -72,6 +73,8 @@ With different duty cycle, Fig. \ref{fig_dutycycle} shows that Alano has lower l
 \caption{Alano achieves lower latency with different number of nodes.}
 \label{fig_node}
 \end{figure}
+
+\emph{Network Density} 
 
 When the number of nodes increases and the network becomes denser, Alano still shows $50.16\%$ to $4.52$ times lower latency than Aloha-like in uniform distribution and up to $47.03\%$ in normal distribution in Fig. \ref{fig_node}. Here we compare Alano with Aloha-like, because Hello, Hedis and Searchlight can hardly discover neighbors in denser networks. 
 
