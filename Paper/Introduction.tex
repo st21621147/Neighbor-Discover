@@ -29,7 +29,7 @@ are probabilistic methods.
 %point out problem issue
 Unfortunately, the network model adopted in the current researches is disengagement from the reality networks.
 While the deterministic approaches is efficient to discovery the neighbor
-for two nodes, there exists some crucial problems when transferring to multiple node scenario.
+for two nodes, there exists some crucial problems when transferred to multiple node scenario.
 Some methods can not solve the collision issue when more than one neighbors are transmitting simultaneously. 
 Others follows a simple protocol that each node send a beacon at both beginning and end of an active slot, 
 which is assumed only costing little time compared to a complete time slot in two node scenario. Nevertheless,
@@ -54,18 +54,29 @@ total network in its limited radio sensing range, which can be called its neighb
  
  
  %P4 distribution
- 
+ In this paper, we consider the neighbor discovery process in a larger-scale networks,
+ where the nodes are partially-connected. To put it more practical, 
+ we take the distribution of the nodes in the network into consideration.
+ As fully studied in \cite{wang2013gaussian} , the nodes in wireless sensor networks are likely to 
+ follow a uniform or a Gaussian distribution as showed in Fig. \ref{distribution}, according to the specific applications of the networks.
+ The crucial result is that the distribution of sensor deployment consequently plays a vital role in 
+ determining the intrusion detection capability of a sensor node.
 
+Based on this, we propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
+a nearly optimal probability based algorithm for sensor nodes to discover neighbors 
+in a partially-connected wireless sensor network.
  
  \begin{figure}[!t]
 \centering
-\subfigure[Normal distribution density function]{\includegraphics[width=2.5in]{./Figure/normalDistribution.eps}}
+\subfigure[uniform distribution]{\includegraphics[width=1.7in]{./Figure/uniform.jpg}}
 \vspace{0.03in}
-\subfigure[Network obeys normal distribution  ]{\includegraphics[width=2.5in]{./Figure/normalProject}}
-\caption{An example of a network obeying normal distribution.}
-\label{NDexample}
+\subfigure[Gaussian distribution]{\includegraphics[width=1.7in]{./Figure/normal.jpg}}
+\caption{WSN deployments following uniform and Gaussian distribution.}
+\label{distribution}
 %\vspace{-0.2in}
 \end{figure}
+
+
  
 %P5 energy-efficient network
  
@@ -74,7 +85,7 @@ Among the partially-connected networks, there is a special
 one named energy-efficient network.
 Wireless sensor network is a typical energy-efficient network that all the sensor nodes have to maintain 
 strict power budgets to attain years of lifetime\cite{dunkels2011contikimac}.
-Duty cycle mechanism, the , is utilized to power-awareness ought to be fully taken into consideration.
+Duty cycle, a widely used mechanism to   , is utilized to power-awareness ought to be fully taken into consideration.
 Correspondingly, the neighbor discovery process needs adjustment to deal with the dilemma between 
 a balance of energy-efficiency and low-latency.
 
@@ -94,7 +105,12 @@ a balance of energy-efficiency and low-latency.
 %for the global duty cycle scenario
 %for the local duty cycle scenario
 
-The contributions of this paper are as follows:
+In this paper, we first focus on the mathematical analysis of the distribution of the nodes in the networks.
+We give an expectation of neighbor number for each node in a network which obey****
+propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
+a RDS-Alano algorithm for partially-connected networks 
+as well as a TP-Alano algorithm for the energy-effienct networks.
+The main contributions of this paper are summarized as follows:
 %In this paper, we propose a new method to construct sequence
 %we propose improved algorithms for both scenarios and our contributions are as follows:
 \begin{itemize}
@@ -124,33 +140,5 @@ respectively in energy-efficient networks.
 We have conducted extensive simulations, and the results are shown in Section
 \ref{Evaluation}. Finally, we conclude the paper in Section
 \ref{Conclusion}.
-
-
-
-
-
-
-
-
-
-
-
-
-
-\textbf{Contribution conclusion}
-
-In this paper, we first focus on the mathematical analysis of the distribution of the nodes in the networks.
-We give a expectation of neighbor number for each node in a network which obey****
-  propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
-a RDS-Alano algorithm for partially-connected networks 
-as well as a TP-Alano algorithm for the energy-effienct networks.
-
-
-
-
-
-
-
-
 
 
