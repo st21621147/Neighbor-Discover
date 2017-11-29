@@ -48,13 +48,10 @@ with each other. In other words, a node can only discover a fraction of nodes of
 total network in its limited radio sensing range, which can be called its neighbors.
 
 
-
-
-
  
- 
- %P4 distribution
- In this paper, we consider the neighbor discovery process in a larger-scale networks,
+ %P5 our contribution for the distribution analysis and propose Alano algorithm
+ In this paper, we propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
+a nearly optimal probability based algorithm for sensor nodes to discover neighbors  in a larger-scale networks,
  where the nodes are partially-connected. To put it more practical, 
  we take the distribution of the nodes in the network into consideration.
  As fully studied in \cite{wang2013gaussian} , the nodes in wireless sensor networks are likely to 
@@ -62,9 +59,7 @@ total network in its limited radio sensing range, which can be called its neighb
  The crucial result is that the distribution of sensor deployment consequently plays a vital role in 
  determining the intrusion detection capability of a sensor node.
 
-Based on this, we propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
-a nearly optimal probability based algorithm for sensor nodes to discover neighbors 
-in a partially-connected wireless sensor network.
+
  
  \begin{figure}[!t]
 \centering
@@ -78,44 +73,33 @@ in a partially-connected wireless sensor network.
 
 
  
-%P5 energy-efficient network
+%P6 and P7 energy-efficient network scenario and our contribution
  
-
-Among the partially-connected networks, there is a special 
+In addition, among the partially-connected networks, there is a special 
 one named energy-efficient network.
 Wireless sensor network is a typical energy-efficient network that all the sensor nodes have to maintain 
 strict power budgets to attain years of lifetime\cite{dunkels2011contikimac}.
-Duty cycle, a widely used mechanism to   , is utilized to power-awareness ought to be fully taken into consideration.
+Duty cycle, a widely used mechanism, is utilized to raise the power-awareness of the nodes in the network.
 Correspondingly, the neighbor discovery process needs adjustment to deal with the dilemma between 
 a balance of energy-efficiency and low-latency.
 
-%P5 why and how we can
-% treat the partially-connected scenario carefully and model the nodes distribution
-%we make analysis and calculate the optimal probability based on the specific distribution.
-%we utilized the initiative concept of deterministic approaches to 
-%to align the wake-up time slot of the neighbors and guarantee a bound.
+Based on the energy-efficient network, we design deterministic methods to align the wake-up time slot between the neighbors.
+Specifically, We propose RDS-Alano algorithm for the global duty circle scenario, where 
+all the nodes share a identical duty cycle $\theta$ and TP-Alano for the
+local duty cycle scenario where each node holds a distrinct duty cycle $\theta_i$. 
+
+
+%P8 evaluation analysis support
 
 
 
-%P6 Brief Evaluation Analysis 
-%the simulation data to support && highlight our work
 
-%P7 Contribution
-%Model the distribution of nodes
-%for the global duty cycle scenario
-%for the local duty cycle scenario
 
-In this paper, we first focus on the mathematical analysis of the distribution of the nodes in the networks.
-We give an expectation of neighbor number for each node in a network which obey****
-propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
-a RDS-Alano algorithm for partially-connected networks 
-as well as a TP-Alano algorithm for the energy-effienct networks.
+%P9 Contribution summarize
 The main contributions of this paper are summarized as follows:
-%In this paper, we propose a new method to construct sequence
-%we propose improved algorithms for both scenarios and our contributions are as follows:
 \begin{itemize}
-\item[1)] We model the distribution of nodes in their networks and analyse the 
-expectation number of neighbors of a node in uniform distribution and normal
+\item[1)] We model the distribution of node deployment with mathematical analysis 
+We analyse the expectation number of neighbors of a node in uniform distribution and normal
 distribution and then propose Alano, a strategy
 \item[2)] We propose a Relaxed DifferenceSet based Alano algorithm (RDS-Alano) 
 for the global duty cycle scenario. 
@@ -125,7 +109,7 @@ for the local duty cycle scenario.
 
 
 
-%P8 Remaining structure
+%P10 Remaining structure
 
 The remainder of the paper is organized as follows.
 The next section highlights some related work and 
