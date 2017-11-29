@@ -90,21 +90,29 @@ local duty cycle scenario where each node holds a distrinct duty cycle $\theta_i
 
 
 %P8 evaluation analysis support
-
-
-
+Our simulation under the practical distribution of networks 
+\cite{wang2013gaussian} shows the proposed Alano algorithm
+holds significant strengths than the state-of-the-art methods,
+based on the evaluation of speed, quality and scalability.
+Alano achieves 31.35\% to 32.32 times lower latency
+and has higher discovery rate during the whole course of neighbor discovery, 
+with either global or local duty cycle in both uniform and normal distribution.
+When the number of nodes increases and the network becomes denser, 
+Alano still keeps its high performance. 
 
 
 %P9 Contribution summarize
 The main contributions of this paper are summarized as follows:
 \begin{itemize}
 \item[1)] We model the distribution of node deployment with mathematical analysis 
-We analyse the expectation number of neighbors of a node in uniform distribution and normal
-distribution and then propose Alano, a strategy
-\item[2)] We propose a Relaxed DifferenceSet based Alano algorithm (RDS-Alano) 
-for the global duty cycle scenario. 
-\item[3)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) 
-for the local duty cycle scenario. 
+and analyse the expectation number of neighbors of a node in uniform distribution and normal
+distribution.
+\item[2)] We propose Alano, a low-latency strategy to achieve neighbor discovery process
+in a large-scale network.
+\item[3)] We propose a Relaxed DifferenceSet based Alano algorithm (RDS-Alano) 
+to achieve low-latency neighbor discovery process in the global duty cycle scenario. 
+\item[4)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) 
+achieve low-latency neighbor discovery process in the local duty cycle scenario. 
 \end{itemize}
 
 
