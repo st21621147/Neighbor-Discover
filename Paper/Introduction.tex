@@ -57,27 +57,21 @@ Thus the probability adopted in these approaches can not be desirable.
 
 
 % P6: 
-% Summarize and highlight the crucial issue
-To our best knowledge, no relevant researches have focused on a more 
-practical scenario in a large-scale network, where nodes are partially-connected
-with each other. In other words, a node can only discover a fraction of nodes in the
-network within its limited radio sensing range.
-
+% Summarize and highlight the crucial issue : partially-connected network and practical distribution
+% Give the reason why it is import to take the distribution into consideration
+To our best knowledge, no relevant researches have focused on neighbor discovery problem
+in the partially-connected networks. More practically, in a wireless sensor network the distribution of 
+sensors' deployment consequently plays a vital role in determining the intrusion detection capability of a sensor node.
+Thus the distribution of the nodes in the network needs to be fully taken into 
+consideration.
 
 % P7:
 % Our solution/contribution : we propose Alano algorithm based on the distribution of nodes for the partially-connected networks
-% Give the reason why it is import to take the distribution into consideration
 In this paper, we propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
-a nearly optimal probability based algorithm to discover neighbors in a larger-scale networks,
-where the nodes are partially-connected. 
-More practically, in a wireless sensor network the distribution of 
-sensors' deployment consequently plays a vital role in 
-determining the intrusion detection capability of a sensor node.
+a nearly optimal probability based algorithm to discover neighbors in partially-connected networks. 
 As fully studied in \cite{wang2013gaussian} , the nodes in wireless sensor networks are likely to 
 follow a uniform or a Gaussian distribution as showed in Fig. \ref{distribution}, 
-depending on the specific network applications. 
-Thus the distribution of the nodes in the network is fully taken into 
-consideration in the proposed Alano algorithm.
+depending on the specific network applications, which is  in consideration of the proposed Alano algorithm.
 
  
  \begin{figure}[!t]
@@ -94,7 +88,7 @@ consideration in the proposed Alano algorithm.
 % P8: 
 % A special type of partially-connected networks: energy-efficient network
 In addition, among the partially-connected networks, there is a special 
-one named energy-efficient network.
+type named energy-efficient network.
 Wireless sensor network is a typical energy-efficient network that all the sensor nodes have to maintain 
 strict power budgets to attain years of lifetime\cite{dunkels2011contikimac}.
 Duty cycle, a widely used mechanism, is utilized to raise the power-awareness of the nodes in the network.
@@ -133,7 +127,7 @@ The main contributions of this paper are summarized as follows:
 and analyse the expectation number of neighbors of a node in uniform distribution and Gaussian
 distribution.
 \item[2)] We propose Alano, a low-latency strategy to achieve neighbor discovery process
-in a large-scale network where nodes are partially-connected.
+in a partially-connected network.
 \item[3)] We propose a Relaxed DifferenceSet based Alano algorithm (RDS-Alano) 
 to achieve low-latency neighbor discovery process in the global duty cycle scenario. 
 \item[4)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) 
