@@ -30,11 +30,11 @@ def paintNormalybar():
     plt.xticks(labelCall, label, fontsize=12)
     plt.ylabel("Latency", fontsize=16)
     plt.xlabel("The Number of Nodes", fontsize=16)
-    plt.ylim(0, 100000)
+    plt.ylim(0, 550000)
     #
-    ax.set_yticks([ 20000, 40000, 60000, 80000, 100000])
+    ax.set_yticks([20000, 100000, 200000, 300000, 400000, 500000])
     ax.set_yticklabels(
-        [ '2$\\times10^4$',  '4$\\times10^4$', '6$\\times10^4$', '8$\\times10^4$', '1$\\times10^5$'])
+        ['2$\\times10^4$', '1$\\times10^5$', '2$\\times10^5$', '3$\\times10^5$', '4$\\times10^5$', '5$\\times10^5$'])
 
     plt.legend(loc=2, prop={'size': 12})
 
