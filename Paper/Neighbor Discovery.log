@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.20)  4 DEC 2017 22:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.20)  4 DEC 2017 23:40
 entering extended mode
 **"F:/Cao/我的论文/SECON/Neighbor-Discover-master/Paper/Neighbor Discovery.
 tex"
@@ -290,11 +290,7 @@ Package: esint
 \c@remark=\count125
 \c@problem=\count126
 
-("Neighbor Discovery.aux"
-
-LaTeX Warning: Label `NDexample' multiply defined.
-
-)
+("Neighbor Discovery.aux")
 \openout1 = `"Neighbor Discovery.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -309,7 +305,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
- ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count127
 \scratchdimen=\dimen148
@@ -374,55 +371,33 @@ LaTeX Warning: No \author given.
 LaTeX Warning: No \author given.
 
 (abstract.tex) (Introduction.tex
-Package epstopdf Info: Source file: <./Figure/normalDistribution.eps>
-(epstopdf)                    date: 2017-11-26 18:46:51
-(epstopdf)                    size: 382974 bytes
-(epstopdf)             Output file: <./Figure/normalDistribution-eps-converted-
-to.pdf>
-(epstopdf)                    date: 2017-11-26 18:46:51
-(epstopdf)                    size: 57844 bytes
-(epstopdf)             Command: <epstopdf --outfile=./Figure/normalDistribution
--eps-converted-to.pdf ./Figure/normalDistribution.eps>
-(epstopdf)             \includegraphics on input line 62.
-Package epstopdf Info: Output file is already uptodate.
-
-<./Figure/normalDistribution-eps-converted-to.pdf, id=1, 448.67625pt x 304.1362
-5pt>
-File: ./Figure/normalDistribution-eps-converted-to.pdf Graphic file (type pdf)
- <use ./Figure/normalDistribution-eps-converted-to.pdf>
-Package pdftex.def Info: ./Figure/normalDistribution-eps-converted-to.pdf used 
-on input line 62.
-(pdftex.def)             Requested size: 180.67499pt x 122.4691pt.
-Package epstopdf Info: Source file: <./Figure/normalProject.eps>
-(epstopdf)                    date: 2017-11-26 18:46:51
-(epstopdf)                    size: 41120 bytes
-(epstopdf)             Output file: <./Figure/normalProject-eps-converted-to.pd
-f>
-(epstopdf)                    date: 2017-11-26 18:46:51
-(epstopdf)                    size: 10042 bytes
-(epstopdf)             Command: <epstopdf --outfile=./Figure/normalProject-eps-
-converted-to.pdf ./Figure/normalProject.eps>
-(epstopdf)             \includegraphics on input line 64.
-Package epstopdf Info: Output file is already uptodate.
-
-<./Figure/normalProject-eps-converted-to.pdf, id=2, 392.46625pt x 141.52875pt>
-File: ./Figure/normalProject-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./Figure/normalProject-eps-converted-to.pdf>
-Package pdftex.def Info: ./Figure/normalProject-eps-converted-to.pdf used on in
-put line 64.
-(pdftex.def)             Requested size: 180.67499pt x 65.15584pt.
-LaTeX Font Info:    Try loading font information for U+esint on input line 101.
-
+LaTeX Font Info:    Try loading font information for U+esint on input line 70.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\esint\uesint.fd"
 File: uesint.fd 
-) [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+)
+<./Figure/uniform.jpg, id=1, 863.225pt x 849.1725pt>
+File: ./Figure/uniform.jpg Graphic file (type jpg)
+
+<use ./Figure/uniform.jpg>
+Package pdftex.def Info: ./Figure/uniform.jpg used on input line 79.
+(pdftex.def)             Requested size: 122.85876pt x 120.85284pt.
+ <./Figure/normal.jpg, id=2, 847.165pt x 829.0975pt>
+File: ./Figure/normal.jpg Graphic file (type jpg)
+
+<use ./Figure/normal.jpg>
+Package pdftex.def Info: ./Figure/normal.jpg used on input line 81.
+(pdftex.def)             Requested size: 122.85876pt x 120.23503pt.
+
+Underfull \hbox (badness 1577) in paragraph at lines 104--109
+[]\OT1/ptm/m/n/10 For energy-efficient net-works, we de-sign de-ter-min-is-tic
+ []
+
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
- <./Figure/normalDistribution-eps-converted-to.pdf> <./Figure/normalProject-eps
--converted-to.pdf>]) (RelatedWork.tex)
-(Preliminaries.tex [2]
+ <./Figure/uniform.jpg> <./Figure/normal.jpg>]) (RelatedWork.tex) (Preliminarie
+s.tex [2]
 Package epstopdf Info: Source file: <./Figure/topology.eps>
 (epstopdf)                    date: 2017-11-26 18:46:51
 (epstopdf)                    size: 25895 bytes
@@ -434,7 +409,7 @@ rted-to.pdf ./Figure/topology.eps>
 (epstopdf)             \includegraphics on input line 118.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Figure/topology-eps-converted-to.pdf, id=39, 348.30125pt x 189.70876pt>
+<./Figure/topology-eps-converted-to.pdf, id=16, 348.30125pt x 189.70876pt>
 File: ./Figure/topology-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Figure/topology-eps-converted-to.pdf>
@@ -452,7 +427,7 @@ erted-to.pdf ./Figure/NBexample.eps>
 (epstopdf)             \includegraphics on input line 120.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Figure/NBexample-eps-converted-to.pdf, id=40, 628.3475pt x 239.89626pt>
+<./Figure/NBexample-eps-converted-to.pdf, id=17, 628.3475pt x 239.89626pt>
 File: ./Figure/NBexample-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Figure/NBexample-eps-converted-to.pdf>
@@ -477,7 +452,7 @@ ed-to.pdf ./Figure/matrix.eps>
 (epstopdf)             \includegraphics on input line 71.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Figure/matrix-eps-converted-to.pdf, id=71, 441.65pt x 301.125pt>
+<./Figure/matrix-eps-converted-to.pdf, id=46, 441.65pt x 301.125pt>
 File: ./Figure/matrix-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Figure/matrix-eps-converted-to.pdf>
@@ -496,7 +471,7 @@ o.pdf ./Figure/TP.eps>
 (epstopdf)             \includegraphics on input line 211.
 Package epstopdf Info: Output file is already uptodate.
 
-<./Figure/TP-eps-converted-to.pdf, id=75, 431.6125pt x 396.48125pt>
+<./Figure/TP-eps-converted-to.pdf, id=51, 431.6125pt x 396.48125pt>
 File: ./Figure/TP-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./Figure/TP-eps-converted-to.pdf>
@@ -505,54 +480,54 @@ Package pdftex.def Info: ./Figure/TP-eps-converted-to.pdf used on input line 21
 (pdftex.def)             Requested size: 180.67499pt x 165.9644pt.
  [6 <./Figure/matrix-eps-converted-to.pdf>]) (Evaluation.tex
 Package epstopdf Info: Source file: <Figure/latency_uniform.eps>
-(epstopdf)                    date: 2017-11-26 13:37:49
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 69995 bytes
 (epstopdf)             Output file: <Figure/latency_uniform-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2017-11-28 10:40:09
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 26116 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/latency_uniform-eps-
 converted-to.pdf Figure/latency_uniform.eps>
 (epstopdf)             \includegraphics on input line 19.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/latency_uniform-eps-converted-to.pdf, id=100, 466.74374pt x 268.00125pt
->
+<Figure/latency_uniform-eps-converted-to.pdf, id=76, 466.74374pt x 268.00125pt>
 File: Figure/latency_uniform-eps-converted-to.pdf Graphic file (type pdf)
- <use Figure/latency_uniform-eps-converted-to.pdf>
+<use Figure/latency_uniform-eps-converted-to.pdf>
 Package pdftex.def Info: Figure/latency_uniform-eps-converted-to.pdf used on in
 put line 19.
 (pdftex.def)             Requested size: 119.24506pt x 68.46822pt.
 Package epstopdf Info: Source file: <Figure/latency_normal.eps>
-(epstopdf)                    date: 2017-11-26 12:15:14
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 70754 bytes
 (epstopdf)             Output file: <Figure/latency_normal-eps-converted-to.pdf
 >
-(epstopdf)                    date: 2017-11-28 10:40:15
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 26722 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/latency_normal-eps-c
 onverted-to.pdf Figure/latency_normal.eps>
 (epstopdf)             \includegraphics on input line 21.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/latency_normal-eps-converted-to.pdf, id=101, 466.74374pt x 268.00125pt>
+<Figure/latency_normal-eps-converted-to.pdf, id=77, 466.74374pt x 268.00125pt>
 File: Figure/latency_normal-eps-converted-to.pdf Graphic file (type pdf)
+
 <use Figure/latency_normal-eps-converted-to.pdf>
 Package pdftex.def Info: Figure/latency_normal-eps-converted-to.pdf used on inp
 ut line 21.
 (pdftex.def)             Requested size: 119.24506pt x 68.46822pt.
 Package epstopdf Info: Source file: <Figure/rate_uniform.eps>
-(epstopdf)                    date: 2017-11-26 10:17:22
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 125997 bytes
 (epstopdf)             Output file: <Figure/rate_uniform-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-28 10:40:21
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 49382 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_uniform-eps-con
 verted-to.pdf Figure/rate_uniform.eps>
 (epstopdf)             \includegraphics on input line 35.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/rate_uniform-eps-converted-to.pdf, id=102, 412.54124pt x 288.07625pt>
+<Figure/rate_uniform-eps-converted-to.pdf, id=78, 412.54124pt x 288.07625pt>
 File: Figure/rate_uniform-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figure/rate_uniform-eps-converted-to.pdf>
@@ -565,16 +540,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--35
  []
 
 Package epstopdf Info: Source file: <Figure/rate_normal.eps>
-(epstopdf)                    date: 2017-11-26 18:20:09
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 108793 bytes
 (epstopdf)             Output file: <Figure/rate_normal-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-28 10:40:28
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 44617 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_normal-eps-conv
 erted-to.pdf Figure/rate_normal.eps>
 (epstopdf)             \includegraphics on input line 37.
 Package epstopdf Info: Output file is already uptodate.
-<Figure/rate_normal-eps-converted-to.pdf, id=103, 412.54124pt x 288.07625pt>
+<Figure/rate_normal-eps-converted-to.pdf, id=79, 412.54124pt x 288.07625pt>
 File: Figure/rate_normal-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figure/rate_normal-eps-converted-to.pdf>
@@ -582,56 +557,61 @@ Package pdftex.def Info: Figure/rate_normal-eps-converted-to.pdf used on input
 line 37.
 (pdftex.def)             Requested size: 119.24506pt x 83.26743pt.
 Package epstopdf Info: Source file: <Figure/rate_local_uniform.eps>
-(epstopdf)                    date: 2017-11-26 13:46:19
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 119997 bytes
 (epstopdf)             Output file: <Figure/rate_local_uniform-eps-converted-to
 .pdf>
-(epstopdf)                    date: 2017-11-28 10:40:33
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 48246 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_local_uniform-e
 ps-converted-to.pdf Figure/rate_local_uniform.eps>
 (epstopdf)             \includegraphics on input line 39.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/rate_local_uniform-eps-converted-to.pdf, id=104, 412.54124pt x 288.0762
-5pt>
+<Figure/rate_local_uniform-eps-converted-to.pdf, id=80, 412.54124pt x 288.07625
+pt>
 File: Figure/rate_local_uniform-eps-converted-to.pdf Graphic file (type pdf)
  <use Figure/rate_local_uniform-eps-converted-to.pdf>
 Package pdftex.def Info: Figure/rate_local_uniform-eps-converted-to.pdf used on
  input line 39.
 (pdftex.def)             Requested size: 119.24506pt x 83.26743pt.
 Package epstopdf Info: Source file: <Figure/rate_local_normal.eps>
-(epstopdf)                    date: 2017-11-26 17:32:36
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 104013 bytes
 (epstopdf)             Output file: <Figure/rate_local_normal-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2017-11-28 10:40:39
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 43644 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_local_normal-ep
 s-converted-to.pdf Figure/rate_local_normal.eps>
 (epstopdf)             \includegraphics on input line 41.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/rate_local_normal-eps-converted-to.pdf, id=105, 412.54124pt x 288.07625
-pt>
+<Figure/rate_local_normal-eps-converted-to.pdf, id=81, 412.54124pt x 288.07625p
+t>
 File: Figure/rate_local_normal-eps-converted-to.pdf Graphic file (type pdf)
  <use Figure/rate_local_normal-eps-converted-to.pdf>
 Package pdftex.def Info: Figure/rate_local_normal-eps-converted-to.pdf used on 
 input line 41.
 (pdftex.def)             Requested size: 119.24506pt x 83.26743pt.
+ [7 <./Figure/TP-eps-converted-to.pdf> <./Figure/latency_uniform-eps-converted-
+to.pdf> <./Figure/latency_normal-eps-converted-to.pdf> <./Figure/rate_uniform-e
+ps-converted-to.pdf> <./Figure/rate_normal-eps-converted-to.pdf> <./Figure/rate
+_local_uniform-eps-converted-to.pdf> <./Figure/rate_local_normal-eps-converted-
+to.pdf>]
 Package epstopdf Info: Source file: <Figure/rate_uniform1.eps>
-(epstopdf)                    date: 2017-12-03 10:03:30
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 95625 bytes
 (epstopdf)             Output file: <Figure/rate_uniform1-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2017-12-04 22:12:06
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 40472 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_uniform1-eps-co
 nverted-to.pdf Figure/rate_uniform1.eps>
 (epstopdf)             \includegraphics on input line 52.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/rate_uniform1-eps-converted-to.pdf, id=106, 412.54124pt x 288.07625pt>
+<Figure/rate_uniform1-eps-converted-to.pdf, id=383, 412.54124pt x 288.07625pt>
 File: Figure/rate_uniform1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figure/rate_uniform1-eps-converted-to.pdf>
@@ -644,16 +624,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--52
  []
 
 Package epstopdf Info: Source file: <Figure/rate_normal1.eps>
-(epstopdf)                    date: 2017-12-03 10:04:24
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 88754 bytes
 (epstopdf)             Output file: <Figure/rate_normal1-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-12-04 22:12:10
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 38670 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_normal1-eps-con
 verted-to.pdf Figure/rate_normal1.eps>
 (epstopdf)             \includegraphics on input line 54.
 Package epstopdf Info: Output file is already uptodate.
-<Figure/rate_normal1-eps-converted-to.pdf, id=107, 412.54124pt x 288.07625pt>
+<Figure/rate_normal1-eps-converted-to.pdf, id=384, 412.54124pt x 288.07625pt>
 File: Figure/rate_normal1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figure/rate_normal1-eps-converted-to.pdf>
@@ -661,18 +641,18 @@ Package pdftex.def Info: Figure/rate_normal1-eps-converted-to.pdf used on input
  line 54.
 (pdftex.def)             Requested size: 119.24506pt x 83.26743pt.
 Package epstopdf Info: Source file: <Figure/rate_local_uniform1.eps>
-(epstopdf)                    date: 2017-12-03 10:06:50
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 91455 bytes
 (epstopdf)             Output file: <Figure/rate_local_uniform1-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2017-12-04 22:12:13
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 39645 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_local_uniform1-
 eps-converted-to.pdf Figure/rate_local_uniform1.eps>
 (epstopdf)             \includegraphics on input line 56.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/rate_local_uniform1-eps-converted-to.pdf, id=108, 412.54124pt x 288.076
+<Figure/rate_local_uniform1-eps-converted-to.pdf, id=385, 412.54124pt x 288.076
 25pt>
 File: Figure/rate_local_uniform1-eps-converted-to.pdf Graphic file (type pdf)
  <use Figure/rate_local_uniform1-eps-converted-to.pdf>
@@ -680,42 +660,37 @@ Package pdftex.def Info: Figure/rate_local_uniform1-eps-converted-to.pdf used o
 n input line 56.
 (pdftex.def)             Requested size: 119.24506pt x 83.26743pt.
 Package epstopdf Info: Source file: <Figure/rate_local_normal1.eps>
-(epstopdf)                    date: 2017-12-03 10:09:05
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 88177 bytes
 (epstopdf)             Output file: <Figure/rate_local_normal1-eps-converted-to
 .pdf>
-(epstopdf)                    date: 2017-12-04 22:12:17
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 38581 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/rate_local_normal1-e
 ps-converted-to.pdf Figure/rate_local_normal1.eps>
 (epstopdf)             \includegraphics on input line 58.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/rate_local_normal1-eps-converted-to.pdf, id=109, 412.54124pt x 288.0762
+<Figure/rate_local_normal1-eps-converted-to.pdf, id=386, 412.54124pt x 288.0762
 5pt>
 File: Figure/rate_local_normal1-eps-converted-to.pdf Graphic file (type pdf)
  <use Figure/rate_local_normal1-eps-converted-to.pdf>
 Package pdftex.def Info: Figure/rate_local_normal1-eps-converted-to.pdf used on
  input line 58.
 (pdftex.def)             Requested size: 119.24506pt x 83.26743pt.
- [7 <./Figure/TP-eps-converted-to.pdf> <./Figure/latency_uniform-eps-converted-
-to.pdf> <./Figure/latency_normal-eps-converted-to.pdf> <./Figure/rate_uniform-e
-ps-converted-to.pdf> <./Figure/rate_normal-eps-converted-to.pdf> <./Figure/rate
-_local_uniform-eps-converted-to.pdf> <./Figure/rate_local_normal-eps-converted-
-to.pdf>]
 Package epstopdf Info: Source file: <Figure/dutycycle_uniform.eps>
-(epstopdf)                    date: 2017-11-28 20:46:42
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 48298 bytes
 (epstopdf)             Output file: <Figure/dutycycle_uniform-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2017-11-29 00:11:56
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 24653 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/dutycycle_uniform-ep
 s-converted-to.pdf Figure/dutycycle_uniform.eps>
 (epstopdf)             \includegraphics on input line 71.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/dutycycle_uniform-eps-converted-to.pdf, id=411, 412.54124pt x 290.08376
+<Figure/dutycycle_uniform-eps-converted-to.pdf, id=387, 412.54124pt x 290.08376
 pt>
 File: Figure/dutycycle_uniform-eps-converted-to.pdf Graphic file (type pdf)
  <use Figure/dutycycle_uniform-eps-converted-to.pdf>
@@ -723,18 +698,18 @@ Package pdftex.def Info: Figure/dutycycle_uniform-eps-converted-to.pdf used on
 input line 71.
 (pdftex.def)             Requested size: 119.24506pt x 83.84769pt.
 Package epstopdf Info: Source file: <Figure/dutycycle_normal.eps>
-(epstopdf)                    date: 2017-11-28 20:47:09
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 49031 bytes
 (epstopdf)             Output file: <Figure/dutycycle_normal-eps-converted-to.p
 df>
-(epstopdf)                    date: 2017-11-29 00:12:00
+(epstopdf)                    date: 2017-12-04 22:23:47
 (epstopdf)                    size: 25251 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/dutycycle_normal-eps
 -converted-to.pdf Figure/dutycycle_normal.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/dutycycle_normal-eps-converted-to.pdf, id=412, 412.54124pt x 290.08376p
+<Figure/dutycycle_normal-eps-converted-to.pdf, id=388, 412.54124pt x 290.08376p
 t>
 File: Figure/dutycycle_normal-eps-converted-to.pdf Graphic file (type pdf)
  <use Figure/dutycycle_normal-eps-converted-to.pdf>
@@ -742,17 +717,17 @@ Package pdftex.def Info: Figure/dutycycle_normal-eps-converted-to.pdf used on i
 nput line 73.
 (pdftex.def)             Requested size: 119.24506pt x 83.84769pt.
 Package epstopdf Info: Source file: <Figure/node_uniform.eps>
-(epstopdf)                    date: 2017-12-04 22:02:26
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 81588 bytes
 (epstopdf)             Output file: <Figure/node_uniform-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-12-04 22:12:22
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 30765 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/node_uniform-eps-con
 verted-to.pdf Figure/node_uniform.eps>
 (epstopdf)             \includegraphics on input line 85.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/node_uniform-eps-converted-to.pdf, id=413, 466.74374pt x 288.07625pt>
+<Figure/node_uniform-eps-converted-to.pdf, id=389, 466.74374pt x 288.07625pt>
 File: Figure/node_uniform-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figure/node_uniform-eps-converted-to.pdf>
@@ -760,17 +735,17 @@ Package pdftex.def Info: Figure/node_uniform-eps-converted-to.pdf used on input
  line 85.
 (pdftex.def)             Requested size: 119.24506pt x 73.59692pt.
 Package epstopdf Info: Source file: <Figure/node_normal.eps>
-(epstopdf)                    date: 2017-12-04 22:07:02
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 81596 bytes
 (epstopdf)             Output file: <Figure/node_normal-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-12-04 22:12:24
+(epstopdf)                    date: 2017-12-04 23:29:56
 (epstopdf)                    size: 30766 bytes
 (epstopdf)             Command: <epstopdf --outfile=Figure/node_normal-eps-conv
 erted-to.pdf Figure/node_normal.eps>
 (epstopdf)             \includegraphics on input line 87.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figure/node_normal-eps-converted-to.pdf, id=414, 466.74374pt x 282.05376pt>
+<Figure/node_normal-eps-converted-to.pdf, id=390, 466.74374pt x 282.05376pt>
 File: Figure/node_normal-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figure/node_normal-eps-converted-to.pdf>
@@ -812,36 +787,32 @@ Before submitting the final camera ready copy, remember to:
 
 [9
 
-] ("Neighbor Discovery.aux")
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+] ("Neighbor Discovery.aux") ) 
 Here is how much of TeX's memory you used:
- 3818 strings out of 493323
- 57886 string characters out of 3139072
- 127773 words of memory out of 3000000
- 7229 multiletter control sequences out of 15000+200000
+ 3819 strings out of 493323
+ 57674 string characters out of 3139072
+ 130742 words of memory out of 3000000
+ 7230 multiletter control sequences out of 15000+200000
  39897 words of font info for 81 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  39i,16n,25p,719b,461s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/esint/esint10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ur
-w/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Neighbor Discovery.pdf" (9 pages, 829645 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base
+/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/esint/esint10.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
+es/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "Neighbor Discovery.pdf" (9 pages, 902083 bytes).
 PDF statistics:
- 862 PDF objects out of 1000 (max. 8388607)
+ 838 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
