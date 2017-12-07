@@ -2,25 +2,30 @@
 \section{Related Work}
 \label{RW}
 
-%Introduce the representative existing algorithms and the weakness.
+%Introduce the representative existing algorithms and their weakness.
 
-%cite
-%deterministic:
-%BlindDate #wang2015blinddate
-%Disco #dutta2008practical
-%Hello #sun2014hello
-%Searchlight #bakht2012searchlight
-%Talk More Listen Less  #qiu2016talk
-%Todis\&Hedis #chen2015heterogeneous
-%U-Connect  #kandhalu2010u
+%Cite
+%Algorithms:
+
+%Deterministic:
+%BlindDate 					#wang2015blinddate
+%Disco 						#dutta2008practical
+%Hello 						#sun2014hello
+%Searchlight 					#bakht2012searchlight
+%Talk More Listen Less 			#qiu2016talk
+%Todis\&Hedis 					#chen2015heterogeneous
+%U-Connect  					#kandhalu2010u
+
 %probabilistic:
-%Birthday #mcglynn2001birthday
-%ALOHA-like09 vasudevan2009neighbor
-%ALOHA-like11 2011 #you2011aloha
-%PND #song2014probabilistic
-%others
-%Normal Distribution #wang2013gaussian
+%Birthday 					#mcglynn2001birthday
+%ALOHA-like09 				#vasudevan2009neighbor
+%ALOHA-like11 	 			#you2011aloha
+%PND 						#song2014probabilistic
 
+%others
+%Normal Distribution 			#wang2013gaussian
+%Beacon&package 				#mcglynn2001birthday
+%RSSI						#daiya2011experimental
 
 
 
@@ -38,15 +43,16 @@ can achieve neighbor discovery process within a bounded time latency.
 
 Nevertheless, there exists some crucial weak points in the deterministic algorithm.
 Firstly, Disco \cite{dutta2008practical} proposes a discovery protocol that
-each node has a capability to send a beacon at both beginning and end of
+each node has a capability to send a beacon (one or a few bits) at both beginning and end of
 an active slot, which is widely adopted by the later algorithms such as
 SearchLight \cite{bakht2012searchlight}, BlindDate \cite{wang2015blinddate}
 and Hello \cite{sun2014hello}, Nihao \cite{qiu2016talk}. It is quite an efficient way for two nodes to discover
 each other within an ideal time latency. However,  they do not solve the collision 
 issues when receiving packages from multiple neighbors. Furthermore, when they are 
 extended for multiple nodes, only sending a beacon to discover the neighbors is 
-totally insufficient. A node needs to send a complete package containing all its information,
-otherwise the neighbor can not  identify which neighbor the beacon belongs to[][][].
+totally insufficient. A node needs to send a complete package 
+(some papers still call beacon) containing all its information,
+otherwise the neighbor can not  identify which neighbor the beacon belongs to \cite{zhou2004impact}.
 Thus a complete time slot is necessary for a node to transmit a package or listen to 
 the channel to receive a package.
 
@@ -62,18 +68,18 @@ the topology of which is a complete graph. Deploying a fully-connected network
 in a large-scale area is technically impractical 
 due to the limited sensing range of devices communication.
 How far the other nodes can be detected as a neighbor for a mobile equipment  
-depends on criterion such as the received signal strength.
+depends on criterion such as the received signal strength \cite{daiya2011experimental}.
 From our analysis and simulations, 
-they have a poor performance in the partially-connected networks, which is more 
+they hold a poor performance in the partially-connected networks, which is more 
 practical in the reality world.
 
-To the best of our knowledge, neighbor deterministic nor probabilistic methods are designed for
+To the best of our knowledge, neither deterministic nor probabilistic methods are designed for
 partially-connected networks. In this paper, we present a low-latency, energy-efficient 
 neighbor discovery algorithm for partially-connected networks.
 
-The proposed RDS-Alano and TP-Alano in this paper are a combination of both two categories.
-We compare our proposed algorithm with both deterministic and probabilistic algorithms. 
-Particularly as mentioned above, the deterministic approaches need some adjustment 
+The proposed RDS-Alano and TP-Alano in this paper are a combination of both two categories,
+and thus we compare our proposed algorithms with both deterministic and probabilistic methods. 
+Particularly as mentioned above, the deterministic approaches need some adjustments 
 when transferred to partially-connected networks. Details will be introduced in Section \ref{Evaluation}
 
 

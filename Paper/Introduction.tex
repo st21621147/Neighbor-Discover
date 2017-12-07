@@ -1,25 +1,41 @@
 % Introduction
 \section{Introduction}
 
-%Paper Logic Flow
+%%%%%%
+
+% Cite:
+% Wireless sensor networks	#yick2008wireless
+% Mobile campus networks 	#hernandez2005comparative
+% Mobile gaming community	#cunningham2002optimizing
+% Energy-efficient network	#jones2001survey
+% Internet of things 			#qin2014software
+
+% The cite of the existing algorithms are listed in related work
+
+%%%%%%
+
+% Paper Logic Flow
 % P1-P2 Background
 % P3-P6 motivation
 % P7-P11 contribution
 % P12 structure
 
-
 % P1:    
 % General background
 % The situation&scenario our research applies to
-Information and Communication Technology (ICT) equipment \cite{zeadally2012energy} has exploded 
-on the scene in the last twenty years, leading to an obvious ascent of Internet-of-Things \cite{atzori2010internet},
-such as wireless sensor networks[], mobile campus networks[], mobile gaming community[], etc.
 
+
+The growing interest in the Internet of Things (IoT) has resulted 
+in a number of wide-area deployments of wireless networks \cite{qin2014software},
+such as wireless sensor networks \cite{yick2008wireless}, mobile campus networks 
+\cite{hernandez2005comparative}, mobile gaming community \cite{cunningham2002optimizing}, etc.
+All these networks possess multi-hop and large-scale characteristics obviously.
 
 % P2: 
 % Why NB problem is related and important to the background in P1  
 % Define what is neighbor and what is neighbor discovery problem
 % A brief introduction of the existing works
+% Explain deterministic and probabilistic with one sentence each
 Neighbor discovery is a fundamental step of constructing a wireless network, based on 
 which the network can implement further applications such as routing and broadcasting.
 The core target is for each node in the network to discover the nodes in its radio sensing range 
@@ -28,46 +44,48 @@ A number of existing methods \cite{dutta2008practical,kandhalu2010u,
 bakht2012searchlight,sun2014hello,chen2015heterogeneous,
 wang2015blinddate,qiu2016talk,mcglynn2001birthday,
 vasudevan2009neighbor,you2011aloha,song2014probabilistic} have been proposed 
-to deal with this issue, some of which are based on deterministic techniques while others
-are probabilistic approaches.
+to deal with this issue, some of which are based on deterministic techniques, 
+those turn on the radio with deterministic sequences,
+ while others are probabilistic approaches, those turn on the radio with different probabilities.
 
 
 % P3:
-% Crucial problem:  existing network models are impractical
-% What is the current network model
-Unfortunately, there are some discrepancies between the current research network and the actual situation.
-The deterministic methods deal with the neighbor discovery problem for two nodes and the
-probabilistic approaches are designed for the networks where all the nodes can communicate with each other.
-
-
-% P4:
+% Crucial problem:  collision issue in a partially-connected network
 % What is a practical network model and define what is a partially-connected network
-In a large-scale and practical network, each node is only able to sense the 
+Unfortunately, despite great efforts, neighbor discovery remains an open problem.
+The crucial issue lies in the collision situation in the large-scale networks.
+In a large-scale network, each node is only able to sense the 
 nodes located nearby itself based on received signal strength \cite{wang2013gaussian}.  
 We call this network connection structure as partially-connected networks.
 
 
-% P5: 
-% What issues will occur, if transferring the existing methods (mentioned in P2) to the partially-connected network
-As for the deterministic approaches, when transferred to partially-connected networks,
+% P4: 
+% What issues will occur, if transferring the deterministic methods to the partially-connected network
+As for the deterministic approaches, they only deal with the neighbor discovery problem for two nodes.
+When transferred to partially-connected networks,
 they can not solve the collision issue when more than one neighbors are transmitting simultaneously. 
-Relatively, the probabilistic approach can well deal with multiple nodes discovery but only consider
+
+% P5:
+% What issues will occur, if transferring the probabilistic methods to the partially-connected network
+Relatively, probabilistic approaches are designed for the networks where all the nodes can communicate with each other.
+They can well deal with multiple nodes discovery but only consider
 the network is fully-connected, the topology of which is a complete graph. 
-Thus the probability adopted in these approaches can not be desirable.
+Therefore the probability adopted in these approaches can not be desirable 
+and thus can not reduce the collision efficiently.
 
 
 % P6: 
 % Summarize and highlight the crucial issue : partially-connected network and practical distribution
 % Give the reason why it is import to take the distribution into consideration
 To our best knowledge, no relevant researches have focused on neighbor discovery problem
-in the partially-connected networks. More practically, in a wireless sensor network the distribution of 
-sensors' deployment consequently plays a vital role in determining the intrusion detection capability of a sensor node.
+in the partially-connected networks. More practically, in a wireless network the distribution of 
+nodes' deployment consequently plays a vital role in determining the intrusion detection capability of a sensor node.
 Thus the distribution of the nodes in the network needs to be fully taken into 
 consideration.
 
 % P7:
 % Our solution/contribution : we propose Alano algorithm based on the distribution of nodes for the partially-connected networks
-In this paper, we propose Alano\footnote{Alano is the god of luck in Greek mythology }, 
+In this paper, we propose Alano\footnote{Alano is the god of luck in Greek mythology.}, 
 a nearly optimal probability based algorithm to discover neighbors in partially-connected networks. 
 As fully studied in \cite{wang2013gaussian} , the nodes in wireless sensor networks are likely to 
 follow a uniform or a Gaussian distribution as showed in Fig. \ref{distribution}, 
@@ -88,13 +106,13 @@ depending on the specific network applications, which is taken in consideration 
 % P8: 
 % A special type of partially-connected networks: energy-efficient network
 In addition, among the partially-connected networks, there is a special 
-type named energy-efficient network.
+type named energy-efficient network \cite{jones2001survey}.
 Wireless sensor network is a typical energy-efficient network that all the sensor nodes have to maintain 
 strict power budgets to attain years of lifetime\cite{dunkels2011contikimac}.
 Duty cycle mechanism, the fraction of time the radio is turned on, is 
 utilized to raise the power-awareness of the nodes in the network.
 Correspondingly, the neighbor discovery process 
-needs adjustment to deal with the dilemma between 
+needs adjustments to deal with the dilemma between 
 a balance of energy-efficiency and low-latency.
 
 
