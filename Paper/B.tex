@@ -2,18 +2,19 @@
 \label{EEN}
 %wireless sensor networks: duty cycle 
 In an energy-efficient network (i.e., wireless sensor networks), 
-the battery-consumption is a crucial factor to be taken into account.
+the battery consumption is a crucial factor to be taken into account.
 Duty cycle is a key technique to deal with the dilemma between a 
 balance of energy-efficiency and low-latency.
 
 
 %the structure of the rest part in this section
-We first consider the homogeneous energy-arrangement situation
+We first consider the symmetric energy-arrangement situation
 that  all the nodes share a global duty cycle $\theta$, and propose
 a RDS based Alano algorithm. Then we propose a traversing pointer 
 based Alano algorithm for a more general scenario, 
-where nodes have heterogeneous battery-scheduling 
+where nodes have asymmetric battery-scheduling 
 capability with local duty cycle $\theta_i$.
+
 
 %an overview of the motivation of the algorithm
 Our initiative idea is to align the wake-up slots of the neighbor nodes within a bounded time,
@@ -21,7 +22,9 @@ and then invoke the Alano algorithm to achieve neighbor discovery process w.h.p.
 More specifically, we utilize the property of RDS and traversing pointer to guarantee 
 a wake-up slot rendezvous in each period $T$. 
 
-\subsection{Global $\theta$: A RDS Based Alano Algorithm}
+
+\subsection{Symmetric scenario: RDS-Alano Algorithm}
+
 
 %Consider Global Duty Circle
 When a global duty cycle $\theta$ is shared by all the nodes in the network,
@@ -39,14 +42,16 @@ is called a Relaxed Difference Set (RDS) if for every $d \neq 0$ (mod $n$),
 there exists at least one ordered pair $(a_i,a_j)$ such that $a_i - a_j \equiv d$ (mod $n$), where $a_i,a_j \in D$.
 \end{definition}
 
+
 It has been proved that 
 any RDS must have cardinality $|R| \geq \sqrt{N}$\cite{luk1997two}.
 We present a simple linear algorithm for RDS construction under $Z_N$
 with$\lceil \frac{3\sqrt{N}}{2}  \rceil$ cardinality in Alg. \ref{RDS}. 
 %*High coincidence
 
+
 %RDS construction
-\begin{algorithm}
+\begin{algorithm}[!h]
 \caption{RDS construction under $Z_N$}
 \label{RDS}
 \begin{algorithmic}[1]
@@ -66,7 +71,8 @@ The initiative idea of Alg. \ref{RDS} can be described as Fig. \ref{matrix}.
 The framed elements are selected as in Alg. \ref{RDS} 
 Line. \ref{RDSline2} and Line. \ref{RDSline3}. 
 
-\begin{figure}[htb]
+
+\begin{figure}[!h]
 \centering
 \includegraphics[width=2in]{./Figure/matrix}
 \caption{An Sketch of RDS construction in Alg. \ref{RDS}}
@@ -88,7 +94,7 @@ where $|R| = \lambda + \mu = \lceil \sqrt{N}  \rceil + \lceil \frac{\lceil \sqrt
 We first reach a consensus that if there exists one ordered 
 pair $(a_i,a_j)$ satisfying  $a_i - a_j \equiv d$ (mod $N$),
 then we can get an opposite pair $(a_j,a_i)$ such that  
-$a_j - a_i \equiv (N-d)$ (mod $n$). Thus we only need to find 
+$a_j - a_i \equiv (N-d)$ (mod $N$). Thus we only need to find 
 at least one ordered pair $(a_i,a_j)$ for each $d$ from $1$ to $\lfloor N/2 \rfloor$.
 
 The $\lambda$ in Line \ref{RDSline1} is the smallest integer satisfying 
@@ -150,24 +156,29 @@ For any pair of neighbors (node $i$, node $j$),
 we can find an ordered pair ($r_i$, $r_j$) from their respective RDS
 such that $r_i - r_j \equiv \delta_t$ (mode $T$), 
 which indicates any neighbor pair can wake up
-in the same time slot at least once in every period $T$. 
+in the same time slot at least once in every period $T$.
 Regarding the whole period $T$ as a time
-slot in Alg. \ref{Alano}, we obtain the latency bound as $O(\frac{nlogn}{\theta^2})$.
+slot in Alg. \ref{Alano}, we obtain the latency bound as 
+$O(\frac{nlogn}{\theta^2})$ w.h.p.
 
 
 \end{IEEEproof}
 
-%%add something more here?
+There is a detail to be noticed when regarding the whole period $T$ as a time slot in Alg. \ref{Alano}. 
+Due to the periodicity, a node will rendezvous the same neighbors in the identical wake-up slot in each period. 
+Since for a certain node there are more than one wake-up slots in each period, 
+the rendezvoused neighbors in each wake-up time slot may be equal or less than the total number of its neighbors,
+resulting less collisions and lower latency compared to when all the neighbors wake up in the same time slot.
+Thus the latency bound can not be larger.
 
 
-
-\subsection{Local $\theta$: A Traversing Pointer Based Alano Algorithm}
+\subsection{Asymmetric scenario: TP-Alano Algorithm}
 
 
 %Consider Local Duty Circle
 For a more practical scenario, the nodes in a wireless sensor networks 
 for instance, are assigned to diverse tasks such as temperature measurement,
-sunshine collection, etc., and thus ought to have heterogenous capability of
+sunshine collection, etc., and thus ought to have asymmetric capability of
 battery-management with local duty cycle $\theta_i$.
 
 We propose a traversing pointer based Alano algorithm(TP-Alano) in Alg. \ref{P-ND}.
@@ -176,7 +187,7 @@ first slot of each period and another is a traversing slot different from period
 as Alg. \ref{P-ND} Line . \ref{P-NDline1} indicates. 
 
 %Prime Based Neighbor Discovery Algorithm
-\begin{algorithm}
+\begin{algorithm}[!h]
 \caption{Traversing Pointer Based Alano Algorithm}
 \label{P-ND}
 \begin{algorithmic}[1]
@@ -199,14 +210,16 @@ We call the first time slot in each period $T$ as a \emph{fixed pointer} and the
 slots as a \emph{traversing point}. These pointers are used to guarantee a wake-up time rendezvous
 in every period $T_iT_j$. A sketch of the pointers is described in Fig. \ref{TP}.
  
-Note that, since the period of $T$ is selected as: 
+ \begin{remark}
+Since the period of $T$ is selected as: 
 \emph{find the smallest prime $\geq \frac{2}{\theta_i}$},
 which is likely to result in the consequence that the duty 
 cycle $\widetilde{\theta_i}$ in Alg. \ref{P-ND} is smaller than the expected
 $\theta$. This can be easily solved by selecting some random wake-up time slots 
 in each period $T$ to conform to duty cycle $\theta$.
+\end{remark}
 
-\begin{figure}[htb]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=2.5in]{./Figure/TP}
 \caption{An Sketch of TP construction in Alg. \ref{P-ND}}
@@ -223,13 +236,13 @@ bound to achieve neighbor discovery process as following:
 Alg. \ref{P-ND} guarantees the discovery latency
 to be bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.,
 where $\theta_i$ and $\theta_j$ are the duty cycles of 
-a pair of neighbors (node $i$,node$j$) respectively.
+a pair of neighbors (node $i$, node $j$) respectively.
 \end{theorem}
 
 
 
 \begin{IEEEproof}
-We first prove that any pair of nodes (node $i$,node$j$) will wake up 
+We first prove that any pair of nodes (node $i$, node $j$) wake up 
 at the same time slot every period $T_iT_j$.
 
 \textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes, 
@@ -259,7 +272,7 @@ of node $i$ once every period $(T-1)T$ as well.
 Thus for any pair of neighbor (node $i$, node $j$), they can wake up
 at the same time slot at least once in every period $T_iT_j$. Regarding 
 the whole period $T_iT_j$ as a time slot in Alg. \ref{Alano}, we obtain the latency 
-bound as $O(\frac{nlogn}{\theta_i\theta_j})$.
+bound as $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.
 \end{IEEEproof}
 
 

@@ -1,19 +1,109 @@
-%\section{System Model and Problem Formulation}
 \section{Preliminaries}
 \label{sectionmodel}
 
 In this section, we first describe the network and node model.
-Then we formulate the Neighbor Discovery problem formally.  
+Then we formulate the Neighbor Discovery problem formally. 
+The notations are listed in Table \ref{notations}.
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Notations for Neighbor Discovery}
+\label{notations}
+\centering
+\scalebox{0.92}{
+\begin{tabular}{|c|c|}
+\hline
+\bfseries Notation & \bfseries Description\\
+\hline
+$u_i$ & Sensor node $u_i$ with ID $i$ \\
+\hline
+$t_i^s$ & Sensor node $u_i$ starts neighbor discovery at time $t_i^s$ \\
+\hline
+$p_n$ & A node is the neighbor of another with probability $p_n$ \\
+\hline
+$N$ & The number of nodes in the network is $N$ \\
+\hline
+$n$ & The average number of neighbors is $n$, $n=p_nN$ \\
+\hline
+$t_0$ & The length of a time slot is $t_0$ \\
+\hline
+%$\theta_i$ & Node $u_i$'s duty cycle is $\theta_i$ \\
+%\hline
+$L(i,j)$ & The discovery latency that node $u_i$ discovers node $u_j$ \\
+\hline
+$L(i)$ & The discovery latency that node $u_i$ discovers all neighbors \\
+\hline
+$p_i^t$ & Node $u_i$ transmits in a time slot with probability $p_i^t$ \\
+\hline
+$p_i^l$ & Node $u_i$ listens in a time slot with probability $p_i^l$ \\
+\hline
+$p_i^s$ & Node $u_i$ sleeps in a time slot with probability $p_i^s$ \\
+\hline
+%$p_t$ & The transmission probability as a global constant \\
+%\hline
+%$p_l$ & The listening probability as a global constant \\
+%\hline
+%$p_s$ & The sleep probability as a global constant \\
+%\hline
+$\theta$ & The pre-defined duty cycle is $\theta$ \\
+\hline
+%$p_{suc}$ & The probability that a node discovers a \\
+%& neighbor successfully in a given slot is $p_{suc}$ \\
+%\hline
+$W$ & The time slot spent by a node discovering all neighbors is $W$ \\
+\hline
+%$W_j$ & The time slot spent by a node discovering a new neighbor \\
+%& after it discovered j-1 neighbors is $W_j$ \\
+%\hline
+%$p_t(j)$ & The global transmission probability is $p_t(j)$ in $W_j$ \\
+%\hline
+%$p_{suc}(j)$ & The probability that a node discovers a new neighbor  \\
+%& successfully in a given slot after $j-1$ neighbors is $p_{suc}(j)$ \\
+%\hline
+$M$ & Neighboring matrix, $M_{ij}=1$ means $u_i$ and $u_j$ are neighbors \\
+\hline
+\end{tabular}}
+\end{table}
+
 
 \subsection{Network and Node Model}
+
+%Network connectivity
+\bftext{Network connectivity.} In a large-scale network, 
+since the network is deployed in a vast area, each node 
+has a capacity to sense a fraction of nodes within its sensing range.
+These networks are defined as \emph{Partially-Connected Networks}.
+
+Multi-hop wireless networks are often modeled as graphs. Two nodes are connected by an 
+edge if and only if the respective devices are within mutual transmission range. 
+A symmetric matrix $M_{N\times N}$ is used to record the neighboring relations as:
+
+$$ M_{i,j}=\left\{
+\begin{aligned}
+1  & & & & & & {connected}\\
+0  & & & & & & {disconnected}\\
+\end{aligned}
+\right.
+$$
+
+Some communication models have been extensively studied,
+such as unit-disk and SINR.
+
+There are a few path loss model unit-disk SINR
+In the multi-hop and large-scale
+networks,  
+
+We the neighbor discovery problem under the unit-disk model, 
+since it is a basic model and other models can be transformed to 
+it by some means.%\cite{}  
+
+
 
 %distribution and networks
 In a network, the location of the nodes are likely to obey uniform distribution[][],
 Gaussian distribution[][] or other combinatorial distributions.
 
-In reality, since the network is deployed in a vast area, each node 
-has a capacity to sense a fraction of nodes within its sensing range.
-These networks are defined as \emph{Partially-Connected Networks}.
+
 
 Among the partially-connected networks, there is a particular type called \emph{Energy-Efficient Networks}.
 A typical one of energy-efficient networks is the wireless sensor network.
@@ -72,15 +162,7 @@ a heterogeneous
 
 We consider a partially-connected network, 
 where two nodes are neighbors if they locate within the radio range of each other. 
-A  symmetric matrix $M_{N\times N}$ is used to record the neighboring relations as:
 
-$$ M_{i,j}=\left\{
-\begin{aligned}
-1  & & & & & & {connected}\\
-0  & & & & & & {disconnected}\\
-\end{aligned}
-\right.
-$$
 
 Each node follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
 nodes start their neighbor discovery process at the same time, while in a asynchronous  scenario
