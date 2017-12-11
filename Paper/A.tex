@@ -1,19 +1,24 @@
 \section{Large-Scale Networks}
 \label{PCN}
 
-
+%Expectation	#meester1996continuum
 
 %background and instances
-A practical scenario is that in a network,
-all the nodes are partially connected with each other.
-A node can discover a fraction of nodes within its sensing 
+In a large-scale network and the unit-disk model, 
+all the nodes are partially-connected with each other.
+A node can discover the nodes within its sensing 
 range.
 
 %density function and expectation of the neighbor number
-In a partially-connected network for $\forall$ node $u_i$, 
-its position coordinate $(x_i,y_i)$
-obeys a certain probability distribution depending on the 
-characteristic of the network, with the density function as :
+In the network for $\forall$ node $u_i$, 
+it is possible for the nodes to  be aware of its position coordinate $(x_i,y_i)$ 
+and thus get the local density by a pre-defined density function, based on 
+the deployment of the network application.
+
+The expected number of neighbors can be computed as 
+follows \cite{meester1996continuum, wang2015connectivity}.
+
+Denote the density function as :
 $$f(x,y)=
 \begin{cases}
 \varphi(x,y)& (x,y)\in D\\
@@ -32,9 +37,9 @@ $$
 NB(u_i) = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
 $$
 
-We ignore the boundary area of the network and assume the
+In the large-scale networks, we ignore the boundary area of the network and assume the
 nodes in the network is of an enormous quantity, so the 
-expectation neighbors can be formulated as:
+expected number of neighbors can be formulated as:
 $$
 NB(u_i) = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
 $$
@@ -52,8 +57,8 @@ $$
 Then we propose \textbf{Alano}, a randomized neighbor discovery algorithm. 
 We describe the algorithm for $\forall$ node $u_i$ in Alg. \ref{Alano}.
 Alano algorithm indicates that what probability for a node choose to turn to  
-tramisitting state or listening state is determined
-by the expectation neighbor number varying from node to node.
+transmitting state or listening state is determined
+by the expected number of neighbors varying from node to node.
 
 
 \begin{algorithm}
@@ -84,7 +89,7 @@ approximation analysis that the discovery latency will not be much larger than u
 \subsection{Uniform Distribution}
 \label{uniform}
 %background
-There are a part of partially-connected networks obeying uniform distribution. 
+Uniform distribution is a basic one for the deployment of wireless networks. 
 For instance, consider there is a  wireless sensor network carrying out a task of
 measuring temperature and humidity in a target area, 
 thus the sensors are supposed to be evenly deployed and the density function can be 
@@ -96,8 +101,8 @@ $$f(x)=
 \end{cases}$$
 where $A$ is the area of $D$.
 
-Every node in the network has the same expectation 
-of neighbor number and transmit with the same probability as:
+Every node in the network has the same expected number of 
+neighbors and transmit with the same probability as:
 $$
 \hat{n} = \frac{N\pi r^2}{A}, \quad p_t = \frac{1}{\hat{n}}=\frac{A}{N\pi r^2}.
 $$  
@@ -119,7 +124,7 @@ $$p_s = \frac{1}{\hat{n}}{(1-\frac{1}{\hat{n}})}^{\hat{n}-1} \approx \frac{1}{\h
 Thus we can conclude that the probability chosen in Alano
 to transmit is the optimal one. 
 
-Next we analyse the expectation latency for a node to discover all its 
+Next we analyse the expected latency for a node to discover all its 
 neighbors. We denote $W_j$ to be a random variable representing the number of the time slots 
 needed to discover a new neighbor after $(j-1)$ neighbors have been discovered, which follows 
 Geometric distribution with parameter $p(j): p(j)=(\hat{n}-j+1)p_s$. Then the expectation
@@ -187,7 +192,7 @@ probability around important entities\cite{wang2013gaussian}.
 In this section, we present a theoretical proof that the latency performance
 will not be much larger than uniform distribution.
 The analysis is not only applicable for Gaussian distribution
-but also flexible for all the other distributions.
+but also flexible for all the other distributions in a large-scale network.
 
 We first denote the approximate neighbors of node $u_i$
 as set $S(u_i) = \{u_{i1},u_{i2},...,u_{i\hat{n_i}}\}$.

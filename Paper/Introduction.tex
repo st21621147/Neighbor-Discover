@@ -63,7 +63,7 @@ We call this multi-hop wireless network connectivity as \emph{partially-connecte
 % P4: 
 % What issues will occur, if transferring the deterministic methods to the partially-connected network
 % On the one hand,
-As for the deterministic approaches, they only deal with the neighbor discovery problem for two nodes.
+On the one hand, the deterministic approaches only deal with the neighbor discovery problem for two nodes.
 When transferred to multiple nodes scenario, they can not solve the collision issue when more 
 than one neighbors are transmitting simultaneously. 
 
@@ -71,7 +71,7 @@ than one neighbors are transmitting simultaneously.
 % P5:
 % What issues will occur, if transferring the probabilistic methods to the partially-connected network
 % On the other hand,
-Relatively, probabilistic approaches can deal with multiple nodes discovery well but only consider
+On the other hand, probabilistic approaches can deal with multiple nodes discovery well but only consider
 the network is fully-connected, the topology of which is a complete graph. 
 Therefore in the large-scale network where the nodes are partially-connected,  
 the probability adopted in these approaches can not be desirable 
@@ -91,7 +91,7 @@ detection capability of a communication device.
 % P7:
 % Our solution/contribution : we propose Alano algorithm based on the distribution of nodes for the partially-connected networks
 In this paper, we propose Alano\footnote{Alano is the god of luck in Greek mythology.}, 
-a nearly optimal probability based algorithm to discover neighbors in partially-connected networks. 
+a nearly optimal probability based algorithm to discover neighbors in large-scale networks. 
 As fully studied in \cite{wang2013gaussian} , the nodes in wireless sensor networks are likely to 
 follow a uniform or a Gaussian distribution as showed in Fig. \ref{distribution}, 
 depending on the specific network applications, which is taken into consideration of the proposed Alano algorithm.
@@ -135,7 +135,7 @@ asymmetric energy-efficient networks where each node possesses a respective duty
 % Simulation results support our high performance
 Our simulation shows the proposed Alano algorithms
 hold significant strengths compared to the state-of-the-art methods,
-based on the evaluation of speed, quality and scalability.% and robustness 
+based on the evaluation of speed, quality, scalability and robustness. 
 Alano achieves 31.35\% to 32.32 times lower latency
 and has higher discovery rate during the whole process of neighbor discovery, 
 no matter in symmetric or asymmetric scenario and in uniform or Gaussian distribution.
@@ -147,14 +147,11 @@ Alano still keeps its high performance.
 % Contribution summarize
 The main contributions of this paper are summarized as follows:
 \begin{itemize}
-\item[1)] We model the distribution of node deployment with mathematical analysis 
-and analyse the expectation number of neighbors of a node in uniform distribution and Gaussian
-distribution.
-\item[2)] We propose Alano, a low-latency strategy to achieve neighbor discovery process
-in a large-scale network.
-\item[3)] We propose a Relaxed Difference Set based Alano algorithm (RDS-Alano) 
+\item[1)] We consider the distribution of nodes and propose Alano, 
+a low-latency algorithm to achieve neighbor discovery process in a large-scale network.
+\item[2)] We propose a Relaxed Difference Set based Alano algorithm (RDS-Alano) 
 to achieve low-latency neighbor discovery process in the symmetric energy-efficient networks. 
-\item[4)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) to
+\item[3)] We propose a Traversing Pointer based Alano algorithm (TP-Alano) to
 achieve low-latency neighbor discovery process in the asymmetric energy-efficient networks. 
 \end{itemize}
 
@@ -165,7 +162,7 @@ The remainder of the paper is organized as follows.
 The next section highlights some related work and 
 puts forward some serious problems. 
 Some notion definitions and the system model are given in Section \ref{sectionmodel}. 
-We analyse the node's expectation number of neighbors and 
+We analyse the node's expected number of neighbors and 
 propose Alano algorithm in \ref{PCN} as a foundation.
 Section \ref{EEN} describes the RDS-Alano algorithm for 
 symmetric scenario and TP-Alano algorithm for asymmetric scenario

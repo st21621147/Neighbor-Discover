@@ -1,6 +1,8 @@
 \section{Preliminaries}
 \label{sectionmodel}
 
+%Connectivity model			#lebhar2009unit
+
 In this section, we first describe the network and node model.
 Then we formulate the Neighbor Discovery problem formally. 
 The notations are listed in Table \ref{notations}.
@@ -48,8 +50,9 @@ $M$ & Neighboring matrix, $M_{ij}=1$ means $u_i$ and $u_j$ are neighbors \\
 \textbf{Communication model.} 
 We study the neighbor discovery 
 problem under the unit-disk model \cite{moscibroda2006complexity, wang2015connectivity}, 
-since it is a basic model and other models such as \emph{SINR} can be transformed to 
-it by particular means. %\cite{}  
+since it is a popular model that enabled the development of efficient algorithms for crucial networking problems, 
+and other models such as \emph{SINR} which lacks of good algorithmic features can be transformed to 
+it by particular means \cite{lebhar2009unit}.  
 In the unit-disk model, two network nodes are directly connected if and only 
 if their Euclidean distance is no more than a given threshold based on the received signal strength, 
 which is called the transmission range.
