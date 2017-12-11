@@ -21,14 +21,26 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{zeadally2012energy}
-S.~Zeadally, S.~U. Khan, and N.~Chilamkurti, ``Energy-efficient networking:
-  past, present, and future,'' \emph{The Journal of Supercomputing}, pp. 1--26,
-  2012.
+\bibitem{qin2014software}
+Z.~Qin, G.~Denker, C.~Giannelli, P.~Bellavista, and N.~Venkatasubramanian, ``A
+  software defined networking architecture for the internet-of-things,'' in
+  \emph{Network Operations and Management Symposium (NOMS), 2014 IEEE}.\hskip
+  1em plus 0.5em minus 0.4em\relax IEEE, 2014, pp. 1--9.
 
-\bibitem{atzori2010internet}
-L.~Atzori, A.~Iera, and G.~Morabito, ``The internet of things: A survey,''
-  \emph{Computer networks}, vol.~54, no.~15, pp. 2787--2805, 2010.
+\bibitem{yick2008wireless}
+J.~Yick, B.~Mukherjee, and D.~Ghosal, ``Wireless sensor network survey,''
+  \emph{Computer networks}, vol.~52, no.~12, pp. 2292--2330, 2008.
+
+\bibitem{hernandez2005comparative}
+F.~Hernandez-Campos and M.~Papadopouli, ``A comparative measurement study the
+  workload of wireless access points in campus networks,'' in \emph{Personal,
+  Indoor and Mobile Radio Communications, 2005. PIMRC 2005. IEEE 16th
+  International Symposium on}, vol.~3.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2005, pp. 1776--1780.
+
+\bibitem{cunningham2002optimizing}
+R.~Cunningham, ``Optimizing location-based mobile gaming applications,'' May~31
+  2002, uS Patent App. 10/160,365.
 
 \bibitem{dutta2008practical}
 P.~Dutta and D.~Culler, ``Practical asynchronous neighbor discovery and
@@ -96,6 +108,25 @@ T.~Song, H.~Park, and S.~Pack, ``A probabilistic neighbor discovery algorithm
   Spring), 2014 IEEE 79th}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2014,
   pp. 1--5.
 
+\bibitem{moscibroda2006complexity}
+T.~Moscibroda and R.~Wattenhofer, ``The complexity of connectivity in wireless
+  networks.'' in \emph{Infocom}, 2006, pp. 1--13.
+
+\bibitem{wang2013gaussian}
+Y.~Wang, W.~Fu, and D.~P. Agrawal, ``Gaussian versus uniform distribution for
+  intrusion detection in wireless sensor networks,'' \emph{IEEE Transactions on
+  Parallel and Distributed systems}, vol.~24, no.~2, pp. 342--355, 2013.
+
+\bibitem{wang2015connectivity}
+L.~Wang, P.-J. Wan, and W.~Washington, ``Connectivity of multihop wireless
+  networks with log-normal shadowing,'' \emph{Wireless Networks}, vol.~21,
+  no.~7, pp. 2279--2292, 2015.
+
+\bibitem{jones2001survey}
+C.~E. Jones, K.~M. Sivalingam, P.~Agrawal, and J.~C. Chen, ``A survey of energy
+  efficient network protocols for wireless networks,'' \emph{wireless
+  networks}, vol.~7, no.~4, pp. 343--358, 2001.
+
 \bibitem{dunkels2011contikimac}
 A.~Dunkels, ``The contikimac radio duty cycling protocol,'' 2011.
 
@@ -104,10 +135,17 @@ W.~Sun, Z.~Yang, X.~Zhang, and Y.~Liu, ``Energy-efficient neighbor discovery in
   mobile ad hoc and wireless sensor networks: A survey,'' \emph{IEEE
   Communications Surveys \& Tutorials}, vol.~16, no.~3, pp. 1448--1459, 2014.
 
-\bibitem{wang2013gaussian}
-Y.~Wang, W.~Fu, and D.~P. Agrawal, ``Gaussian versus uniform distribution for
-  intrusion detection in wireless sensor networks,'' \emph{IEEE Transactions on
-  Parallel and Distributed systems}, vol.~24, no.~2, pp. 342--355, 2013.
+\bibitem{zhou2004impact}
+G.~Zhou, T.~He, S.~Krishnamurthy, and J.~A. Stankovic, ``Impact of radio
+  irregularity on wireless sensor networks,'' in \emph{Proceedings of the 2nd
+  international conference on Mobile systems, applications, and
+  services}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2004, pp. 125--138.
+
+\bibitem{daiya2011experimental}
+V.~Daiya, J.~Ebenezer, S.~S. Murty, and B.~Raj, ``Experimental analysis of rssi
+  for distance and position estimation,'' in \emph{Recent Trends in Information
+  Technology (ICRTIT), 2011 International Conference on}.\hskip 1em plus 0.5em
+  minus 0.4em\relax IEEE, 2011, pp. 1093--1098.
 
 \bibitem{jiang2005quorum}
 J.-R. Jiang, Y.-C. Tseng, C.-S. Hsu, and T.-H. Lai, ``Quorum-based asynchronous

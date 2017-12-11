@@ -1,12 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: Neighbor Discovery.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Neighbor Discovery.aux
 The style file: IEEEtran.bst
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ref.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
@@ -14,45 +7,4 @@ Database file #1: ref.bib
 Warning--empty journal in dunkels2011contikimac
 
 Done.
-You've used 25 entries,
-            4087 wiz_defined-function locations,
-            972 strings with 12632 characters,
-and the built_in function-call counts, 22104 in all, are:
-= -- 1735
-> -- 520
-< -- 215
-+ -- 291
-- -- 80
-* -- 1059
-:= -- 3100
-add.period$ -- 65
-call.type$ -- 25
-change.case$ -- 26
-chr.to.int$ -- 531
-cite$ -- 26
-duplicate$ -- 1525
-empty$ -- 1845
-format.name$ -- 103
-if$ -- 5238
-int.to.chr$ -- 0
-int.to.str$ -- 25
-missing$ -- 253
-newline$ -- 98
-num.names$ -- 25
-pop$ -- 604
-preamble$ -- 1
-purify$ -- 0
-quote$ -- 2
-skip$ -- 1689
-stack$ -- 0
-substring$ -- 1265
-swap$ -- 1286
-text.length$ -- 38
-text.prefix$ -- 0
-top$ -- 5
-type$ -- 25
-warning$ -- 1
-while$ -- 117
-width$ -- 27
-write$ -- 259
 (There was 1 warning)
