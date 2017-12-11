@@ -31,8 +31,8 @@ We show that Alano has lower latency, higher discovery rate, and better scalabil
 \label{fig_latency}
 \end{figure}
 
-In Fig. \ref{fig_latency}, when nodes follow uniform distribution, Alano has $53.67\%$ to $5.33$ times lower latency with gloabal duty cycle, and $86.49\%$ to $7.43$ times lower latency with local duty cycle. 
-When nodes follow normal distribution, Alano has $31.35\%$ to 24.57 times lower latency with gloabal duty cycle, and $45.94\%$ to $32.32$ times lower latency with local duty cycle. 
+In Fig. \ref{fig_latency}, when nodes follow uniform distribution, Alano has $54.64\%$ to $1.95$ times lower latency with gloabal duty cycle, and $85.25\%$ to $2.91$ times lower latency with local duty cycle. 
+When nodes follow normal distribution, Alano has $31.35\%$ to $1.21$ times lower latency with gloabal duty cycle, and $45.94\%$ to $1.88$ times lower latency with local duty cycle. 
 The deterministic algorithms Hello, Hedis and Searchlight have high latency, because their design just considered the bounded latency within two nodes. When the network becomes denser and some nodes have more than one neighbors, they cannot discover rapidly, because collisions happen so frequently.
 
 
@@ -59,24 +59,24 @@ Fig. \ref{fig_timerate} shows Alano with either global or local duty cycle, has 
 
 When we increase the number of nodes in the uniform distributed  network from $500$ to $1000$, and the number of nodes in the normal distributed network from $1000$ to $2000$, Fig. \ref{fig_timerate_large} shows that Alano still reaches higher discovery rate all the time with either global or local duty cycle.
 
-\begin{figure}[!h]
+% \begin{figure}[!h]
 
-\subfigure[Uniform Distribution with Global Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_uniform1}}
-\hspace{0.01in}
-\subfigure[Normal Distribution with Global Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_normal1}}
-\hspace{0.01in}
-\subfigure[Uniform Distribution with Local Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_local_uniform1}}
-\hspace{0.01in}
-\subfigure[Normal Distribution with Local Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_local_normal1}}
-\caption{Alano achieves higher discovery rate in larger networks.}
-\label{fig_timerate_large}
-\end{figure}
-
-
+% \subfigure[Uniform Distribution with Global Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_uniform1}}
+% \hspace{0.01in}
+% \subfigure[Normal Distribution with Global Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_normal1}}
+% \hspace{0.01in}
+% \subfigure[Uniform Distribution with Local Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_local_uniform1}}
+% \hspace{0.01in}
+% \subfigure[Normal Distribution with Local Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_local_normal1}}
+% \caption{Alano achieves higher discovery rate in larger networks.}
+% \label{fig_timerate_large}
+% \end{figure}
 
 
 
-With different duty cycle, Fig. \ref{fig_dutycycle} shows that Alano has lower latency. Compared with Aloha, Alano has from $53.66\%$ to $11.23$ times lower latency. The latency of Alano and Aloha generally decreases as the duty cycle increases, while Hello, Hedis and Searchlight have high latency due to the collision. In normal distribution, Alano has a small twist with duty cycle $0.35$, because when the duty cycle increases, nodes are more likely to transmit and therefore collide.
+
+
+% With different duty cycle, Fig. \ref{fig_dutycycle} shows that Alano has lower latency. Compared with Aloha, Alano has from $53.66\%$ to $11.23$ times lower latency. The latency of Alano and Aloha generally decreases as the duty cycle increases, while Hello, Hedis and Searchlight have high latency due to the collision. In normal distribution, Alano has a small twist with duty cycle $0.35$, because when the duty cycle increases, nodes are more likely to transmit and therefore collide.
 
 \subsection{Scalability: Duty Cycle and Network Density}
 
