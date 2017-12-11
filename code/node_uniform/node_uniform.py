@@ -8,8 +8,8 @@ def loadfile(fileName):
     file=open(fileName)
     node = []
     for line in file:
-        a=line.split(",")
-        node.append(a[1])
+        a=line.strip().split(",")
+        node.append(float(a[1]))
     return node
 
 
@@ -22,8 +22,14 @@ def paintNormalybar():
 
     y1 = loadfile("RDS_latency.txt")
     y2 = loadfile("Aloha_latency.txt")
+
+    a = list(map(lambda x: x[0] - x[1], zip(y2, y1)))
+    b = list(map(lambda x: x[0]/x[1], zip(a, y1)))
     print y1
     print y2
+    print a
+    print b
+    # print y2
 
     plt.bar(labelCall - 0.15, y1, label="Alano", color="r", hatch="X", align="center", width=0.3)
     plt.bar(labelCall + 0.15, y2, label="Aloha-like", color="c", hatch="o", align="center", width=0.3)
