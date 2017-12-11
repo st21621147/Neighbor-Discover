@@ -152,9 +152,9 @@ $$
 \widetilde{\theta} = \frac{|RDS|}{|T|} = \frac{\lceil \frac{3\sqrt{T}}{2}  \rceil}{T} = \theta.
 $$
 
-For any pair of neighbors (node $i$, node $j$), 
+For any pair of neighbor nodes ($u_i$, $u_j$), 
 we can find an ordered pair ($r_i$, $r_j$) from their respective RDS
-such that $r_i - r_j \equiv \delta_t$ (mode $T$), 
+such that $r_i - r_j \equiv \delta_{ij}$ (mode $T$), 
 which indicates any neighbor pair can wake up
 in the same time slot at least once in every period $T$.
 Regarding the whole period $T$ as a time
@@ -184,7 +184,7 @@ battery-management with local duty cycle $\theta_i$.
 We propose a traversing pointer based Alano algorithm(TP-Alano) in Alg. \ref{P-ND}.
 In each period $T$, every node wakes up in two different time slots, one of which is the
 first slot of each period and another is a traversing slot different from period to period, 
-as Alg. \ref{P-ND} Line . \ref{P-NDline1} indicates. 
+as Alg. \ref{P-ND} Line. \ref{P-NDline1} indicates. 
 
 %Prime Based Neighbor Discovery Algorithm
 \begin{algorithm}[!h]
@@ -236,13 +236,13 @@ bound to achieve neighbor discovery process as following:
 Alg. \ref{P-ND} guarantees the discovery latency
 to be bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.,
 where $\theta_i$ and $\theta_j$ are the duty cycles of 
-a pair of neighbors (node $i$, node $j$) respectively.
+a pair of neighbor nodes ($u_i$, $u_j$) respectively.
 \end{theorem}
 
 
 
 \begin{IEEEproof}
-We first prove that any pair of nodes (node $i$, node $j$) wake up 
+We first prove that any pair of nodes ($u_i$, $u_j$) wake up 
 at the same time slot every period $T_iT_j$.
 
 \textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes, 
@@ -253,23 +253,22 @@ according to Chinese remainder theorem, there exists a time slot $t_\tau \in \lb
 \end{equation}
 \begin{equation}
 \label{case1.2}
-\delta = t_\tau  \quad mod \quad  T_j.
+\delta_{ij} = t_\tau  \quad mod \quad  T_j.
 \end{equation}
-where $\delta$ is the asynchronous drift between node $i$ and node $j$.
 
-Equation\ref{case1.1} and \ref{case1.2}  implies there exists a fixed pointer of node $i$ 
-and a fixed pointer of node $j$ rendezvous in every $T_iT_j$  .
+Equation\ref{case1.1} and \ref{case1.2}  implies there exists a fixed pointer of node $u_i$ 
+and a fixed pointer of node $u_j$ rendezvous in every $T_iT_j$  .
 
 \textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j = T$, if the asynchronous drift between 
-node $i$ and node $j$ $\delta = 0$, the fixed pointers of node $i$ and node $j$ will 
+node $u_i$ and $u_j$ : $\delta_{ij} = 0$, the fixed pointers of node $u_i$ and node $u_j$ will 
 rendezvous with each other in every period $T$.
 Otherwise since the traversing point will traverse all the time slots once during period $(T-1)T$,
-there exists a traversing point of node $i$ rendezvous with a fixed pointer
-of node $j$ every period $(T-1)T$, and a traversing point of node $j$ 
+there exists a traversing point of node $u_i$ rendezvous with a fixed pointer
+of node $u_j$ every period $(T-1)T$, and a traversing point of node $u_j$ 
 will consequentially rendezvous with a fixed pointer
 of node $i$ once every period $(T-1)T$ as well.
 
-Thus for any pair of neighbor (node $i$, node $j$), they can wake up
+Thus for any pair of neighbor nodes ( $u_i$, $u_j$), they can wake up
 at the same time slot at least once in every period $T_iT_j$. Regarding 
 the whole period $T_iT_j$ as a time slot in Alg. \ref{Alano}, we obtain the latency 
 bound as $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.

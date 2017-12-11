@@ -15,51 +15,28 @@ The notations are listed in Table \ref{notations}.
 \hline
 \bfseries Notation & \bfseries Description\\
 \hline
-$u_i$ & Sensor node $u_i$ with ID $i$ \\
+$N$ & The number of nodes in the network\\
 \hline
-$t_i^s$ & Sensor node $u_i$ starts neighbor discovery at time $t_i^s$ \\
+$u_i$ & node $u_i$ with ID $i$ \\
 \hline
-$p_n$ & A node is the neighbor of another with probability $p_n$ \\
+$u_{ij}$ & the $j^{th}$ neighbor of node $u_i$ \\
 \hline
-$N$ & The number of nodes in the network is $N$ \\
+$\delta_{ij}$ & The transmission time drift between $u_i$ and $u_j$ \\
 \hline
-$n$ & The average number of neighbors is $n$, $n=p_nN$ \\
+$n*$ & The average number of neighbors is $n$, $n=p_nN$ \\
 \hline
-$t_0$ & The length of a time slot is $t_0$ \\
+$t_0$ & The length of a time slot \\
 \hline
-%$\theta_i$ & Node $u_i$'s duty cycle is $\theta_i$ \\
-%\hline
 $L(i,j)$ & The discovery latency that node $u_i$ discovers node $u_j$ \\
 \hline
 $L(i)$ & The discovery latency that node $u_i$ discovers all neighbors \\
 \hline
-$p_i^t$ & Node $u_i$ transmits in a time slot with probability $p_i^t$ \\
+$\theta$ & The pre-defined global duty cycle\\
 \hline
-$p_i^l$ & Node $u_i$ listens in a time slot with probability $p_i^l$ \\
+$\theta_i$ & Node $u_i$'s local duty cycle\\
 \hline
-$p_i^s$ & Node $u_i$ sleeps in a time slot with probability $p_i^s$ \\
+$W$ & The time slot spent by a node discovering all neighbors\\
 \hline
-%$p_t$ & The transmission probability as a global constant \\
-%\hline
-%$p_l$ & The listening probability as a global constant \\
-%\hline
-%$p_s$ & The sleep probability as a global constant \\
-%\hline
-$\theta$ & The pre-defined duty cycle is $\theta$ \\
-\hline
-%$p_{suc}$ & The probability that a node discovers a \\
-%& neighbor successfully in a given slot is $p_{suc}$ \\
-%\hline
-$W$ & The time slot spent by a node discovering all neighbors is $W$ \\
-\hline
-%$W_j$ & The time slot spent by a node discovering a new neighbor \\
-%& after it discovered j-1 neighbors is $W_j$ \\
-%\hline
-%$p_t(j)$ & The global transmission probability is $p_t(j)$ in $W_j$ \\
-%\hline
-%$p_{suc}(j)$ & The probability that a node discovers a new neighbor  \\
-%& successfully in a given slot after $j-1$ neighbors is $p_{suc}(j)$ \\
-%\hline
 $M$ & Neighboring matrix, $M_{ij}=1$ means $u_i$ and $u_j$ are neighbors \\
 \hline
 \end{tabular}}
@@ -68,7 +45,8 @@ $M$ & Neighboring matrix, $M_{ij}=1$ means $u_i$ and $u_j$ are neighbors \\
 
 \subsection{Network and Node Model}
 
-\textbf{Communication model.} We study the neighbor discovery 
+\textbf{Communication model.} 
+We study the neighbor discovery 
 problem under the unit-disk model \cite{moscibroda2006complexity, wang2015connectivity}, 
 since it is a basic model and other models such as \emph{SINR} can be transformed to 
 it by particular means. %\cite{}  
@@ -76,7 +54,8 @@ In the unit-disk model, two network nodes are directly connected if and only
 if their Euclidean distance is no more than a given threshold based on the received signal strength, 
 which is called the transmission range.
 
-\textbf{Network connectivity.} In a large-scale network under the unit-disk model, 
+\textbf{Network connectivity.} 
+In a large-scale network under the unit-disk model, 
 each node has a capacity to sense the nodes within its transmission range.
 The nodes which can be connected by one-hop communication are called neighbors,
 and other nodes can be connected by multi-hop communication.
@@ -94,17 +73,21 @@ $$ M_{i,j}=\left\{
 \right.
 $$
 
-\textbf{Energy-Efficient Networks.} In the large-scale networks, 
+\textbf{Energy-Efficient Networks.} 
+In the large-scale networks, 
 there is a particular type called \emph{Energy-Efficient Networks}.
 A typical one of the energy-efficient networks is the wireless sensor networks.
 The wireless sensor network consists of a number of sensors distributed separately in a target area.
 The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
 and wake up timely to work on duty.
 
-\textbf{Network distribution.} In a network, the location of the nodes are likely to obey uniform distribution[][],
+\textbf{Network distribution.} 
+In a network, the location of the nodes are likely to obey uniform distribution[][],
 Gaussian distribution[][] or other combinatorial distributions.
+For a certain, the expected number of neighbors  can be calculated  the local network density. 
 
-\textbf{Time model.} Time is divided into slots of equal length $t_0$, 
+\textbf{Time model.} 
+Time is divided into slots of equal length $t_0$, 
 which is sufficient to finish  one communication process
 (transmit or receive a piece of package). In each time slot, 
 a node transform its pattern according to a pre-defined duty schedule.
@@ -118,7 +101,15 @@ information to all neighbors.
 \end{itemize}
 Transiting between the states only costs little time, compared to one complete time slot.
 
-\textbf{Transmission collision.} Under the unit-disk model, collisions will occur 
+\textbf{Transmission drift.} 
+Each node may start their neighbor discovery process 
+at different time slots and we denote $\delta_{ij}$ as the asynchronous time drift
+between a pair of neighbor nodes ($u_i$, $u_j$). 
+$\delta_{ij} = 0$ represents a synchronous case.
+   
+
+\textbf{Transmission collision.} 
+Under the unit-disk model, collisions will occur 
 to a node in its listening state when two or more neighbor nodes 
 transmit concurrently and thus no valid information will be gathered.
 
@@ -126,19 +117,20 @@ transmit concurrently and thus no valid information will be gathered.
 \textbf{Duty Schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
 $$ s^t=\left\{
 \begin{aligned}
-S  & & & {Sleep}\\
-T  & & & {Transmit}\\
-L  & & & {Listen}\\
+S  & & & {Sleep}  	 \\
+T  & & & {Transmit}	\\
+L  & & & {Listen}	\\
 \end{aligned}
 \right.
 $$
 \end{definition}
 
+Note that the sleep state is only for the energy-efficient networks.
 Each node construct its own duty schedule according to a specific strategy and repeats it
 until finding all the neighbors. 
 
 Since the waking-up duration has a significant affect on the battery's lifetime, 
-duty cycle is utilized to restrict the energy consumption.
+duty cycle is utilized to restrict the energy consumption in the energy-efficient networks.
 
 \begin{definition}
 \textbf{Duty Cycle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
@@ -152,12 +144,8 @@ $$
 We consider a large-scale and multi-hop network, 
 where two nodes are neighbors if they locate within the radio range of each other. 
 
-Each node follows its duty schedule to achieve neighbor discovery. In a synchronous scenario,
-nodes start their neighbor discovery process at the same time, while in a asynchronous  scenario
-all nodes start at different time slots. We focus on the asynchronous case and it is still applicable for the
-synchronous situation.
-
-Notice that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
+Each node follows its duty schedule to achieve neighbor discovery. 
+Note that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
 need to find each other separately. The time slots within which a node $u_i$ find one of its neighbors $u_j$ can be formulated 
 as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all neighbors as:
 \begin{definition}
@@ -201,9 +189,10 @@ in the asynchronous scenario, as we can see the nodes
 start their process at different time slot. 
 Duty cycle is set as $0.25$ which implies a node will wake up 
 once during a period of four time slots. The duty schedule of 
-node $1$, for example, is $S_1 = \{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, ... \}$.  
-At time slot $12$, node 5 find its neighbor node $2$ while node $1$ 
-could not find node $2$ due to a collision from its another neighbor node $3$. 
+node $u_1$, for example, is $S_1 = \{ T, S, S, S, S, S, T, S, S, T, S, S, S, T, ... \}$.
+The time drift between node $u_1$ and $u_4$ : $\delta_{14} = 1$ while $u_1$ and $u_2$ start their process synchronously.
+At time slot $12$, node $u_5$ discovers its neighbor node $u_2$ while node $u_1$ 
+could not discover node $u_2$ due to a collision from its another neighbor node $u_3$. 
 
 
 
