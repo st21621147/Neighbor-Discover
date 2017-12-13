@@ -1,23 +1,24 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
-\begin{abstract}
+\begin{Abstract}
 
-Neighbor discovery is a crucial step in constructing wireless networks. 
-Various methods have been proposed to promote the discovery rate and minimize the discovery latency. 
-However, none of them has considered the connectivity and the distribution of the nodes in a large-scale network.
-In a large-scale network, each node has a capacity to sense the nodes within its transmission range 
-which are called neighbors and other nodes are connected by multi-hop communication.
+Neighbor discovery is a crucial step in the construction of wireless networks. 
+%Various methods have been proposed to promote the discovery rate and minimize the discovery latency. 
+In our work we also consider the connectivity and the distribution of the nodes in a large-scale network.
+In a large-scale network, each node has the ability to sense other nodes within its transmission range,
+called neighbors. Other nodes are connected by multi-hop communication.
+%Reduce abstract
 
 In this paper, we propose Alano, the first nearly optimal probability 
-based algorithm to discover neighbors in large-scale networks. 
-To begin with, we consider the distribution of the nodes in the networks 
+based algorithm for neighbors discovery in large-scale networks. 
+Initially, we examine the distribution of the nodes in the networks 
 and compute the expected number of neighbors $n$ using the local information.
-Then, we prove the discovery latency of Alnano is bounded by a low latency $O(nlnn)$.
-Finally, we propose a Relaxed Difference Set based Alano algorithm (RDS-Alano) to 
+Then, we prove the discovery latency of Alano is bounded by a low latency $O(n ln n)$.
+Finally, we propose a $Relaxed Difference Set$ based Alano algorithm (RDS-Alano) to 
 achieve low-latency neighbor discovery process in the symmetric energy-efficient networks
-and a Traversing Pointer based Alano algorithm (TP-Alano) in the asymmetric energy-efficient networks.
-Our evaluation shows Alano achieves 31.35\% to 32.32 times lower latency than existing methods 
-and holds higher performance in quality, scalability and robustness.
+and a $Traversing Pointer$ based Alano algorithm (TP-Alano) in the asymmetric energy-efficient networks.
+Our evaluation shows Alano achieves 31.35\% to 32.32\% lower latency than existing methods 
+and exhibits higher performance in quality, scalability and robustness.
 
 
 
