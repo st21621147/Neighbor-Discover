@@ -106,13 +106,14 @@ When the number of nodes increases and the network becomes denser, Alano still s
 
 \subsection{Robustness}
 
-
 \begin{figure}[!h]
 \centering
-\includegraphics[width=2.5in]{Figure/robust}
+\subfigure[Uniform Distribution]{\includegraphics[width=1.65in]{Figure/robustU}}
+\hspace{0.01in}
+\subfigure[Normal Distribution]{\includegraphics[width=1.65in]{Figure/robustN}}
 \caption{Alano still reaches low latency when nodes die.}
 \label{fig_robust}
 \end{figure}
 
-In reality, nodes exhaust the energy now and then, and it is important for neighbor discovery protocols to remain good performance when nodes go off duty. Fig. \ref{fig_robust} shows that when $5\%$ to $30\%$ nodes die, Alano still reach low latency robustly.
+In reality, nodes die now and then, and it is important for neighbor discovery protocols to remain good performance when nodes die. Fig. \ref{fig_robust} shows that when $5\%$ to $30\%$ nodes die, Alano still reaches low latency robustly in both uniform and normal distribution.
 
