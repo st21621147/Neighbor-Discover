@@ -3,8 +3,7 @@
 
 %Connectivity model			#lebhar2009unit
 
-In this section, we first describe the network and node model.
-Then we formulate the Neighbor Discovery problem formally. 
+In this section, we describe system model of an energy-restricted large scale network, and we formulate the Neighbor Discovery problem formally.
 The notations are listed in Table \ref{notations}.
 
 \begin{table}[!t]
@@ -45,131 +44,74 @@ $M$ & Neighboring matrix, $M_{ij}=1$ means $u_i$ and $u_j$ are neighbors \\
 \end{table}
 
 
-\subsection{Network and Node Model}
+\subsection{System Model}
 
-\textbf{Communication model.} 
-We study the neighbor discovery 
-problem under the unit-disk model \cite{moscibroda2006complexity, wang2015connectivity}, 
-since it is a popular model that enabled the development of efficient algorithms for crucial networking problems, 
-and other models such as \emph{SINR} which lacks of good algorithmic features can be transformed to 
-it by particular means \cite{lebhar2009unit}.  
-In the unit-disk model, two network nodes are directly connected if and only 
-if their Euclidean distance is no more than a given threshold based on the received signal strength, 
-which is called the transmission range.
+We introduce three important factors of an energy-restricted large scale network.
 
-\textbf{Network connectivity.} 
-In a large-scale network under the unit-disk model, 
-each node has a capacity to sense the nodes within its transmission range.
-The nodes which can be connected by one-hop communication are called neighbors,
-and other nodes can be connected by multi-hop communication.
-This wireless network connectivity is defined as \emph{Partially-Connected},
-contrary to the fully-connected scenario where all the nodes can communicate with 
-each other by one-hop communication.
+\textbf{Communication:}
+when multiple nodes communicate simultaneously, a transmission may fail due to the communication interference. We adopt the protocol model (also called graph model, unit-disk model\cite{moscibroda2006complexity, wang2015connectivity}) to describe the process, which assumes a node $u_i$ can receive $u_j$'s message successfully if $u_j$ is the only transmitter that is within $u_i$'s communication range.
+The protocol model is a popular model that enables the development of efficient algorithms crucial networking problems. Some other models, such as the signal to interference plus noise ratio (\emph{SINR}) model, are more complicated and lack good algorithmic features. In addition, it is shown that these models can be transformed to the protocol model by particular means in \cite{lebhar2009unit}.
 
-Multi-hop wireless networks are often modeled as graphs. 
-A symmetric matrix $M_{N\times N}$ is used to record the neighboring relations as:
+\textbf{Network connectivity:}
+a node can only discover nodes that are within its communication range under the protocol model. In a large scale network, two nodes may not be connected directly and we call two nodes connected by one-hop communication as \emph{neighbors}. Thus, a large scale network is always \emph{partially-connected}, contrary to a fully-connected network in which any two nodes are neighbors, i.e. they are connected by one-hop communication.
+
+
+\textbf{Energy-restricted:}
+a node in the network has very limited energy and we assume a node can turn on or off its radio to save energy. When a node turns on the radio, it can transmit a message including its identifier (ID), or listen on the channel to receive a neighbor's message.
+
+Technically speaking, we assume an energy-restricted large scale network consisting of $N$ nodes as set $U=\{u_1,u_2,\ldots,u_N\}$.  Nodes are distributed in a large place and they can communicate through a fixed wireless channel. We assume the locations of the nodes obey some distributions, such as uniform distributions and Gaussian distribution\cite{XX}.
+Suppose a node has a fixed communication range $\Delta$ and two nodes $u_i, u_j$ are neighbors if their distance suits $d(u_i, u_j) \leq \Delta$. We can use a symmetric matrix $M_{N\times N}$ to represent nodes' neighboring relations as:
 $$ M_{i,j}=\left\{
 \begin{aligned}
-1  & & & & & & {connected}\\
-0  & & & & & & {disconnected}\\
+1  & & & & & & {u_i ~and~ u_j ~are~ neighbors}\\
+0  & & & & & & {otherwise}\\
 \end{aligned}
 \right.
 $$
 
-\textbf{Energy-Efficient Networks.} 
-In the large-scale networks, 
-there is a particular type called \emph{Energy-Efficient Networks}.
-A typical one of the energy-efficient networks is the wireless sensor networks.
-The wireless sensor network consists of a number of sensors distributed separately in a target area.
-The deployed sensor nodes keep their most time in sleep pattern to avoid quick energy consumption 
-and wake up timely to work on duty.
 
-\textbf{Network distribution.} 
-In a network, the location of the nodes are likely to obey uniform distribution[][],
-Gaussian distribution[][] or other combinatorial distributions.
-For a certain, the expected number of neighbors  can be calculated  the local network density. 
-
-\textbf{Time model.} 
-Time is divided into slots of equal length $t_0$, 
-which is sufficient to finish  one communication process
-(transmit or receive a piece of package). In each time slot, 
-a node transform its pattern according to a pre-defined duty schedule.
-
-\textbf{Node transmission model.} In this paper, we denote the node set in the network as $U = \{u_1,u_2,...,u_N\}$.
-When a node wake up in a time slot, it can turn to either the transmitting state or listening state. 
+Suppose time is divided into slots of equal length $t_0$, which is sufficient to finish a complete communication process (one node transmits a message including its ID and a neighbor receives the message). 
+A node who turns its radio on can choose to be transmitting state or listening state:
 \begin{itemize}
-\item \textbf{Transmitting state}. A node turn to transmitting state will broadcast a package containing its own identify 
-information to all neighbors.
-\item  \textbf{Listening state}. A node turn to listening state will monitor the frequency channel to collect its neighbors' packages.
+\item \textbf{Transmitting state:} a node transmits (broadcasts) a package containing its ID on the channel;
+\item  \textbf{Listening state:} a node listens on the channel to receive message from neighbors.
 \end{itemize}
-Transiting between the states only costs little time, compared to one complete time slot.
+In the protocol model, a node $u_i$ can discover its neighbor $u_j$ in time slot $t$ if and only if $u_j$ is the only neighbor of $u_i$ that transmits and $u_i$ listens in the slot.
 
-\textbf{Transmission drift.} 
-Each node may start their neighbor discovery process 
-at different time slots and we denote $\delta_{ij}$ as the asynchronous time drift
-between a pair of neighbor nodes ($u_i$, $u_j$). 
-$\delta_{ij} = 0$ represents a synchronous case.
-   
-
-\textbf{Transmission collision.} 
-Under the unit-disk model, collisions will occur 
-to a node in its listening state when two or more neighbor nodes 
-transmit concurrently and thus no valid information will be gathered.
-
-\begin{definition}
-\textbf{Duty Schedule} is a pre-defined sequence $S=\{s^t\}_{0\leq t<T}$ of period $T$ and
-$$ s^t=\left\{
+A node has limited energy and it has to turn off the radio to save energy for most of the time. We assume a \emph{duty schedule} for a node $u_i$ is a pre-define sequence $S_i=\{s_i(t)\}_{0\leq t<T}$ of period $T$, in which
+$$ s_i^t=\left\{
 \begin{aligned}
-S  & & & {Sleep}  	 \\
-T  & & & {Transmit}	\\
-L  & & & {Listen}	\\
+S  & & & {u_i ~turns~ off~ the~ radio~ in~ slot~ t}  	 \\
+T  & & & {u_i ~is~ in~ transmitting~ state~ in~ slot~ t}	\\
+L  & & & {u_i ~is~ in~ listening~ state~ in~ slot~ t}	\\
 \end{aligned}
 \right.
 $$
-\end{definition}
-
-Note that the sleep state is only for the energy-efficient networks.
-Each node construct its own duty schedule according to a specific strategy and repeats it
-until finding all the neighbors. 
-
-Since the waking-up duration has a significant affect on the battery's lifetime, 
-duty cycle is utilized to restrict the energy consumption in the energy-efficient networks.
-
-\begin{definition}
-\textbf{Duty Cycle} represents the fraction of one period T where a node turns its radio on. It can be formulated as:
-
-$$\theta=\frac{|\{t: 0\leq t<T, s^t \in \{T,L\}\}|}{T}.
+We define \emph{duty cycle} as the fraction of time a node turns its radio on, which is formulated as:
+$$\theta_i=\frac{|\{t: 0\leq t<T, s_i(t) \in \{T,L\}\}|}{T}.
 $$
-\end{definition}  
+
+If all nodes have the same duty cycle all the time, i.e. $\theta_i = \theta_j$ for any nodes $u_i, u_j$, we call them \emph{symmetric nodes}. Otherwise, they are \emph{asymmetric nodes}. Denote the start time of node $u_i$ as $t_i^s$ and denote $\delta_{ij}$ as the time drift between a pair of neighbors $u_i, u_j$, i.e. $\delta_{ij} = t_i^s - t_j^s$.
 
 \subsection{Problem Definition}
 
-We consider a large-scale and multi-hop network, 
-where two nodes are neighbors if they locate within the radio range of each other. 
-
-Each node follows its duty schedule to achieve neighbor discovery. 
-Note that the neighbor discovery process is not bidirectional, which means any pair of neighbors 
-need to find each other separately. The time slots within which a node $u_i$ find one of its neighbors $u_j$ can be formulated 
-as $L(i,j)$. Then we define the discovery latency that node $u_i$ discovers all neighbors as:
-\begin{definition}
-\textbf{Discovery Latency} of node $u_i$ is the time to discover all neighbors:
+A node $u_i$ executes operations (turning off radio, transmitting, or listening) according to the pre-defined duty schedule $S_i$. 
+When $u_i$ starts the neighbor discovery process, denote $L(i,j)$ as the slots cost to find the neighbor $u_j$ and we define \textbf{discovery latency} of node $u_i$ as the time to discover all neighbors:
 $$L(i) = \max_{j:M_{i,j}=1} L(i,j).
 $$
-\end{definition}
 
-Thus the neighbor discovery problem can be formulated as:
+Note that, neighbor discovery is not bidirectional and any pair of neighbors have to discover each other separately.
+We formulate the neighbor discovery problem for node $u_i$ as:
 %@@@to be modified
 \begin{problem}
-For a node $u_i$ with its neighbor set $S = \{u_{i1},u_{i2},...u_{ij},...\}$, 
-design a strategy to construct a duty schedule, which satisfies
-$\forall$ neighbor nodes $u_{ij}$ :
+For a node $u_i$ and set of its neighbors $N_i = \{u_j | d(u_i, u_j)\leq \Delta \}$, design duty schedules for all nodes such that:
+$\forall u_j \in N_i$ :
 $$
 \exists t \ s.t. :  \quad
-S_i(t) = L ,
-S_{ij}(t) = T,
-\forall k \neq j : S_{ik}(t) \in \{L, S\}.
+s_i(t) = L ,
+s_{j}(t) = T, and
+\forall u_k \in N_i, u_k \neq j : s_{k}(t) \in \{L, S\}.
 $$
-
 \end{problem}
 %@@@
 
@@ -178,24 +120,29 @@ $$
 \subfigure[The topology of a simple wireless network]{\includegraphics[width=1.65in]{./Figure/topology.eps}}
 \vspace{0.03in}
 \subfigure[Neighbor discovery process]{\includegraphics[width=2.8in]{./Figure/NBexample.eps}}
-\caption{An example of neighbor discovering process. S, T and L represents Sleep pattern, 
+\caption{An example of neighbor discovering process. S, T and L represents Sleep pattern,
 Transmitting state and Listening state in wake-up pattern respectively.}
 \label{NDexample}
 %\vspace{-0.2in}
 \end{figure}
 
-An example of neighbor discovery process is given in Fig.\ref{NDexample}. 
-Fig.\ref{NDexample}(a) shows the topology of a simple
-wireless network, which consists of $5$ nodes. 
-Fig.\ref{NDexample}(b) describes the neighbor discovery process 
-in the asynchronous scenario, as we can see the nodes 
-start their process at different time slot. 
-Duty cycle is set as $0.25$ which implies a node will wake up 
-once during a period of four time slots. The duty schedule of 
-node $u_1$, for example, is $S_1 = \{ T, S, S, S, S, S, T, S, S, T, S, S, S, T, ... \}$.
-The time drift between node $u_1$ and $u_4$ : $\delta_{14} = 1$ while $u_1$ and $u_2$ start their process synchronously.
-At time slot $12$, node $u_5$ discovers its neighbor node $u_2$ while node $u_1$ 
-could not discover node $u_2$ due to a collision from its another neighbor node $u_3$. 
+Fig.\ref{NDexample} shows an example of $5$ nodes, the topology is depicted in Fig.\ref{NDexample}(a), and Fig.\ref{NDexample}(b) describes the neighbor discovery process. The duty cycle is set as $0.25$ and nodes start in different time slots.
+The designed duty schedule for node $u_1$ is $S_1 = \{ T, S, S, S, S, S, T, S, S, T, S, S, S, T, ... \}$.
+Suppose time drift between node $u_1$ and $u_4$ is $\delta_{14} = 1$; $u_1$ $u_2$ start in the same time slot. 
+In slot $12$, node $u_5$ discovers neighbor $u_2$, but node $u_1$ cannot discover $u_2$ since another neighbor $u_3$ is in transmitting state simultaneously.
+
+%An example of neighbor discovery process is given in Fig.\ref{NDexample}.
+%Fig.\ref{NDexample}(a) shows the topology of a simple
+%wireless network, which consists of $5$ nodes.
+%Fig.\ref{NDexample}(b) describes the neighbor discovery process
+%in the asynchronous scenario, as we can see the nodes
+%start their process at different time slot.
+%Duty cycle is set as $0.25$ which implies a node will wake up
+%once during a period of four time slots. The duty schedule of
+%node $u_1$, for example, is $S_1 = \{ T, S, S, S, S, S, T, S, S, T, S, S, S, T, ... \}$.
+%The time drift between node $u_1$ and $u_4$ : $\delta_{14} = 1$ while $u_1$ and $u_2$ start their process synchronously.
+%At time slot $12$, node $u_5$ discovers its neighbor node $u_2$ while node $u_1$
+%could not discover node $u_2$ due to a collision from its another neighbor node $u_3$.
 
 
 

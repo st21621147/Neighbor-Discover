@@ -1,64 +1,50 @@
-\section{Large-Scale Networks}
+\section{Alano: Algorithm for a Large Scale Network}
+%\section{Large-Scale Networks}
 \label{PCN}
 
 %Expectation	#meester1996continuum
 
 %background and instances
-In a large-scale network and the unit-disk model, 
-all the nodes are partially-connected with each other.
-A node can discover the nodes within its sensing 
-range.
+In a large scale network, nodes are not fully connected and communications may fail due to concurrent transmissions. 
+When we do not consider the energy constraints of nodes, we propose a nearly optimal algorithm for a large scale network, which implies $\theta_i = 1$ for all node $u_i$.
+Suppose the locations of nodes obey some distribution, we propose Alano algorithm and analyze its performance for two common used distribution (uniform distribution and Gaussian distribution).
 
-%density function and expectation of the neighbor number
-In the network for $\forall$ node $u_i$, 
-it is possible for the nodes to  be aware of its position coordinate $(x_i,y_i)$ 
-and thus get the local density by a pre-defined density function, based on 
-the deployment of the network application.
+\subsection{Alano Algorithm}
+Suppose the locations of nodes obey some distribution and node $u_i$ is aware of its position coordinates $(x_i, y_i)$.
+Then $u_i$ could compute its local density as follows \cite{meester1996continuum, wang2015connectivity}.
 
-The expected number of neighbors can be computed as 
-follows \cite{meester1996continuum, wang2015connectivity}.
-
-Denote the density function as :
+Denote the general density function as :
 $$f(x,y)=
 \begin{cases}
 \varphi(x,y)& (x,y)\in D\\
 0& (x,y)\notin D
 \end{cases}$$
-where $D$ is the network covering area.
+where $(x,y)$ is a position coordinate, and $D$ is the network covering area.
 
-$\forall$ node $u_i (x_i,y_i)$, its sensing range area $R_i$ can be formulated as:
+For each node $u_i$ with position $(x_i,y_i)$, the range of its neighbors' positions (denote as $R_i$) is formulated as:
 $$
-(x-x_i)^2+(y-y_i)^2 \leq r^2
+(x-x_i)^2+(y-y_i)^2 \leq \Delta^2
 $$
-where $r$ is the detection radius.
-
-Thus, we can obtain the expected number of neighbors of node $u_i$ as :
+where $\Delta$ is the communication range. Then, node $u_i$'s expected number of neighbors (denote as $NB(u_i)$ is:
 $$
 NB(u_i) = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
 $$
 
-In the large-scale networks, we ignore the boundary area of the network and assume the
-nodes in the network is of an enormous quantity, so the 
-expected number of neighbors can be formulated as:
+In a large scale network, we ignore the boundary area of the network and assume nodes in the network are of an enormous quantity. Then, the $NB(u_i)$ can be rewritten as:
 $$
 NB(u_i) = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
 $$
 
-Note that, when the network area is far more larger than the
-sensing area of the nodes, we can approximately get:
-$$
-NB(u_i) = N\pi r^2 \varphi(x,y).
-$$
-
-
+When the network covering area $D$ is much larger than the area $R_i$ of node $u_i$, 
+\begin{equation}
+\label{eqnNB}
+NB(u_i) \simeq N\pi r^2 \varphi(x,y).
+\end{equation}
 
 
 %Alano
-Then we propose \textbf{Alano}, a randomized neighbor discovery algorithm. 
-We describe the algorithm for $\forall$ node $u_i$ in Alg. \ref{Alano}.
-Alano algorithm indicates that what probability for a node choose to turn to  
-transmitting state or listening state is determined
-by the expected number of neighbors varying from node to node.
+We present \textbf{Alano}, a randomized algorithm for node $u_i$ in Alg. \ref{Alano}.
+By computing the expected number of nodes, $u_i$ choose to be in transmitting state or listening state according to the generated probability on Line 2.
 
 
 \begin{algorithm}
@@ -78,22 +64,15 @@ by the expected number of neighbors varying from node to node.
 \end{algorithmic}
 \end{algorithm}
 
-In the following section \ref{uniform}, we first consider a general situation that the nodes
-in the network are uniform distributed. We derive a proof that the probability
-chosen in Alano is the optimal one and show the bounded latency will not 
-be much larger than its expectation. Then in the section  \ref{normal} we describe a more
-common situation that the nodes in the network obey Gaussian Distribution, we present a 
-approximation analysis that the discovery latency will not be much larger than uniform distribution.
+In the following parts, we first consider a general situation that nodes in the network are uniform distributed. We derive a proof that the probability chosen in Alano is the optimal one and show that the discovery latency will not be much larger than its expectation. Then we analyze a more common situation that nodes obey Gaussian Distribution, we present an
+approximation analysis that the discovery latency is not be much larger than that of uniform distribution.
 
 
-\subsection{Uniform Distribution}
+\subsection{Analysis for Uniform Distribution}
 \label{uniform}
 %background
-Uniform distribution is a basic one for the deployment of wireless networks. 
-For instance, consider there is a  wireless sensor network carrying out a task of
-measuring temperature and humidity in a target area, 
-thus the sensors are supposed to be evenly deployed and the density function can be 
-formulated as:
+Uniform distribution is a basic one for deployment of wireless networks.
+For instance, to monitor an unknown area, many sensors are deployed uniformly to sense information, such as temperature and humidity\cite{XX}. The nodes are evenly deployed and the density function is:
 $$f(x)=
 \begin{cases}
 \frac{1}{A}& (x,y)\in D\\
@@ -101,51 +80,39 @@ $$f(x)=
 \end{cases}$$
 where $A$ is the area of $D$.
 
-Every node in the network has the same expected number of 
-neighbors and transmit with the same probability as:
-$$
-\hat{n} = \frac{N\pi r^2}{A}, \quad p_t = \frac{1}{\hat{n}}=\frac{A}{N\pi r^2}.
-$$  
+By Eqn. (\ref{eqnNB}), $u_i$'s expected number is $\hat{n} = \frac{N\pi r^2}{A}$ and the probability in Line 2 is set as $p_t = \frac{1}{\hat{n}}=\frac{A}{N\pi r^2}$.
 
-According to Alano, the probability that node $u_i$ discover a specific
-neighbor successfully in a time slot can be formulated as:
+From Alg. \ref{Alano}, the probability that node $u_i$ discovers a specific neighbor (such as $u_j$) successfully in a time slot (denote as $p_s$) is:
 $$
 p_s = p_t{(1-p_t)}^{\hat{n}-1}.
 $$
-Let:
+In order to compute the maximum probability to discover a node, we compute the differential function of $p_s$ as:
 $$
-p_s' = {(1-p_t)}^{\hat{n}-1}-(\hat{n}-1)p_t{(1-p_t)}^{\hat{n}-2}=0.
+p_s' = {(1-p_t)}^{\hat{n}-1}-(\hat{n}-1)p_t{(1-p_t)}^{\hat{n}-2}.
 $$
-It is easy to confirm that  when
-$$p_t=\frac{1}{\hat{n}}.$$ 
-$p_s$ gets the maximum value:
+It is easy to verify that when $p_t=\frac{1}{\hat{n}}$, $p_s$ gets the maximum value:
 $$p_s = \frac{1}{\hat{n}}{(1-\frac{1}{\hat{n}})}^{\hat{n}-1} \approx \frac{1}{\hat{n}e}.$$
 
-Thus we can conclude that the probability chosen in Alano
-to transmit is the optimal one. 
+Therefore, the probability chosen in Alano algorithm for transmitting is optimal.
 
-Next we analyse the expected latency for a node to discover all its 
-neighbors. We denote $W_j$ to be a random variable representing the number of the time slots 
-needed to discover a new neighbor after $(j-1)$ neighbors have been discovered, which follows 
-Geometric distribution with parameter $p(j): p(j)=(\hat{n}-j+1)p_s$. Then the expectation
-of $W_j$ is computed as:
+We analyze the expected discovery latency for a node $u_i$ to discover all neighbors. Denote $W_j$ as a random variable representing the cost number of the time slots to discover a new neighbor after $j-1$ neighbors have been discovered. It is easy to check that $W_j$ follows Geometric distribution with parameter $p(j)$ where $p(j)=(\hat{n}-j+1)p_s$\cite{XX}. The expectation
+of $W_j$ can be computed as:
 $$
-E[W_j]=\frac{1}{p(j)}=\frac{1}{(\hat{n}-j+1)p_s}
+E[W_j]=\frac{1}{p(j)}=\frac{1}{(\hat{n}-j+1)p_s}.
 $$
 
-The expectation time latency of discovering all the neighbors can be formulated as:
+Then, the expectation discovery latency of node $u_i$ is:
 $$
 E[W_j] = \sum_{j=1}^{\hat{n}}\frac{1}{p_s}H_n \approx ne(lnn + \Theta(1)) = \Theta(nlnn).
 $$
-where $H_n$ is the $n$-th Harmonic number, i.e.,
-$H_n = lnn + \Theta(1)$.
+where $H_n$ is the $n$-th Harmonic number $H_n = lnn + \Theta(1)$.
 
-We get the expectation discovery latency is within O(nlogn) and then we
-show the bounded latency will not be much larger than its expectation.
+
+The expected discovery latency is bounded by $O(n\ln n)$, and we show that the discovery latency can not be much larger than the expectation.
 
 %To be modified later
 %%
-If $W_i$ is given, the value of $W_j$ will not be affected for $i<j$. That is, for $i\ne j$, $W_i$ and $W_j$ are independent and they satisfy $P(W_j=w_j|W_i=w_i)=P(W_j=w_j)$. Since $W_j$ follows Geometric distribution, and $Var[W_j]=\frac{1-p_j}{p_j^2}$, the variance of $W$ is
+If $W_i$ is already computed, the value of $W_j$ will not be affected for $i<j$. That is, for $i\ne j$, $W_i$ and $W_j$ are independent and they satisfy $P(W_j=w_j|W_i=w_i)=P(W_j=w_j)$. Since $W_j$ follows Geometric distribution, $Var[W_j]=\frac{1-p_j}{p_j^2}$, and the variance of discovery latency (denoted as $W$???what is W) is computed as:
 \begin{displaymath}
 \begin{split}
  Var[W] %& =Var[\sum_{j=1}^{p_nN}W_j]=\sum_{j=1}^{p_nN}Var[W_j]+\sum_{j\ne k}Cov[W_j,W_k] \\
@@ -155,7 +122,7 @@ If $W_i$ is given, the value of $W_j$ will not be affected for $i<j$. That is, f
 \end{split}
 \end{displaymath}
 
-With \emph{Chebyshev's inequality}, the probability that the discovery time is 2 times larger than the expectation is
+By \emph{Chebyshev's inequality}, the probability that the discovery latency is $2$ times larger than the expectation is
 \begin{displaymath}
 \begin{split}
 P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
@@ -164,10 +131,7 @@ P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
 \le\frac{\pi^2}{6H_{n}^2}-\frac{p_{suc}}{H_n}.
 \end{split}
 \end{displaymath}
-For large $n$, $P[W\ge2E[W]]$ is close to 0. That is, the time for a node to find all neighbors is very likely to be smaller than $2$ times of expected latency. Therefore,
-\begin{equation*}
-W=O(nlnn).
-\end{equation*}
+For a large $n$, $P[W\ge2E[W]]$ is close to $0$. That is, the time for a node to discover all neighbors is very likely to be smaller than $2$ times of the expectation. Therefore, $W$ is also bounded by $O(n\ln n)$.
 
 %%
 
@@ -182,62 +146,47 @@ W=O(nlnn).
 
 
 
-\subsection{Gaussian Distribution}
+\subsection{Analysis of Gaussian Distribution}
 \label{normal}
 %background
-A common scenario is that the nodes in a network obey 2D Gaussian distribution.
-For example, an intrusion detection application may need improved detection 
-probability around important entities\cite{wang2013gaussian}.
+Gaussian distribution is common adopted in wireless network. For instance, an intrusion detection application needs larger detection
+probability around important entities\cite{wang2013gaussian}. We assume the positions of nodes obey 2D Gaussian distribution, and we present a theoretical proof that the discovery latency is not much larger than that of uniform distribution. 
 
-In this section, we present a theoretical proof that the latency performance
-will not be much larger than uniform distribution.
-The analysis is not only applicable for Gaussian distribution
-but also flexible for all the other distributions in a large-scale network.
-
-We first denote the approximate neighbors of node $u_i$
-as set $S(u_i) = \{u_{i1},u_{i2},...,u_{i\hat{n_i}}\}$.
-When the nodes obey Gaussian distribution, according to Alano, 
-the probability that node $u_i$ discovers a certain 
-neighbor node $u_{ij}$ successfully in a time slot can be formulated as:
+Denote the approximate neighbors of node $u_i$ as set $N_i = \{u_{i1},u_{i2},...,u_{i\hat{n_i}}\}$. When nodes obey Gaussian distribution, the probability that node $u_i$ discovers a certain neighbor node $u_{ij}$ successfully in a time slot (denote as $P_{suc}$) can be formulated as:
 $$
 p_{suc} = (1-p_t^i)p_t^{ij}\prod_{ k=1}^{\hat{n_i}, k\neq j}(1-p_t^{ik})
 $$
 
-Denote:
-$$
-p_t^{imax} = \max_{1 \leq j \leq \hat{n_i}}\{p_t^{ij}\}, \quad p_t^{imin} = \min_{1 \leq j \leq \hat{n_i}}\{p_t^{ij}\}.
-$$
-
-Thus for $\forall j$, $1 \leq j \leq n_i$:
+Denote $p_t^{imax} = \max_{1 \leq j \leq \hat{n_i}}\{p_t^{ij}\}$, $p_t^{imin} = \min_{1 \leq j \leq \hat{n_i}}\{p_t^{ij}\}$, for every $1 \leq j \leq n_i$, we have:
 \begin{align*}
 &(1-p_t^i)p_t^{imin}{(1-p_t^{imax})}^{\hat{n_i}-1} \\
 \leq &(1-p_t^i)p_t^{ij}\prod_{ k=1}^{\hat{n_i}, k\neq j}(1-p_t^{ik}) \\
-\leq &(1-p_t^i)p_t^{imax}{(1-p_t^{imin})}^{\hat{n_i}-1} 
+\leq &(1-p_t^i)p_t^{imax}{(1-p_t^{imin})}^{\hat{n_i}-1}
 \end{align*}
 
 Denote:
 \begin{align*}
 &P = (1-p_t^i)p_t^{imin}{(1-p_t^{imax})}^{\hat{n_i}-1}  \\
-&Q = (1-p_t^i)p_t^{imax}{(1-p_t^{imin})}^{\hat{n_i}-1} 
+&Q = (1-p_t^i)p_t^{imax}{(1-p_t^{imin})}^{\hat{n_i}-1}
 \end{align*}
 
-Thus we get:
+We derive the expectation of $W_j$ for $1 \leq j \leq n_i$ as:
 \begin{align*}
 \frac{1}{\hat{n_i}Q} \quad \leq \quad &E[W_1] \quad \leq \quad \frac{1}{\hat{n_i}P} \\
 \frac{1}{(\hat{n_i}-1)Q} \quad \leq \quad &E[W_2] \quad \leq \quad \frac{1}{(\hat{n_i}-1)P} \\
 & ..........\\
-\frac{1}{Q} \quad \leq \quad &E[W_{\hat{n_i}}] \quad \leq \quad \frac{1}{P} 
+\frac{1}{Q} \quad \leq \quad &E[W_{\hat{n_i}}] \quad \leq \quad \frac{1}{P}
 \end{align*}
 
-Sum all the equations above, and we will get:
+Combine the above equations to derive:
 $$
 \frac{1}{Q}H_n  \quad \leq \quad E[\sum_{j=1}^{\hat{n_i}}W_j]  \quad \leq \quad \frac{1}{P}H_n
 $$
 
-Since the sensible neighbors are within a close distance of the node 
-compared to the total network area, 
+(???)Since the sensible neighbors are within a close distance of the node
+compared to the total network area,
 which implies the density function values are within the same order of magnitude.
-Thus we can conclude that the expectation of the time latency in the normal 
+Thus we can conclude that the expectation of the time latency in the normal
 distributed networks are still $E[W]=O(nlnn)$.
 Similarly the bounded latency can be proved to be $W=O(nlnn)$ in the same way as
 uniform distribution.
