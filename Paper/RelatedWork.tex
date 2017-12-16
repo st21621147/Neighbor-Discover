@@ -30,59 +30,34 @@
 
 
 
-Neighbor discovery problem has raised a great deal of attention of scholars \cite{sun2014energy}. 
-A number of neighbor discovery methods have been proposed in the past decade.
-Technically, these approaches can be classified into two categories, probabilistic and deterministic. 
+Neighbor discovery has raised a great deal of attention in wireless networking area\cite{sun2014energy,XX,XX}, and a number of neighbor discovery methods have been proposed in the past decade.
+Technically, these approaches can be classified into two categories roughly, deterministic algorithms and probabilistic based algorithms.
 
-In the deterministic methods \cite{dutta2008practical,kandhalu2010u,
+Deterministic methods utilize some mathematical techniques to promote discovery performance, such as co-primality, quorum systems, etc\cite{dutta2008practical,kandhalu2010u,
 bakht2012searchlight,sun2014hello,chen2015heterogeneous,
-wang2015blinddate,qiu2016talk}, some mathematical techniques, such as
-co-primality, quorum system, etc., are utilized to promote the discovery performance.
-The deterministic methods holds an obvious advantage that they
-can achieve neighbor discovery process for two nodes within a bounded time latency.
-
-Nevertheless, there exists some crucial weak points in the deterministic algorithm.
-Firstly, Disco \cite{dutta2008practical} proposes a discovery protocol that
-each node has a capability to send a beacon (one or a few bits) at both beginning and end of
-an active slot, which is widely adopted by the later algorithms such as
-SearchLight \cite{bakht2012searchlight}, BlindDate \cite{wang2015blinddate}
-and Hello \cite{sun2014hello}, Nihao \cite{qiu2016talk}. It is quite an efficient way for two nodes to discover
-each other within an ideal time latency. However,  they do not solve the collision 
-issues when receiving packages from multiple neighbors. Furthermore, when they are 
-extended for multiple nodes, only sending a beacon to discover the neighbors is 
-totally insufficient. A node needs to send a complete package 
-(some papers still call beacon) containing all its information,
-otherwise the neighbor can not  identify which neighbor the beacon belongs to \cite{zhou2004impact}.
-Thus a complete time slot is necessary for a node to transmit a package or listen to 
-the channel to receive a package.
+wang2015blinddate,qiu2016talk}. These methods hold an obvious advantage that they can guarantee fast discovery for two nodes within a bounded latency. 
+However, there exist some crucial weak points in the deterministic algorithm.
+For example, Disco~\cite{dutta2008practical} assumes that a node has a capability to send a beacon (one or a few bits) at both beginning and end of an active time slot, and the assumption is widely adopted in many elegant algorithms such as
+SearchLight~\cite{bakht2012searchlight}, BlindDate~\cite{wang2015blinddate}, Hello~\cite{sun2014hello}, TMLL~\cite{XX}, and Nihao~\cite{qiu2016talk}.
+Under the assumption, these algorithms could guarantee discovery between two nodes within an ideal latency. But sending a beacon may not work well in a large scale network since a node need to distinguish its neighbors by the received messages, which implies a transmitted package should contain the sender node's information\cite{zhou2004impact}. Then, collision happens when many node are transmitting simultaneously. (??introduce some other algorithms which do not assume transmitting a beacon)
 
 Another category is probabilistic methods \cite{mcglynn2001birthday,
-vasudevan2009neighbor,you2011aloha,song2014probabilistic}. These
-approaches utilize probability techniques to promote the randomness 
-to discover the neighbors. Different from the deterministic algorithms, 
-this kind of method shows an significant strength in the multiple nodes scenario. 
-However, probabilistic methods only present an expectation discovery latency and 
-can not guarantee a latency bound in the worst case.
-In addition, almost all the existing methods consider the network is fully-connected,
-the topology of which is a complete graph. Deploying a fully-connected network 
-in a large-scale area is technically impractical 
-due to the limited sensing range of devices communication.
-How far the other node can be detected as a neighbor for a mobile equipment  
-depends on criterion such as the received signal strength \cite{daiya2011experimental}.
-From our analysis and simulations, 
-they show a poor performance in the large-scale networks, where the nodes are
-partially-connected.
+vasudevan2009neighbor,you2011aloha,song2014probabilistic} which utilize probability techniques to promote the randomness
+of discovering the neighbors. 
+Different from deterministic algorithms,
+this kind of method shows an significant strength for a network consisting of multiple nodes.
+However, probabilistic methods only present an expectation discovery latency and they
+can not guarantee a good latency bound.
+In addition, most of the existing methods assume the network is fully-connected, which implies any two nodes are neighbors. 
+This assumption can hardly depict a large-scale network due to the limited communication range of a node.
+Some works adopt the received signal strength to decide how far a node can transmit~\cite{daiya2011experimental}, and in the protocol model, it is simplified that two nodes can communicate if their distance is no larger than a threshold.
+We implement some probabilistic protocols for a large-scale network and the results show that they have a poor performance (see Section \ref{XX}).
 
-To the best of our knowledge, neither deterministic nor probabilistic methods are designed for
-the networks which are partially-connected. In this paper, we present a low-latency, energy-efficient 
-neighbor discovery algorithm for the large-scale networks.
 
-The proposed RDS-Alano and TP-Alano in this paper are a combination of both two categories,
-and thus we compare our proposed algorithms with both deterministic and probabilistic methods. 
-Particularly as mentioned above, the deterministic approaches need some adjustments 
-when transferred to large-scale networks since the protocol can not work. 
-Details will be introduced in Section \ref{Evaluation}.
+To the best of our knowledge, neither deterministic nor probabilistic methods have good performance when they are adopted in an energy-restricted large-scale network.
 
+
+(??comments: say more words about related algorithms, maybe one sentence for each protocol; add some algorithms for duty cycle based discovery since we also consider energy constraints)
 
 
 
