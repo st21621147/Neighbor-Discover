@@ -2,26 +2,10 @@
 % in the abstract
 \begin{abstract}
 
-Neighbor discovery is a crucial step in constructing wireless networks. 
-Various methods have been proposed to promote the discovery rate and minimize the discovery latency. 
-However, none of them has considered the connectivity and the distribution of the nodes in a large-scale network.
-In a large-scale network, each node has a capacity to sense the nodes within its transmission range 
-which are called neighbors and other nodes are connected by multi-hop communication.
-
-In this paper, we propose Alano, the first nearly optimal probability 
-based algorithm to discover neighbors in large-scale networks. 
-To begin with, we consider the distribution of the nodes in the networks 
-and compute the expected number of neighbors $n$ using the local information.
-Then, we prove the discovery latency of Alnano is bounded by a low latency $O(nlnn)$.
-Finally, we propose a Relaxed Difference Set based Alano algorithm (RDS-Alano) to 
-achieve low-latency neighbor discovery process in the symmetric energy-efficient networks
-and a Traversing Pointer based Alano algorithm (TP-Alano) in the asymmetric energy-efficient networks.
-Our evaluation shows Alano achieves 31.35\% to 32.32 times lower latency than existing methods 
-and holds higher performance in quality, scalability and robustness.
-
-
-
-
+Neighbor discovery is a fundamental step in constructing wireless networks and many elegant protocols have been proposed to minimize discovery latency. However, few of them can be applied to an energy-restricted large-scale network, which is promising due to the development of intelligent devices. A mobile campus network or an intelligent vehicular network are typical examples.
+In an energy-restricted large-scale network, a node has limited energy and it can only discover a part of nodes that are within some distance range; in addition, the discovery process may fail if too much communication exist on the wireless channel. These factors make neighbor discovery a challenging task in establishing the network.
+In this paper, we propose Alano, the first nearly optimal algorithm for a large-scale network on the basis of nodes' distributions.
+When nodes have the same energy constraints, we modify Alano by Relaxed Difference Set (RDS) (denote as RDS-Alano) for symmetric nodes; while we present a Traversing Pointer (TP) based Alano (denote as TP-Alano) for asymmetric nodes when the energy constraints are different. We compare Alano with the state-of-the-art protocols through extensive evaluations, and the results show that Alano achieves about $30\%$ lower discovery latency and it holds higher performance regarding quality, scalability and robustness.
 \end{abstract}
 
 % no keywords

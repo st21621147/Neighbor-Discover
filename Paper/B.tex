@@ -1,52 +1,33 @@
-\section{Energy-Efficient Networks}
+%\section{Energy-Efficient Networks}
+\section{Modified Alano Algorithms for Energy-Restricted Networks}
 \label{EEN}
-%wireless sensor networks: duty cycle 
-In an energy-efficient network (i.e., wireless sensor networks), 
-the battery consumption is a crucial factor to be taken into account.
-Duty cycle is a key technique to deal with the dilemma between a 
-balance of energy-efficiency and low-latency.
+%wireless sensor networks: duty cycle
+In an energy-restricted network, nodes have limited energy and designing duty schedule for a node should take its duty cycle into account. Obviously, a lower duty cycle implies a larger discovery latency since the node turns its radio off for more time during the schedule. 
 
-
-%the structure of the rest part in this section
-We first consider the symmetric energy-arrangement situation
-that  all the nodes share a global duty cycle $\theta$, and propose
-a RDS based Alano algorithm. Then we propose a traversing pointer 
-based Alano algorithm for a more general scenario, 
-where nodes have asymmetric battery-scheduling 
-capability with local duty cycle $\theta_i$.
-
-
+In the preceding section, energy constraint is not a crucial factor in Alano; and we are to modify Alano for both symmetric nodes and asymmetric nodes.
 %an overview of the motivation of the algorithm
-Our initiative idea is to align the wake-up slots of the neighbor nodes within a bounded time,
-and then invoke the Alano algorithm to achieve neighbor discovery process w.h.p. 
-More specifically, we utilize the property of RDS and traversing pointer to guarantee 
-a wake-up slot rendezvous in each period $T$. 
+Our initiative idea is to align the slots that the radio is on with the neighbors in a bounded time; then invoke Alano algorithm to achieve low-latency neighbor discovery. 
 
 
-\subsection{Symmetric scenario: RDS-Alano Algorithm}
+\subsection{RDS-Alano for Symmetric Nodes}
 
 
 %Consider Global Duty Circle
-When a global duty cycle $\theta$ is shared by all the nodes in the network,
-we utilize relaxed difference set (RDS) to align the wake-up time slots.
+Symmetric nodes have the same duty cycle $\theta_i = \theta_j = \theta$, $\forall u_i, u_j$. We utilize Relax Difference Set (RDS) to align time slots that nodes are in transmitting or listening state.
 
 
 %Introduction of RDS and the property
 %*High coincidence of another existing paper && to be altered later
-Relaxed difference set (RDS) is an efficient tool to 
-construct cyclic quorum systems\cite{jiang2005quorum,luk1997two}. The definition can be
-described as:
+RDS is an efficient tool to construct cyclic quorum systems\cite{jiang2005quorum,luk1997two}. The definition is:
 \begin{definition}
-A set $R=\{a_1,a_2,...,a_k\} \subseteq Z_n$ (the set of all nonnegative integers less than $n$) 
-is called a Relaxed Difference Set (RDS) if for every $d \neq 0$ (mod $n$), 
+A set $R=\{a_1,a_2,...,a_k\} \subseteq Z_n$ (the set of all nonnegative integers less than $n$)
+is called a RDS if for every $d \neq 0$ (mod $n$),
 there exists at least one ordered pair $(a_i,a_j)$ such that $a_i - a_j \equiv d$ (mod $n$), where $a_i,a_j \in D$.
 \end{definition}
 
 
-It has been proved that 
-any RDS must have cardinality $|R| \geq \sqrt{N}$\cite{luk1997two}.
-We present a simple linear algorithm for RDS construction under $Z_N$
-with$\lceil \frac{3\sqrt{N}}{2}  \rceil$ cardinality in Alg. \ref{RDS}. 
+It has been proved that any RDS must have cardinality $|R| \geq \sqrt{N}$\cite{luk1997two}.
+We present a linear algorithm to construct a RDS with cardinality $\lceil \frac{3\sqrt{N}}{2}  \rceil$ under $Z_N$ in Alg. \ref{RDS}.
 %*High coincidence
 
 
@@ -67,10 +48,9 @@ with$\lceil \frac{3\sqrt{N}}{2}  \rceil$ cardinality in Alg. \ref{RDS}.
 \end{algorithm}
 
 
-The initiative idea of Alg. \ref{RDS} can be described as Fig. \ref{matrix}. 
-The framed elements are selected as in Alg. \ref{RDS} 
-Line. \ref{RDSline2} and Line. \ref{RDSline3}. 
-
+The intuitive idea of Alg. \ref{RDS} can be described as Fig. \ref{matrix}.
+The framed elements are selected as Line. \ref{RDSline2} and Line. \ref{RDSline3}.
+We show the correctness of the construction formally.
 
 \begin{figure}[!h]
 \centering
@@ -79,44 +59,38 @@ Line. \ref{RDSline2} and Line. \ref{RDSline3}.
 \label{matrix}
 \end{figure}
 
-We give a formal correctness proof of the construction as following:
 
 %The correctness proof of the construction
-\begin{theorem}
+\begin{lemma}
 \label{RDS1}
-The set $R = \{r_0, r_1, ..., r_{\lambda + \mu - 1}\}$ constructed in Alg. \ref{RDS} is a RDS,
+Set $R = \{r_0, r_1, ..., r_{\lambda + \mu - 1}\}$ constructed in Alg. \ref{RDS} is a RDS,
 where $|R| = \lambda + \mu = \lceil \sqrt{N}  \rceil + \lceil \frac{\lceil \sqrt{N} \rceil}{2} \rceil
 \approx \lceil \frac{3\sqrt{N}}{2}  \rceil$.
-\end{theorem}
+\end{lemma}
 
 
 \begin{IEEEproof}
-We first reach a consensus that if there exists one ordered 
-pair $(a_i,a_j)$ satisfying  $a_i - a_j \equiv d$ (mod $N$),
-then we can get an opposite pair $(a_j,a_i)$ such that  
-$a_j - a_i \equiv (N-d)$ (mod $N$). Thus we only need to find 
-at least one ordered pair $(a_i,a_j)$ for each $d$ from $1$ to $\lfloor N/2 \rfloor$.
+Obviously, if there exists one ordered pair $(a_i,a_j)$ satisfying  $a_i - a_j \equiv d$ (mod $N$),
+an opposite pair $(a_j,a_i)$ exists such that
+$a_j - a_i \equiv (N-d)$ (mod $N$). Thus we only need to find
+at least one ordered pair $(a_i,a_j)$ for each $d \in [1, \lfloor N/2 \rfloor]$.
 
-The $\lambda$ in Line \ref{RDSline1} is the smallest integer satisfying 
-$\lambda^2 \geq N$. Then every $d$ from $1$ to $\lfloor N/2 \rfloor$ 
-can be represented as: $ d = 1 + j \times \lambda - i$, where $1 \leq j \leq \mu, 
-1 \leq i \leq \lambda$. Thus there exists $a_j = 1 + j \times \lambda$ 
-added in Line. \ref{RDSline2} and $a_i = i$ added in Line. \ref{RDSline3} 
-satisfying  $a_j - a_i \equiv d$.
+In the construction, $\lambda$ in Line \ref{RDSline1} is the smallest integer satisfying
+$\lambda^2 \geq N$. Every $d$ within range $[1, \lfloor N/2 \rfloor]$
+can be represented as: $ d = 1 + j \times \lambda - i$, where $1 \leq j \leq \mu,
+1 \leq i \leq \lambda$. Thus, there exists $a_j = 1 + j \times \lambda$
+from Line. \ref{RDSline2} and $a_i = i$ from Line. \ref{RDSline3}
+satisfying  $a_j - a_i \equiv d$. Then, the lemma can be derived.
 \end{IEEEproof}
 
 
 %RDS Based Alano Algorithm
+For symmetric nodes with duty cycle $\theta$, we present a RDS based Alano (RDS-Alano) algorithm as Alg. \ref{RDS-ND}.
 
-Next, we present a RDS based Alano algorithm (RDS-Alano) in Alg. \ref{RDS-ND},
-to achieve neighbor discovery process in a partially-connected
-and energy-efficient network with global duty cycle $\theta$. 
-
-In Alg. \ref{RDS-ND}, RDS is used to construct a deterministic 
-schedule for the node to wake up in every period $T$, 
-and Alano is utilized as a probabilistic strategy to 
-determine the transmission state (transmit or listen)
-in each wake-up slot.
+In Alg. \ref{RDS-ND}, RDS is used to construct a deterministic
+schedule for a node to turn on its radio in every period of length $T$,
+and Alano is utilized as a probabilistic strategy to
+determine whether it is in transmitting state or listening state.
 
 \begin{algorithm}
 \caption{RDS Based Alano Algorithm}
@@ -138,53 +112,50 @@ in each wake-up slot.
 
 %The time bound analysis   dutycycle zhengming
 
-We show a proof of time latency bound for Alg. \ref{RDS-ND}  as following:
+We derive discovery latency bound for RDS-Alano:
 
 \begin{theorem}
 \label{theoremRDS}
-Alg. \ref{RDS-ND} guarantees the discovery latency
-to be bounded within $O(\frac{nlog}{\theta^2})$ w.h.p.
+RDS-Alano guarantees that the discovery latency of a node
+is bounded within $O(\frac{n\log n}{\theta^2})$ with high probability.
 \end{theorem}
 
 \begin{IEEEproof}
-It is easy to confirm that the duty cycle $\widetilde{\theta}$ in Alg. \ref{RDS-ND} corresponds to $\theta$ as:
+First, we verity that the duty cycle in RDS-Alano (denote as $\widetilde{\theta}$) is
 $$
 \widetilde{\theta} = \frac{|RDS|}{|T|} = \frac{\lceil \frac{3\sqrt{T}}{2}  \rceil}{T} = \theta.
 $$
 
-For any pair of neighbor nodes ($u_i$, $u_j$), 
+For any pair of neighbor nodes ($u_i$, $u_j$),
 we can find an ordered pair ($r_i$, $r_j$) from their respective RDS
-such that $r_i - r_j \equiv \delta_{ij}$ (mode $T$), 
-which indicates any neighbor pair can wake up
-in the same time slot at least once in every period $T$.
-Regarding the whole period $T$ as a time
-slot in Alg. \ref{Alano}, we obtain the latency bound as 
-$O(\frac{nlogn}{\theta^2})$ w.h.p.
-
-
+such that $r_i - r_j \equiv \delta_{ij}$ (mode $T$), where $\delta_{ij}$ is the time drift.
+This implies any neighbor nodes can turn on their radios in the same time slot for at least once during every period of length $T$. 
+Regarding each period of $T$ time slots as a `super' slot of Alano algorithm, we can derive that the discovery latency is bounded within $O(\frac{n\log n}{\theta^2})$ slots with high probability by combining the analysis of Alano.
 \end{IEEEproof}
 
-There is a detail to be noticed when regarding the whole period $T$ as a time slot in Alg. \ref{Alano}. 
-Due to the periodicity, a node will rendezvous the same neighbors in the identical wake-up slot in each period. 
-Since for a certain node there are more than one wake-up slots in each period, 
+(??? not clear) There is a detail to be noticed when regarding the whole period $T$ as a time slot in Alg. \ref{Alano}.
+Due to the periodicity, a node will rendezvous the same neighbors in the identical wake-up slot in each period.
+Since for a certain node there are more than one wake-up slots in each period,
 the rendezvoused neighbors in each wake-up time slot may be equal or less than the total number of its neighbors,
 resulting less collisions and lower latency compared to when all the neighbors wake up in the same time slot.
 Thus the latency bound can not be larger.
 
 
-\subsection{Asymmetric scenario: TP-Alano Algorithm}
+\subsection{TP-Alano for Asymmetric Nodes}
 
 
 %Consider Local Duty Circle
-For a more practical scenario, the nodes in a wireless sensor networks 
+Considering a more practical network where nodes can adjust their duty cycles, we present a traversing pointer method to align time slots that nodes are in transmitting or listening state for asymmetric nodes.
+
+
+For a more practical scenario, the nodes in a wireless sensor networks
 for instance, are assigned to diverse tasks such as temperature measurement,
 sunshine collection, etc., and thus ought to have asymmetric capability of
 battery-management with local duty cycle $\theta_i$.
 
-We propose a traversing pointer based Alano algorithm(TP-Alano) in Alg. \ref{P-ND}.
-In each period $T$, every node wakes up in two different time slots, one of which is the
-first slot of each period and another is a traversing slot different from period to period, 
-as Alg. \ref{P-ND} Line. \ref{P-NDline1} indicates. 
+Suppose the duty cycle of node $u_i$ is $\theta_i$, we present a traversing pointer based Alano (TP-Alano) algorithm as Alg. \ref{P-ND}.
+In each period of $T$ slots, a node turns on its radio in two different time slots, one of which is the
+first slot of each period and the other one is a traversing slot that changes from period to period (as described in Line. \ref{P-NDline1}).
 
 %Prime Based Neighbor Discovery Algorithm
 \begin{algorithm}[!h]
@@ -206,18 +177,13 @@ as Alg. \ref{P-ND} Line. \ref{P-NDline1} indicates.
 \end{algorithmic}
 \end{algorithm}
 
-We call the first time slot in each period $T$ as a \emph{fixed pointer} and the traversing
-slots as a \emph{traversing point}. These pointers are used to guarantee a wake-up time rendezvous
-in every period $T_iT_j$. A sketch of the pointers is described in Fig. \ref{TP}.
- 
- \begin{remark}
-Since the period of $T$ is selected as: 
-\emph{find the smallest prime $\geq \frac{2}{\theta_i}$},
-which is likely to result in the consequence that the duty 
-cycle $\widetilde{\theta_i}$ in Alg. \ref{P-ND} is smaller than the expected
-$\theta$. This can be easily solved by selecting some random wake-up time slots 
-in each period $T$ to conform to duty cycle $\theta$.
-\end{remark}
+We call the first time slot of each period as \emph{fixed pointer} and the traversing
+slot as \emph{traversing point}. The pointers are designed to guarantee that nodes $u_i, u_j$
+could turn on their radio simultaneously in very period of length $T_i T_j$. A sketch of the pointers is described in Fig. \ref{TP}.
+
+Note that, a period of $T$ slots is constructed as Line 1 where we try to \emph{find the smallest prime $\geq \frac{2}{\theta_i}$},
+then it is likely to make the duty cycle of each period smaller than the expected one. This can be easily solved by selecting some random slots to turn on the radio for listening in each period $T$ to conform to expected duty cycle.
+
 
 \begin{figure}[!h]
 \centering
@@ -227,26 +193,24 @@ in each period $T$ to conform to duty cycle $\theta$.
 \end{figure}
 
 %The correctness proof of the construction and the time bound analysis
-We give a correctness proof of the time 
-bound to achieve neighbor discovery process as following:
+We show the discovery latency of TP-Alano algorithm as:
 
 
 \begin{theorem}
 \label{PBND1}
-Alg. \ref{P-ND} guarantees the discovery latency
-to be bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.,
-where $\theta_i$ and $\theta_j$ are the duty cycles of 
-a pair of neighbor nodes ($u_i$, $u_j$) respectively.
+TP-Alano guarantees that the discovery latency $L(i,j)$
+is bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ with high probability.,
+where $\theta_i$ and $\theta_j$ are the duty cycles of
+a pair of neighbors ($u_i$, $u_j$) respectively.
 \end{theorem}
 
 
 
 \begin{IEEEproof}
-We first prove that any pair of nodes ($u_i$, $u_j$) wake up 
-at the same time slot every period $T_iT_j$.
+We first prove that any pair of nodes ($u_i$, $u_j$) turn on their radios (for transmitting or listening) simultaneously for at least once in every period of length $T_iT_j$.
 
-\textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes, 
-according to Chinese remainder theorem, there exists a time slot $t_\tau \in \lbrack 0,T_iT_j ) $ satisfying:
+\textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes,
+according to Chinese Remainder Theorem\cite{XX}, there exists a time slot $t_\tau \in \lbrack 0,T_iT_j ) $ satisfying:
 \begin{equation}
 \label{case1.1}
 0 = t_\tau  \quad mod \quad  T_i.
@@ -256,22 +220,16 @@ according to Chinese remainder theorem, there exists a time slot $t_\tau \in \lb
 \delta_{ij} = t_\tau  \quad mod \quad  T_j.
 \end{equation}
 
-Equation\ref{case1.1} and \ref{case1.2}  implies there exists a fixed pointer of node $u_i$ 
-and a fixed pointer of node $u_j$ rendezvous in every $T_iT_j$  .
+Thus, there exists a fixed pointer of node $u_i$
+and a fixed pointer of node $u_j$ in which both nodes turn on the radios in every period of length $T_iT_j$  .
 
-\textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j = T$, if the asynchronous drift between 
-node $u_i$ and $u_j$ : $\delta_{ij} = 0$, the fixed pointers of node $u_i$ and node $u_j$ will 
-rendezvous with each other in every period $T$.
-Otherwise since the traversing point will traverse all the time slots once during period $(T-1)T$,
-there exists a traversing point of node $u_i$ rendezvous with a fixed pointer
-of node $u_j$ every period $(T-1)T$, and a traversing point of node $u_j$ 
-will consequentially rendezvous with a fixed pointer
-of node $i$ once every period $(T-1)T$ as well.
+\textbf{Case 2: $T_i = T_j$}. Since $T_i = T_j = T$, if the time drift between $u_i$ and $u_j$ is $\delta_{ij} = 0$, the fixed pointers of $u_i$ and $u_j$ will be the same in every period of length $T$.
+Otherwise, since the traversing point will traverse all the time slots once during period of length $(T-1)T$,
+there exists a traversing point of $u_i$ and a fixed pointer
+of $u_j$ satisfying that both nodes turn on the radios simultaneously in every period of length $(T-1)T$; similarly a traversing point of $u_j$ and a fixed pointer of $i$ satisfying that they both turn on the radios.
 
-Thus for any pair of neighbor nodes ( $u_i$, $u_j$), they can wake up
-at the same time slot at least once in every period $T_iT_j$. Regarding 
-the whole period $T_iT_j$ as a time slot in Alg. \ref{Alano}, we obtain the latency 
-bound as $O(\frac{nlogn}{\theta_i\theta_j})$ w.h.p.
+Thus for any pair of neighbor nodes ($u_i$, $u_j$), they turn on their radios for transmitting or listening for at least once in every period of length $T_iT_j$. Regarding
+the whole period $T_iT_j$ as a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ with high probability.
 \end{IEEEproof}
 
 
