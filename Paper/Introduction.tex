@@ -6,6 +6,8 @@
 % Cite:
 % Wireless networks			#gupta2000capacity
 % Wireless sensor networks	#akyildiz2002wireless
+% Volcanic investigation		#werner2006deploying
+
 % Mobile campus networks 	#hernandez2005comparative
 % Mobile gaming community	#cunningham2002optimizing
 % Energy-efficient network	#jones2001survey
@@ -20,34 +22,72 @@
 
 % Paper Logic Flow
 
-The popularity of Internet of Things and intelligent devices has turned people's attention back to wireless networks\cite{gupta2000capacity}. As a fundamental step to construct a wireless network, such as a mobile campus network, a location-based gaming/application network, or an intelligent vehicular network, a node should discover its nearby neighboring nodes before further operations, such as broadcasting a message, playing a location-based game (Pokemon GO), or starting a peer-to-peer communication. This process is referred to as \emph{neighbor discovery} and we study it in an energy-restricted large-scale network in this paper.
+% Background and topic: Neighbor discovery in an energy-restricted large-scale network
+% Wireless sensor networks and practical scenario 
+The popularity of Internet of Things has turned people's attention back to wireless sensor networks\cite{akyildiz2002wireless}, with a wide range of applications such as volcanic investigation \cite{werner2006deploying}, seismic detection \cite{suzuki2007high}, agriculture monitoring \cite{wang2010l3sn}, etc. 
 
-There are a large number of neighbor discovery algorithms for wireless networks, and some of them may date back to a decade ago.
-However, all these algorithms are inapplicable in an energy-restricted large-scale network. Many deterministic algorithms are proposed for two nodes\cite{dutta2008practical, kandhalu2010u, bakht2012searchlight, sun2014hello,  chen2015heterogeneous, wang2015blinddate, qiu2016talk}, but they do not consider collision that may occur when multiple nodes communicate concurrently. Obviously, these communication may lead to a discovery failure in a large-scale network. Probabilistic algorithms could handle neighbor discovery among multiple nodes\cite{mcglynn2001birthday, vasudevan2009neighbor, you2011aloha}, but most of them assume the network is fully-connected, i.e. every two nodes are neighbors. However, a node is only able to sense nodes that are within a distance range in a large-scale network. For example, people can compete to catch a Pikachu with nearby friends that are only within a distance threshold in Pokeman GO. In addition, many extant algorithms do not consider energy consumption, which assume a node attempts to discover its neighbors consistently.
-In a network consisting of intelligent devices, such as mobile phones, smart watches, augment reality (AR) glasses, they have very limited power supply and have to be recharged frequently. Hence attempting for neighbor discovery consistently is energy-consuming and inappropriate for a network.
+Neighbor discovery, in which a node tends to discover its nearby neighboring nodes before further applications like broadcasting and peer-to-peer communication, is a fundamental step to construct a wireless sensor network. In this paper, we study it in an energy-restricted large-scale scenario, where nodes are deployed in a wide area and multi-hop connected.
 
-In this paper, we initiate the study of neighbor discovery in an energy-restricted large-scale network and we face three challenges. First, a large-scale network is not fully-connected and a node can only discover its neighbors within a distant range. Extant algorithms assuming a fully-connected network utilize the number of nodes to trigger the algorithms, but they would fail in a large-scale network. Second, transmission signals fade with distance and simultaneous transmissions could incur collisions. Extant deterministic algorithms aiming at two nodes may fail due to such collisions. There are many mature interference models to depict the communication collisions, and we choose the popular protocol model\cite{clark1990unit} to begin this research area. Third, nodes are powered by limited energy and they should try to discover neighbors only for a small fraction of the time. In a typical sensor network\cite{akyildiz2002wireless}, a sensor adopts a duty cycle mechanism to save energy, i.e. it turn on or off its radio at different time. When the radio is turned on, the node can implement operations like discovering neighbors. Extant neighbor discovery algorithms under the energy constraint (including the algorithms for sensor networks) fail in a large-scale network due to the above two challenges.
 
+%The existing algorithms and their weakness in an energy-restricted large-scale network
+Unfortunately, despite great efforts, neighbor discovery in a large-scale network remains an open problem.
+The existing algorithms can be classified into two categories: deterministic, and probabilistic.
+In the deterministic algorithms \cite{dutta2008practical, kandhalu2010u, bakht2012searchlight, sun2014hello,  chen2015heterogeneous, wang2015blinddate, qiu2016talk}, sensors take actions based on deterministic sequences.
+Nevertheless, most deterministic algorithms are designed only for two nodes and directly applied to multi-node scenario. Probabilistic algorithms handle neighbor discovery in a clique of $n$ nodes\cite{mcglynn2001birthday, vasudevan2009neighbor, you2011aloha} , i.e. every two nodes are neighbors, and utilize the global number $n$ to compute an optimal probability for action decisions. However in a large-scale network, a node is only able to sense nodes within a distance range. In addition, some existing algorithms \cite{vasudevan2009neighbor} do not consider energy consumption of the neighbor discovery process. In wireless sensor networks, sensors have very limited energy and have to be recharged frequently, attempting for neighbor discovery consistently is energy-consuming. 
+
+%The main challenges in an energy-restricted large-scale network
+Therefore, we look into the existing neighbor discovery algorithms and find that the key issue lies in collisions in the large-scale networks.
+This issue owns to three reasons.
+First, transmission signals fade with distance and simultaneous transmissions would incur collisions among various nodes. Deterministic algorithms aiming at two nodes all fail to reduce such collisions. 
+%There are many mature interference models to depict the communication collisions, and we choose the popular protocol model\cite{clark1990unit} to begin this research area.
+Second, a large-scale network is not one-hop connected and a node can only discover its neighbors within a distant range. Probabilistic algorithms assuming a samll clique network fail in estimating the number of neighbors, and thus can not reduce the collision effectively since the number of neighbors plays a vital role in how many collisions will occur at the same time. 
+Third, nodes are powered by limited energy and they typically try to find neighbors only for a fraction of time. Energy consumption and neighbor discovery quality are a paradox in existing algorithms, since collisions cause great energy consumption and if taken energy consumption into account, neighbor discovery may become even ineffective.
+
+We conduct experiments on the existing algorithms \cite{dutta2008practical,kandhalu2010u,
+bakht2012searchlight,sun2014hello,chen2015heterogeneous,
+wang2015blinddate,qiu2016talk} and confirm the collision is the key issue.
+By experiment, we find collisions caused by simultaneous transmissions result in the waste of time and energy. We consider a large-scale network with 2000 nodes obeying a uniform distribution. Collisions of searchlight \cite{bakht2012searchlight}, the optimal deterministic algorithm, happened as frequently as 99.8\% of the time; collisions of PND \cite{song2014probabilistic}, a typical probabilistic algorithm, happened as frequently as 43.4\% of the time. Aloha-like \cite{you2011aloha}, the optimal probabilistic algorithm, shows a high idle rate (none of the neighbors are transmitting) as 94.6\% of the time, which reduces the collision excessively and still results in a high latency. That means, because of collisions, existing works waste time and energy, and cannot achieve low latency and energy efficiency for large-scale networks.
+
+\iffalse
 \begin{figure}[!t]
 \centering
 \subfigure[uniform distribution]{\includegraphics[width=1.7in]{./Figure/uniform.pdf}}
 \vspace{0.03in}
 \subfigure[Gaussian distribution]{\includegraphics[width=1.7in]{./Figure/normal.pdf}}
-\caption{Node deployments following uniform and Gaussian distribution.}
+\caption{WSN deployments following uniform and Gaussian distribution.}
 \label{distribution}
 %\vspace{-0.2in}
 \end{figure}
+\fi
+
+Our insight idea is that, by estimating the expected number of neighbors of a node and aligning the time it turns on the radio with its neighbors, 
+we can achieve both low-latency and energy-efficiency for neighbor discovery in a large-scale network. 
+We first take the distributions of nodes into consideration. As studied in \cite{wang2013gaussian}, nodes in a wireless sensor network are likely to follow a uniform or a Gaussian distribution for detecting aims. % (as shown in Fig. \ref{distribution}) 
+According to the local density, a node can estimate the number of neighbors and calculate an optimal probability for action decisions. Then based on this, we propose Alano\footnote{Alano is the god of luck in Greek mythology.}, the first nearly optimal probability based algorithm for a large-scale network. Finally, we involve the duty cycle mechanism, i.e. the fraction of time the radio is on (also called the sensor wake up), and modify Alano by deterministic techniques to align the wake-up time between neighbors. Specifically, if all nodes have the same (symmetric) duty cycle, such as a batch of sensors have a default duty cycle setting, we propose a Relaxed Difference Set based algorithm (called RDS-Alano); if nodes have different (asymmetric) duty cycles, such as a sensor adjusts the duty cycle by the remaining energy, we propose a Traversing Pointer based algorithm (called TP-Alano).
+
+Our simulation shows the proposed Alano 
+has lower latency, higher discovery rate, better scalability, and robustness, 
+compared to the state-of-the-art algorithm \cite{you2011aloha, sun2014hello, chen2015heterogeneous, bakht2012searchlight}
+in a large-scale network.
+Alano achieves $31.35\%$ to $ 85.25\%$ lower latency
+and reaches nearly $100\%$ discovery rate with half time. 
+When the number of nodes increases from 1000 to 9000, 
+Alano shows 4.68 times to 6.51 times lower latency for neighbor discovery.
+In addition, Alano still keeps low latency robustly when 5\% to 30\% nodes are off duty. 
 
 
-In order to address these challenges, we first take the distributions of nodes into consideration. As studied in \cite{wang2013gaussian}, nodes in a wireless network are likely to follow a uniform or a Gaussian distribution (as shown in Fig. \ref{distribution}), the distribution of nodes can be utilized to trigger neighbor discovery for multiple nodes. Then, we propose Alano\footnote{Alano is the god of luck in Greek mythology.}, a nearly optimal randomized algorithm for a large-scale network that achieves low discovery latency under the protocol model. Finally, we involve the duty cycle mechanism to save energy, and modify Alano for nodes that have different duty cycle constraints. Specifically, if all nodes' duty cycle are the same, such as a batch of intelligent devices have a default duty cycle setting, we call them \emph{symmetric nodes} and propose a Relaxed Difference Set based algorithm (called RDS-Alano); if nodes have different duty cycle constraints, such as a mobile phone adjusts its duty cycle by the remaining energy, we call them \emph{asymmetric nodes} and propose a Traversing Pointer based algorithm (called TP-Alano).
+
+%% Contribution summarize
 The contributions of the paper are summarized as follows:
 \begin{itemize}
-\item[1)] We utilize nodes' distribution to trigger Alano, a nearly optimal algorithm for a large-scale network that achieves low latency for discovering all neighbors;
-\item[2)] In an energy-restricted large-scale network, we propose RDS-Alano for symmetric nodes and TP-Alano for asymmetric nodes. Both algorithms achieve low latency for discovering all neighbors under duty cycle mechanism that prolongs a node's lifetime;
-\item[3)] We conduct extensive simulations to compare Alano with the state-of-the-art algorithms. Based on evaluation of speed (discovery latency), quality (discovery rate), scalability and robustness, Alano achieves $31.35\%$ to $ 85.25\%$ times lower discovery latency and has higher discovery rate for both symmetric nodes and asymmetric nodes, under uniform or Gaussian distribution.
+\item[1)] We utilize nodes' distribution and propose Alano, the first nearly optimal algorithm for a large-scale network that achieves low latency for discovering neighbors;
+\item[2)] In an energy-restricted large-scale network, we propose RDS-Alano for symmetric nodes and TP-Alano for asymmetric nodes. Both algorithms achieve low latency for discovering neighbors and can prolong node's lifetime;
+\item[3)] We conduct extensive simulations to compare Alano with the state-of-the-art algorithms. Based on evaluation of speed, quality, scalability and robustness, Alano achieves $31.35\%$ to $ 85.25\%$ times lower latency and has higher discovery rate for both symmetric nodes and asymmetric nodes, and in uniform or Gaussian distribution.
 \end{itemize}
 
-The remainder of the paper is organized as follows. The coming section highlights some related works and puts forward vital problems that the existing algorithms remain. System model and basic definitions are introduced in Section \ref{sectionmodel}. We present Alano which combines nodes' distribution in Section \ref{PCN}. We propose two modified algorithms (RDS-Alano, TP-Alano) for an energy-restricted large-scale network for both symmetric and asymmetric nodes in Section \ref{EEN}. The extensive simulation results are shown in Section \ref{Evaluation} and we conclude the paper in Section \ref{Conclusion}.
+
+%% Remaining structure
+The remainder of the paper is organized as follows. The coming section highlights some related works and puts forward vital problems that the existing algorithms remain. The system model and basic definitions are introduced in Section \ref{sectionmodel}. We present Alano and show the method to combine nodes' distribution in Section \ref{PCN}. We propose two modified algorithms (RDS-Alano, TP-Alano) for a energy-restricted large-scale network for both symmetric and asymmetric nodes in Section \ref{EEN}. The extensive simulation results are shown in Section \ref{Evaluation} and we conclude the paper in Section \ref{Conclusion}.
 
 
 

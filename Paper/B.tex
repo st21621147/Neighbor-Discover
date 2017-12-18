@@ -211,7 +211,7 @@ a pair of neighbors ($u_i$, $u_j$) respectively.
 We first prove that any pair of nodes ($u_i$, $u_j$) turn on their radios (for transmitting or listening) simultaneously for at least once in every period of length $T_iT_j$.
 
 \textbf{Case 1: $T_i \neq T_j$}. Since $T_i$ and $T_j$ are different primes,
-according to Chinese Remainder Theorem\cite{XX}, there exists a time slot $t_\tau \in \lbrack 0,T_iT_j ) $ satisfying:
+according to Chinese Remainder Theorem\cite{ding1996chinese}, there exists a time slot $t_\tau \in \lbrack 0,T_iT_j ) $ satisfying:
 \begin{equation}
 \label{case1.1}
 0 = t_\tau  \quad mod \quad  T_i.
@@ -232,6 +232,8 @@ of $u_j$ satisfying that both nodes turn on the radios simultaneously in every p
 Thus for any pair of neighbor nodes ($u_i$, $u_j$), they turn on their radios for transmitting or listening for at least once in every period of length $T_iT_j$. Regarding
 the whole period $T_iT_j$ as a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ with high probability.
 \end{IEEEproof}
+
+
 
 
 
