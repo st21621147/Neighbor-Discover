@@ -15,6 +15,7 @@
 % Connectivity  			#moscibroda2006complexity
 % Density					#wang2015connectivity
 % Unit disk graph model 		#clark1990unit
+% CSMA/CA				#bianchi1996performance
 
 % The cite of the existing algorithms are listed in related work
 
@@ -67,15 +68,15 @@ we can achieve both low-latency and energy-efficiency for neighbor discovery.
 We first take the distributions of nodes into consideration. As studied in \cite{wang2013gaussian}, nodes in a wireless sensor network are likely to follow a uniform or a Gaussian distribution for detecting aims. % (as shown in Fig. \ref{distribution}) 
 According to the local density, a node can estimate the number of neighbors and calculate an optimal probability for action decisions. Then based on this, we propose Alano\footnote{Alano is the god of luck in Greek mythology.}, the first nearly optimal probability based algorithm for a large-scale network. Finally, we involve the duty cycle mechanism, i.e. the fraction of time the radio is on (also called the sensor wake up), and modify Alano by deterministic techniques to align the wake-up time between neighbors. Specifically, if all nodes have the same (symmetric) duty cycle, such as a batch of sensors have a default duty cycle setting, we propose a Relaxed Difference Set based algorithm (called RDS-Alano); if nodes have different (asymmetric) duty cycles, such as a sensor adjusts the duty cycle by the remaining energy, we propose a Traversing Pointer based algorithm (called TP-Alano).
 
-Our simulation shows the proposed Alano 
-has lower latency, higher discovery rate, better scalability, and robustness, 
+Our simulations show the proposed Alano 
+has lower latency, higher discovery rate, and better scalability.%, and robustness, 
 compared to the state-of-the-art algorithm \cite{you2011aloha, sun2014hello, chen2015heterogeneous, bakht2012searchlight}
 in a large-scale network.
 Alano achieves $31.35\%$ to $ 85.25\%$ lower latency
 and reaches nearly $100\%$ discovery rate within half time. 
 When the number of nodes increases from 1000 to 9000, 
 Alano shows 4.68 times to 6.51 times lower latency for neighbor discovery.
-In addition, Alano still keeps low latency robustly when 5\% to 30\% nodes are off duty. 
+%In addition, Alano still keeps low latency robustly when 5\% to 30\% nodes are off duty. 
 
 
 %\iffalse
@@ -84,7 +85,7 @@ The contributions of the paper are summarized as follows:
 \begin{itemize}
 \item[1)] We utilize nodes' distribution and propose Alano, a nearly optimal algorithm that achieves low-latency neighbor discovery for a large-scale network;
 \item[2)] In an energy-restricted large-scale network, we propose RDS-Alano for symmetric nodes and TP-Alano for asymmetric nodes. Both algorithms achieve low latency for discovering neighbors and can prolong node's lifetime;
-\item[3)] We conduct experiments for fundamental observation and extensive simulations for large-scale networks.  Alano achieves lower latency, higher discovery rate, better scalability, and robustness compared with the state-of-the-art algorithms. 
+\item[3)] We conduct experiments for fundamental observation and extensive simulations for large-scale networks.  Alano achieves lower latency, higher discovery rate, and better scalability.%, and robustness compared with the state-of-the-art algorithms. 
 \end{itemize}
 %\fi
 

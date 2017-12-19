@@ -19,7 +19,7 @@ mcglynn2001birthday, song2014probabilistic, vasudevan2009neighbor}.
 
 We evaluated discovery latency of Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in the generated partially-connected networks. 
 As the deterministic algorithms, Hello, Hedis and Searchlight, only have two states $\{ON, OFF\}$ (representing the radio is on or off). To make the comparison more fair, we assume that when a node is in $\{ON\}$ state, it transmits or listens with equal probability $0.5$.
-In the following parts, we show that Alano has lower latency, higher discovery rate, better scalability, and better robustness.
+In the following parts, we show that Alano has lower latency, higher discovery rate, and better scalability.%, and better robustness.
 
 \subsection{Speed: Discovery Latency}
 
@@ -116,6 +116,7 @@ When the number of nodes increases from $1000$ to $9000$ for Gaussian distributi
 \label{fig_node}
 \end{figure}
 
+\iffalse
 \subsection{Robustness}
 
 \begin{figure}[!h]
@@ -128,3 +129,4 @@ When the number of nodes increases from $1000$ to $9000$ for Gaussian distributi
 \end{figure}
 
 In reality, a node may leave the network now and then (such as the node runs out of energy or the node is offline for other usage). We evaluate the robustness of the neighbor discovery algorithms in Fig. \ref{fig_robust}. When $5\%$ to $30\%$ nodes die (see x-axis of the figure), Alano still reaches low discovery latency for both uniform and Gaussian distributions. %(?? others?)
+\fi

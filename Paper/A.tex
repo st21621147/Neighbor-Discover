@@ -25,20 +25,20 @@ For each node $u_i$ with position $(x_i,y_i)$, the range of its neighbors' posit
 $$
 (x-x_i)^2+(y-y_i)^2 \leq \Delta^2
 $$
-where $\Delta$ is the communication range. Then, node $u_i$'s expected number of neighbors (denote as $NB(u_i)$ is:
+where $\Delta$ is the communication range. Then, node $u_i$'s expected number of neighbors (denote as $\hat{n_i}$ is:
 $$
-NB(u_i) = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
+\hat{n_i} = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
 $$
 
-In a large scale network, we ignore the boundary area of the network and assume nodes in the network are of an enormous quantity. Then, the $NB(u_i)$ can be rewritten as:
+In a large scale network, we ignore the boundary area of the network and assume nodes in the network are of an enormous quantity. Then, the $\hat{n_i}$ can be rewritten as:
 $$
-NB(u_i) = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
+\hat{n_i} = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
 $$
 
 When the network covering area $D$ is much larger than the area $R_i$ of node $u_i$, 
 \begin{equation}
 \label{eqnNB}
-NB(u_i) \simeq N\pi r^2 \varphi(x,y).
+\hat{n_i} \simeq N\pi r^2 \varphi(x,y).
 \end{equation}
 
 
