@@ -2,6 +2,7 @@
 \label{sectionmodel}
 
 %Connectivity model			#lebhar2009unit
+%Time slot synchronization	#van2004lightweight
 
 In this section, we describe system model of an energy-restricted large-scale network, and we formulate the Neighbor Discovery problem formally.
 The notations are listed in Table \ref{notations}.
@@ -70,7 +71,7 @@ $$ M_{i,j}=\left\{
 $$
 
 
-Suppose time is divided into slots of equal length $t_0$, which is sufficient to finish a complete communication process (one node transmits a message including its ID and a neighbor receives the message). 
+Suppose time is divided into slots of equal length $t_0$ \cite{van2004lightweight}, which is sufficient to finish a complete communication process (one node transmits a message including its ID and a neighbor receives the message). 
 A node who turns its radio on can choose to be transmitting state or listening state:
 \begin{itemize}
 \item \textbf{Transmitting state:} a node transmits (broadcasts) a package containing its ID on the channel;
