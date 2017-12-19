@@ -1,12 +1,14 @@
-\section{Alano Algorithm for a Large Scale Network}
+\section{Alano Algorithm for a large-scale Network}
 %\section{Large-Scale Networks}
 \label{PCN}
 
-%Expectation	#meester1996continuum
+%Expectation			#meester1996continuum
+%Geometric distribution	#Motwani1995Randomized
+%Temperature 			#flammini2007real
 
 %background and instances
-In a large scale network, nodes are not fully connected and communications may fail due to concurrent transmissions. 
-When we do not consider the energy constraints of nodes, we propose a nearly optimal algorithm for a large scale network, which implies $\theta_i = 1$ for all node $u_i$.
+In a large-scale network, nodes are not fully connected and communications may fail due to concurrent transmissions. 
+When we do not consider the energy constraints of nodes, we propose a nearly optimal algorithm for a large-scale network, which implies $\theta_i = 1$ for all node $u_i$.
 Suppose the locations of nodes obey some distribution, we propose Alano algorithm and analyze its performance for two common used distribution (uniform distribution and Gaussian distribution).
 
 \subsection{Alano Algorithm}
@@ -30,7 +32,7 @@ $$
 \hat{n_i} = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
 $$
 
-In a large scale network, we ignore the boundary area of the network and assume nodes in the network are of an enormous quantity. Then, the $\hat{n_i}$ can be rewritten as:
+In a large-scale network, we ignore the boundary area of the network and assume nodes in the network are of an enormous quantity. Then, the $\hat{n_i}$ can be rewritten as:
 $$
 \hat{n_i} = N\iint_{R_i} \varphi(x,y)\,dx\,dy.
 $$
@@ -72,7 +74,7 @@ approximation analysis that the discovery latency is not be much larger than tha
 \label{uniform}
 %background
 Uniform distribution is a basic one for deployment of wireless networks.
-For instance, to monitor an unknown area, many sensors are deployed uniformly to sense information, such as temperature and humidity\cite{XX}. The nodes are evenly deployed and the density function is:
+For instance, to monitor an unknown area, many sensors are deployed uniformly to sense information, such as temperature and humidity \cite{flammini2007real}. The nodes are evenly deployed and the density function is:
 $$f(x)=
 \begin{cases}
 \frac{1}{A}& (x,y)\in D\\
@@ -95,7 +97,7 @@ $$p_s = \frac{1}{\hat{n}}{(1-\frac{1}{\hat{n}})}^{\hat{n}-1} \approx \frac{1}{\h
 
 Therefore, the probability chosen in Alano algorithm for transmitting is optimal.
 
-We analyze the expected discovery latency for a node $u_i$ to discover all neighbors. Denote $W_j$ as a random variable representing the cost number of the time slots to discover a new neighbor after $j-1$ neighbors have been discovered. It is easy to check that $W_j$ follows Geometric distribution with parameter $p(j)$ where $p(j)=(\hat{n}-j+1)p_s$\cite{XX}. The expectation
+We analyze the expected discovery latency for a node $u_i$ to discover all its neighbors. Let $W$ be a random variable that denotesthe time a node spends discovering all neighbors. Denote $W_j$ as a random variable representing the cost number of the time slots to discover a new neighbor after $j-1$ neighbors have been discovered. It is easy to check that $W_j$ follows Geometric distribution with parameter $p(j)$ where $p(j)=(\hat{n}-j+1)p_s$ \cite{Motwani1995Randomized}. The expectation
 of $W_j$ can be computed as:
 $$
 E[W_j]=\frac{1}{p(j)}=\frac{1}{(\hat{n}-j+1)p_s}.
