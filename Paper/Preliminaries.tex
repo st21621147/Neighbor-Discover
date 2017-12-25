@@ -4,8 +4,7 @@
 %Connectivity model			#lebhar2009unit
 %Time slot synchronization	#van2004lightweight
 
-In this section, we describe system model of an energy-restricted large-scale network, and we formulate the Neighbor Discovery problem formally.
-The notations are listed in Table \ref{notations}.
+In this section, we first describe the system model of an energy-restricted large-scale network. Then we formulate the Neighbor Discovery problem formally. The notations are listed in Table \ref{notations}.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -19,15 +18,15 @@ The notations are listed in Table \ref{notations}.
 \hline
 $N$ & The number of nodes in the network\\
 \hline
-$u_i$ & node $u_i$ with ID $i$ \\
+$u_i$ & Node $u_i$ with ID $i$ \\
 \hline
-$u_{ij}$ & the $j^{th}$ neighbor of node $u_i$ \\
+$\widetilde{n_i}$ & Node $u_i$'s expected number of neighbors \\
+\hline
+$t_0$ & The length of a time slot \\
 \hline
 $\delta_{ij}$ & The transmission time drift between $u_i$ and $u_j$ \\
 \hline
-$\hat{n_i}$ & Node $u_i$'s expected number of neighbors \\
-\hline
-$t_0$ & The length of a time slot \\
+$t_i^s$ & The start time of node $u_i$ \\
 \hline
 $L(i,j)$ & The discovery latency that node $u_i$ discovers node $u_j$ \\
 \hline
@@ -51,14 +50,14 @@ We introduce three important factors of an energy-restricted large-scale network
 
 \textbf{Communication:}
 when multiple nodes communicate simultaneously, a transmission may fail due to the communication interference. We adopt the protocol model (also called graph model, unit-disk model\cite{moscibroda2006complexity, wang2015connectivity}) to describe the process, which assumes a node $u_i$ can receive $u_j$'s message successfully if $u_j$ is the only transmitter that is within $u_i$'s communication range.
-The protocol model is a popular model that enables the development of efficient algorithms crucial networking problems. Some other models, such as the signal to interference plus noise ratio (\emph{SINR}) model, are more complicated and lack good algorithmic features. In addition, it is shown that these models can be transformed to the protocol model by particular means in \cite{lebhar2009unit}.
+The protocol model is a popular one that enables the development of efficient algorithms crucial networking problems. Some other models, such as the signal to interference plus noise ratio (\emph{SINR}) model, are more complicated and lack good algorithmic features. In addition, it is shown that these models can be transformed to the protocol model by particular means in \cite{lebhar2009unit}.
 
 \textbf{Network connectivity:}
 a node can only discover nodes that are within its communication range under the protocol model. In a large-scale network, two nodes may not be connected directly and we call two nodes connected by one-hop communication as \emph{neighbors}. Thus, a large-scale network is always \emph{partially-connected}, contrary to a fully-connected network in which any two nodes are neighbors, i.e. they are connected by one-hop communication.
 
 
 \textbf{Energy-restricted:}
-a node in the network has very limited energy and we assume a node can turn on or off its radio to save energy. When a node turns on the radio, it can transmit a message including its identifier (ID), or listen on the channel to receive a neighbor's message.
+a node in the network has limited energy and can turn on or off its radio to save energy~\cite{}. When a node turns on the radio, it can transmit a message including its identifier (ID), or listen on the channel to receive a neighbor's message.
 
 Technically speaking, we assume an energy-restricted large-scale network consisting of $N$ nodes as set $U=\{u_1,u_2,\ldots,u_N\}$.  Nodes are distributed in a large place and they can communicate through a fixed wireless channel. We assume the locations of the nodes obey some distributions, such as uniform distributions and Gaussian distribution\cite{wang2013gaussian}.
 Suppose a node has a fixed communication range $\Delta$ and two nodes $u_i, u_j$ are neighbors if their distance suits $d(u_i, u_j) \leq \Delta$. We can use a symmetric matrix $M_{N\times N}$ to represent nodes' neighboring relations as:
@@ -70,7 +69,7 @@ $$ M_{i,j}=\left\{
 \right.
 $$
 
-
+%Time synchronization
 Suppose time is divided into slots of equal length $t_0$ \cite{van2004lightweight}, which is sufficient to finish a complete communication process (one node transmits a message including its ID and a neighbor receives the message). 
 A node who turns its radio on can choose to be transmitting state or listening state:
 \begin{itemize}
@@ -88,7 +87,7 @@ L  & & & {u_i ~is~ in~ listening~ state~ in~ slot~ t}	\\
 \end{aligned}
 \right.
 $$
-We define \emph{duty cycle} as the fraction of time a node turns its radio on, which is formulated as:
+ \emph{duty cycle} is defined as the fraction of time a node turns its radio on, which is formulated as:
 $$\theta_i=\frac{|\{t: 0\leq t<T, s_i(t) \in \{T,L\}\}|}{T}.
 $$
 
@@ -97,7 +96,7 @@ If all nodes have the same duty cycle all the time, i.e. $\theta_i = \theta_j$ f
 \subsection{Problem Definition}
 
 A node $u_i$ executes operations (turning off radio, transmitting, or listening) according to the pre-defined duty schedule $S_i$. 
-When $u_i$ starts the neighbor discovery process, denote $L(i,j)$ as the slots cost to find the neighbor $u_j$ and we define \textbf{discovery latency} of node $u_i$ as the time to discover all neighbors:
+When $u_i$ starts the neighbor discovery process, denote $L(i,j)$ as the slot cost to find the neighbor $u_j$ and we define \textbf{discovery latency} of node $u_i$ as the time to discover all neighbors:
 $$L(i) = \max_{j:M_{i,j}=1} L(i,j).
 $$
 
