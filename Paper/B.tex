@@ -3,7 +3,7 @@
 \section{Modified Alano for An Energy-Restricted Network}
 \label{EEN}
 %wireless sensor networks: duty cycle
-In an energy-restricted network, nodes have limited energy and designing duty schedule for a node should take its duty cycle into account. Obviously, a lower duty cycle implies a larger discovery latency since the node turns its radio off for more time during the schedule. 
+In an energy-restricted network, nodes have limited energy and designing duty schedule for a node needs to take its duty cycle into account. Obviously, a lower duty cycle implies a larger discovery latency since the node turns its radio off for more time during the schedule. 
 
 In the preceding section, energy constraint is not a crucial factor in Alano; and we are to modify Alano for both symmetric nodes and asymmetric nodes.
 %an overview of the motivation of the algorithm
@@ -131,15 +131,15 @@ For any pair of neighbor nodes ($u_i$, $u_j$),
 we can find an ordered pair ($r_i$, $r_j$) from their respective RDS
 such that $r_i - r_j \equiv \delta_{ij}$ (mode $T$), where $\delta_{ij}$ is the time drift.
 This implies any neighbor nodes can turn on their radios in the same time slot for at least once during every period of length $T$. 
-Regarding each period of $T$ time slots as a `super' slot of Alano algorithm, we can derive that the discovery latency is bounded within $O(\frac{n\log n}{\theta^2})$ slots with high probability by combining the analysis of Alano.
+Regarding each period of $T$ time slots as a `super' slot of Alano algorithm, we can derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta^2})$ slots with high probability by combining the analysis of Alano.
 \end{IEEEproof}
 
-(??? not clear) There is a detail to be noticed when regarding the whole period $T$ as a time slot in Alg. \ref{Alano}.
-Due to the periodicity, a node will rendezvous the same neighbors in the identical wake-up slot in each period.
-Since for a certain node there are more than one wake-up slots in each period,
-the rendezvoused neighbors in each wake-up time slot may be equal or less than the total number of its neighbors,
-resulting less collisions and lower latency compared to when all the neighbors wake up in the same time slot.
+\begin{remark}
+In a RDS, a node can discovery its neighbors in different time slots. When treating a period of $T$ as a  `super' slot of Alano, 
+there may be less than the total neighbors in each wake-up sub-slot,
+resulting less collisions and lower latency compared to when all the neighbors wake up in the same sub-slot.
 Thus the latency bound can not be larger.
+\end{remark}
 
 
 \subsection{TP-Alano for Asymmetric Nodes}
@@ -230,7 +230,7 @@ there exists a traversing point of $u_i$ and a fixed pointer
 of $u_j$ satisfying that both nodes turn on the radios simultaneously in every period of length $(T-1)T$; similarly a traversing point of $u_j$ and a fixed pointer of $i$ satisfying that they both turn on the radios.
 
 Thus for any pair of neighbor nodes ($u_i$, $u_j$), they turn on their radios for transmitting or listening for at least once in every period of length $T_iT_j$. Regarding
-the whole period $T_iT_j$ as a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{nlogn}{\theta_i\theta_j})$ with high probability.
+the whole period $T_iT_j$ as a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta_i\theta_j})$ with high probability.
 \end{IEEEproof}
 
 
