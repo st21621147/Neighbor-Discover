@@ -17,9 +17,9 @@ mcglynn2001birthday, song2014probabilistic, vasudevan2009neighbor}.
 
 
 
-We evaluated discovery latency of Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in the generated partially-connected networks. 
-As the deterministic algorithms, Hello, Hedis and Searchlight, only have two states $\{ON, OFF\}$ (representing the radio is on or off). To make the comparison more fair, we assume that when a node is in $\{ON\}$ state, it transmits or listens with equal probability $0.5$.
-In the following parts, we show that Alano has lower latency, higher discovery rate, and better scalability.%, and better robustness.
+We evaluated discovery latency of Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in the generated partially-connected networks. Besides, we evaluated G-Nihao(we choose the best parameters, $m=n$, $\alpha=0.054$)~\cite{qiu2016talk}, but $500$ symmetric nodes in uniform distribution can only discover $2\%$ neighbors, which is worse than other $3$ deterministic algorithms we choose. Thus, we didn't show its result in our figures.
+Hedis only has two states $\{ON, OFF\}$ (representing the radio is on or off). To make the comparison more fair, we assume that when a node is in $\{ON\}$ state, it transmits or listens with equal probability $0.5$. Hello and Searchlight has a beacon transmission of $0.54ms$ at the beginning and end of each slot, and a beacon makes up about $1/40$ of a slot, so we divide each $\{ON\}$ slot into $40$ mini-slots, and the node transmits at the first and last mini-slot, and listens in other mini-slots.
+In the following parts, we show that Alano has lower latency, higher discovery rate, better scalability, and better robustness.
 
 \subsection{Speed: Discovery Latency}
 
@@ -59,13 +59,13 @@ The deterministic algorithms, Hello, Hedis and Searchlight, have high latency be
 
 \begin{figure}[!h]
 
-\subfigure[Uniform Distribution with Global Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_uniform1}}
+\subfigure[Symmetric Nodes in Uniform Distribution]{\includegraphics[width=1.65in]{Figure/rate_uniform1}}
 \hspace{0.01in}
-\subfigure[Gaussian Distribution with Global Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_normal1}}
+\subfigure[Symmetric Nodes in Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/rate_normal1}}
 \hspace{0.01in}
-\subfigure[Uniform Distribution with Local Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_local_uniform1}}
+\subfigure[Asymmetric Nodes in Uniform Distribution]{\includegraphics[width=1.65in]{Figure/rate_local_uniform1}}
 \hspace{0.01in}
-\subfigure[Gaussian Distribution with Local Duty Cycle]{\includegraphics[width=1.65in]{Figure/rate_local_normal1}}
+\subfigure[Asymmetric Nodes in Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/rate_local_normal1}}
 \caption{Alano achieves higher discovery rate in larger networks.}
 \label{fig_timerate_large}
 \end{figure}
@@ -116,17 +116,15 @@ When the number of nodes increases from $1000$ to $9000$ for Gaussian distributi
 \label{fig_node}
 \end{figure}
 
-\iffalse
-\subsection{Robustness}
+% \subsection{Robustness}
 
-\begin{figure}[!h]
-\centering
-\subfigure[Uniform Distribution]{\includegraphics[width=1.65in]{Figure/robustU}}
-\hspace{0.01in}
-\subfigure[Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/robustN}}
-\caption{Alano still reaches low latency when nodes die.}
-\label{fig_robust}
-\end{figure}
+% \begin{figure}[!h]
+% \centering
+% \subfigure[Uniform Distribution]{\includegraphics[width=1.65in]{Figure/robustU}}
+% \hspace{0.01in}
+% \subfigure[Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/robustN}}
+% \caption{Alano still reaches low latency when nodes die.}
+% \label{fig_robust}
+% \end{figure}
 
-In reality, a node may leave the network now and then (such as the node runs out of energy or the node is offline for other usage). We evaluate the robustness of the neighbor discovery algorithms in Fig. \ref{fig_robust}. When $5\%$ to $30\%$ nodes die (see x-axis of the figure), Alano still reaches low discovery latency for both uniform and Gaussian distributions. %(?? others?)
-\fi
+% In reality, a node may leave the network now and then (such as the node runs out of energy or the node is offline for other usage). We evaluate the robustness of the neighbor discovery algorithms in Fig. \ref{fig_robust}. When $5\%$ to $30\%$ nodes die (see x-axis of the figure), Alano still reaches low discovery latency for both uniform and Gaussian distributions. %(?? others?)

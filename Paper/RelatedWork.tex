@@ -30,11 +30,11 @@
 
 
 
-Existing neighbor discovery algorithms can be technically classified into two categories, deterministic algorithms and probabilistic algorithms.
+Existing neighbor discovery algorithms can be classified into two categories, deterministic algorithms and probabilistic algorithms.
 
-Deterministic algorithms adopt some mathematic tools to ensure discovery between every two neighbors. The first tool is called quorum system~\cite{jiang2005quorum,luk1997two} : for any two intersected quorums, two neighboring nodes could choose any quorum in the system to design the discovery schedule. Hedis~\cite{chen2015heterogeneous} is a typical one. Another important tool is co-primality where two co-prime numbers are chosen by the neighbors to design the discovery schedule, and they can discover each other within a bounded latency by the Chinese Remainder Theorem~\cite{ding1996chinese}. Some representative algorithms are Disco~\cite{dutta2008practical}, U-Connect~\cite{kandhalu2010u}, and Todis~\cite{chen2015heterogeneous}. These algorithms hold an obvious advantage that they can guarantee fast discovery for two nodes within a bounded latency. 
+Deterministic algorithms adopt certain mathematic tools to ensure discovery between every two neighbors. The first tool is called quorum system~\cite{jiang2005quorum,luk1997two} : for any two intersected quorums, two neighboring nodes could choose any quorum in the system to design the discovery schedule. Hedis~\cite{chen2015heterogeneous} is a typical one. Another important tool is co-primality where two co-prime numbers are chosen by the neighbors to design the discovery schedule, and they can discover each other within a bounded latency by the Chinese Remainder Theorem~\cite{ding1996chinese}. Some representative algorithms are Disco~\cite{dutta2008practical}, U-Connect~\cite{kandhalu2010u}, and Todis~\cite{chen2015heterogeneous}. These algorithms hold an obvious advantage that they can guarantee fast discovery for two nodes within a bounded latency. 
 
-However, there exists some weak points in the deterministic algorithms when applying to large-scale networks.
+However, there are some weaknesses in these algorithms when applied to large-scale networks.
 Hedis {chen2015heterogeneous} only assumes when two nodes turn on the radio at the same time and they find each other. 
 But in reality neighbors play asymmetric roles that one is transmitting and the other is receiving.
 U-Connect~\cite{kandhalu2010u} consider the transmitting and receiving roles.
@@ -55,13 +55,13 @@ paradox, i.e. the probability that two people have the same
 birthday exceeds $\frac{1}{2}$ among $23$ people. Following that,
 smarter probabilistic algorithms are proposed, such as Aloha-like \cite{vasudevan2009neighbor, you2011aloha}, PND \cite{song2014probabilistic}. Particularly, Aloha-like \cite{vasudevan2009neighbor} does not consider the energy consumption, which is later extended to an energy-restricted network by \cite{you2011aloha}.
 
-Different from deterministic algorithms,
+The difference from deterministic algorithms is that,
 probabilistic algorithms show an significant strength for a network consisting of multiple nodes.
 However, probabilistic algorithms only present an expectation discovery latency and they
 can not guarantee a good latency bound.
 In addition, most of the existing algorithms assume the network is a clique, which implies any two nodes are neighbors. 
 This assumption can hardly depict a large-scale network due to the limited communication range of a node.
-Some works adopts the received signal strength to decide how far a node can transmit~\cite{daiya2011experimental}, and in the protocol model, it is simplified that two nodes can communicate if their distance is no larger than a threshold.
+Some work adopts the received signal strength to decide how far a node can transmit~\cite{daiya2011experimental}, and in the protocol model, it is simplified that two nodes can communicate if their distance is no larger than a threshold.
 
 
 %We implement some probabilistic protocols for a large-scale network and the results show that they have a poor performance (see Section \ref{Evaluation}).
