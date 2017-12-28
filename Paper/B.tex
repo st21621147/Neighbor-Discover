@@ -37,8 +37,7 @@ We present a linear algorithm to construct a RDS with cardinality $\lceil \frac{
 \caption{RDS construction under $Z_N$}
 \label{RDS}
 \begin{algorithmic}[1]
-\STATE $R :=\emptyset$;
-\STATE $\lambda :=\lceil \sqrt{N}  \rceil$,$\mu :=\lceil \frac{\lceil \sqrt{N} \rceil}{2} \rceil$;\label{RDSline1}
+\STATE $R :=\emptyset$; $\lambda :=\lceil \sqrt{N}  \rceil$,$\mu :=\lceil \frac{\lceil \sqrt{N} \rceil}{2} \rceil$;\label{RDSline1}
 \FOR{$i = 1 :\lambda$}
 	\STATE $R :=R \cup i$; \label{RDSline2}
 \ENDFOR
@@ -97,9 +96,8 @@ determine whether it is in transmitting state or listening state.
 \caption{RDS Based Alano Algorithm}
 \label{RDS-ND}
 \begin{algorithmic}[1]
-\STATE $T := \lceil \frac{9}{4\theta^{2}} \rceil$;
+\STATE $T := \lceil \frac{9}{4\theta^{2}} \rceil$; $t := 0$;
 \STATE Invoke Alg. \ref{RDS} to construct the RDS $R = {r_0, r_1, ...,r_{\lceil \frac{3\sqrt{T}}{2}  \rceil}}$ under $Z_T$;
-\STATE $t := 0$;
 \WHILE {$True$}
    	 \IF{$(t + 1) \in R$}
     		\STATE Invoke Alg. \ref{Alano} to determine transmission state;
@@ -163,12 +161,11 @@ first slot of each period and the other one is a traversing slot that changes fr
 \caption{Traversing Pointer Based Alano Algorithm}
 \label{P-ND}
 \begin{algorithmic}[1]
-\STATE $T := $Find the smallest prime $\geq \frac{2}{\theta_i}$;
-\STATE $t := 0$;
+\STATE $T :=$ the smallest prime no less than $\frac{2}{\theta_i}$; $t := 0$;
 \WHILE {$True$}
 	\STATE $t_1 := t \% T$;
 	\STATE $t_2 : =\lfloor t / T \rfloor \% (T - 1) +1$;\label{P-NDline1}
-   	 \IF{$t_1 = 0 || t_1 = t_2$}
+   	 \IF{$t_1 = 0~or~t_1 = t_2$}
     		\STATE Invoke Alg. \ref{Alano} to determine transmission state;
 	\ELSE
     		\STATE Sleep;

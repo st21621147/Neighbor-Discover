@@ -7,7 +7,7 @@ Then we evaluate the algorithms in large-scale networks by simulations.
 
 \subsection{Experiments for Fundamental Observation}
 
-In our experiments, we implemented $16$ EZ$240$ sensors, each of which uses $8$MHz MSP$430$F$1611$ 
+In our experiments, we implemented $16$ EZ$240$ sensors \cite{huang2012easipled}, each of which uses $8$MHz MSP$430$F$1611$ 
 as the microprocessor and is equipped with $10$K RAM, 
 $48$K ROM and $1$ M Flash. CC$2420$ is used as the communication 
 module with the IEEE $802.15.4$ protocol. RTIMER\_ARCH\_CECOND is the clock frequency 
@@ -43,7 +43,7 @@ Searchlight is a typical beacon-based algorithm with larger time slot, which res
 Aloha-like is designed for a clique network and the probability adopted is not optimal.
 
 
-\subsection{Simulations for Large-scale Networks}
+\subsection{Simulations for energy-restricted Large-scale Networks}
 
 
 To simulate a large-scale network, we implemented Alano in C++ and evaluated the algorithms in a cluster of 9 servers,
@@ -62,7 +62,7 @@ chen2015heterogeneous, kandhalu2010u, you2011aloha,
 mcglynn2001birthday, song2014probabilistic, vasudevan2009neighbor}.
 
 
-We evaluated discovery latency of Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in the generated networks. %Besides, we evaluated G-Nihao(we choose the best parameters, $m=n$, $\alpha=0.054$)~\cite{qiu2016talk}, but $500$ symmetric nodes in uniform distribution can only discover $2\%$ neighbors, which is worse than other $3$ deterministic algorithms we choose. Thus, we didn't show its result in our figures.
+We evaluated Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in the generated networks. %Besides, we evaluated G-Nihao(we choose the best parameters, $m=n$, $\alpha=0.054$)~\cite{qiu2016talk}, but $500$ symmetric nodes in uniform distribution can only discover $2\%$ neighbors, which is worse than other $3$ deterministic algorithms we choose. Thus, we didn't show its result in our figures.
 %Hedis only has two states $\{ON, OFF\}$ (representing the radio is on or off). To make the comparison more fair, we assume that when a node is in $\{ON\}$ state, it transmits or listens with equal probability $0.5$. 
 Hello and Searchlight has a beacon transmission of $0.54ms$ at the beginning and end of each slot, and a beacon makes up about $1/40$ of a slot, so we divide each $\{ON\}$ slot into $40$ mini-slots, and the node transmits at the first and last mini-slot, and listens in other mini-slots.
 In the following parts, we show that Alano has lower latency, higher discovery rate, and better scalability. %, and better robustness.
@@ -123,7 +123,7 @@ The deterministic algorithms, Hello, Hedis and Searchlight, have high latency du
 
 We use discovery rate to evaluate Alano's quality.
 Discovery rate of a node $u_i$ is defined as the percentage of discovered neighbors over $u_i$'s all neighbors.
-In Fig. \ref{fig_timerate_large}, we increase the number of nodes from $500$ to $1000$ for the uniform distribution, and increase the number of nodes from $1000$ to $2000$ for the Gaussian distribution, the results show that Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions. 
+In Fig. \ref{fig_timerate_large}, we increase the number of nodes from $500$ to $1000$ for the uniform distribution, and increase the number of nodes from $1000$ to $2000$ for the Gaussian distribution, the results show that Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions. It's remarkable that, the performance of Aloha-like is close to Alano in the Gaussian distribution. This is because a number of nodes gather around the center area which makes the network similar to a clique, and thus Aloha-like shows its strength.  
 %Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because it is difficult for pure probabilistic algorithm to deal with the small amount of  undiscovered neighbors.
 
 

@@ -77,7 +77,7 @@ $$f(x)=
 where $A$ is the area of $D$.
 By Eqn. (\ref{eqnNB}), $u_i$'s expected number of neighbors is $\widetilde{n_i} = \frac{N\pi \Delta^2}{A}$ and the probability in Line 2 is set as $p_t^i = \frac{1}{\widetilde{n_i}+1}=\frac{A}{N\pi \Delta^2+A}$. 
 \begin{lemma}
-Alg. \ref{Alano} achieves optimal discovery latency for uniform distribution by setting $p_t^i = \frac{1}{\widetilde{n_i}}$.
+Alg. \ref{Alano} achieves optimal discovery latency for uniform distribution by setting $p_t^i = \frac{1}{\widetilde{n_i}+1}$.
 \end{lemma}
 \begin{IEEEproof}
 For any two nodes $u_i$ abd $u_j$ in the uniform distribution, we get $\widetilde{n_i} = \widetilde{n_j} = \widetilde{n}$ and $p_t^j = p_t^ i = p_t = \frac{1}{\widetilde{n}+1}$.
@@ -162,8 +162,8 @@ Denote $p_t^{max} = \max_{u_j \in S_i}\{p_t^{j}\}, p_t^{min} = \min_{u_j \in S_i
 for every $u_j \in S_i$, we have:
 \begin{equation*}
 \begin{split}
-(1-p_t^i)p_t^{min}{(1-p_t^{max})}^{\widetilde{n_i}-1} \leq p_{s}^i  \\ %\leq (1-p_t^i)p_t^{max}{(1-p_t^{min})}^{\widetilde{n_i}-1}
-p_{s}^i \leq (1-p_t^i)p_t^{max}{(1-p_t^{min})}^{\widetilde{n_i}-1}
+(1-p_t^i)p_t^{min}{(1-p_t^{max})}^{\widetilde{n_i}-1} \leq p_{s}^i,  \\ %\leq (1-p_t^i)p_t^{max}{(1-p_t^{min})}^{\widetilde{n_i}-1}
+p_{s}^i \leq (1-p_t^i)p_t^{max}{(1-p_t^{min})}^{\widetilde{n_i}-1}.
 \end{split}
 \end{equation*}
 
@@ -183,18 +183,17 @@ $$
 \frac{1}{Q}H_n  \quad \leq \quad E[\sum_{j=1}^{\widetilde{n_i}}W_j]  \quad \leq \quad \frac{1}{P}H_n.
 $$
 
-Since:
-$$
-p_t^{min} = \frac{1}{\widetilde{n}_{max}+1}, \quad p_t^{max} = \frac{1}{\widetilde{n}_{min}+1}.
-$$
+Since: $p_t^{min} = \frac{1}{\widetilde{n}_{max}+1}$, $p_t^{max} = \frac{1}{\widetilde{n}_{min}+1}.$
 where $\widetilde{n}_{max} = \max\{\widetilde{n}_j | u_j\in S_i \}$, $\widetilde{n}_{min} = \min\{\widetilde{n}_j | u_j\in S_i \}$. 
-Thus:
+
+And $\widetilde{n}_{max}$, $\widetilde{n}_{min}$ can be computed as follows:
 \begin{align*}
 &\widetilde{n_i} \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{x_i^2+y_i^2}{2}}.							\\
-&\widetilde{n}_{max}  \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}-\Delta^2)}^2}{2}}  = \alpha\widetilde{n_i}.\\
-&\widetilde{n}_{min}  \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}+\Delta^2)}^2}{2}}  = \beta\widetilde{n_i}.
+&\widetilde{n}_{max}  \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}-\Delta)}^2}{2}}  = \alpha\widetilde{n_i}.\\
+&\widetilde{n}_{min}  \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}+\Delta)}^2}{2}}  = \beta\widetilde{n_i}.
 \end{align*}
-and we get:
+where $\alpha = \mathrm{e}^{\frac{2\Delta\sqrt{x_i^2+y_i^2} - \Delta^2}{2}}$, 
+$\beta = \mathrm{e}^{-\frac{2\Delta\sqrt{x_i^2+y_i^2} + \Delta^2}{2}}$, both of which can be seen as constants. Therefore we get:
 $$
 \frac{1}{Q}H_n \simeq \beta\mathrm{e}^{\frac{1}{\alpha}}n\ln n, \quad \frac{1}{P}H_n \simeq \alpha\mathrm{e}^{\frac{1}{\beta}}n\ln n. 
 $$
