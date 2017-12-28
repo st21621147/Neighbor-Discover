@@ -2,19 +2,20 @@
 \section{Evaluation}
 \label{Evaluation}
 
-In this section, we first conduct experiments and confirm our basic analysis.
-Then we evaluate the algorithms in large-scale networks by simulations.
+In this section, we experimentally verify our basic analysis
+Then we evaluate the algorithms in simulated large-scale networks.
 
 \subsection{Experiments for Fundamental Observation}
 
-In our experiments, we implemented $16$ EZ$240$ sensors \cite{huang2012easipled}, each of which uses $8$MHz MSP$430$F$1611$ 
+In our experiments, we implemented $16$ EZ$240$ sensors \cite{huang2012easipled}, 
+each of which uses $8$MHz MSP$430$F$1611$ 
 as the microprocessor and is equipped with $10$K RAM, 
 $48$K ROM and $1$ M Flash. CC$2420$ is used as the communication 
 module with the IEEE $802.15.4$ protocol. RTIMER\_ARCH\_CECOND is the clock frequency 
 and a time slot is set as 500/RTIMER\_ARCH\_CECOND,
 which is around $0.5$ms in the real world. As discussed in section \ref{RW}, the time slot of beacon-based 
 algorithms, e.g. searchlight~\cite{bakht2012searchlight}, is set as $20$ms.
-From the code in MAC layer we can see  that CSMA mechanism makes the process to wait a random time 
+From the code in MAC layer we can see that CSMA mechanism makes the process to wait a random time 
 when a collision happens, which implies that collisions result in a high latency.    
 
 \begin{table}[htbp]
@@ -36,10 +37,10 @@ when a collision happens, which implies that collisions result in a high latency
 
 We compared Alano with Searchlight~\cite{bakht2012searchlight}, Hedis~\cite{chen2015heterogeneous}
 and Aloha-like~\cite{you2011aloha} in the experiments. The result in the Table \ref{Exp} shows that Alano outperforms the other algorithms.
-Hedis shows low latency as well since it has an ideal latency bound for two nodes, 
-and in a small-scale network its weakness of handling collisions is not obvious. 
+Hedis shows a low latency which results from it's ideal latency bound for two nodes, 
+and its weakness of handling collisions is not obvious in a small-scale network. 
 However, as the number of neighbors increased, collisions of Hedis \cite{chen2015heterogeneous} happened as frequently as 10.1\% to 19.96\%.
-Searchlight is a typical beacon-based algorithm with larger time slots, which results in high latency.
+Searchlight is a typical beacon-based algorithm with larger time slots, which results in a high latency.
 Aloha-like is designed for a clique network and the probability adopted is not optimal.
 
 
@@ -53,7 +54,7 @@ We simulated a network that follows uniform distribution and Gaussian distributi
 For uniform distribution, we suppose $500$ nodes are distributed in an area of $100m \times 100m$ 
 and each node's communication range is $\Delta = 10m$. For Gaussian distribution, we suppose 
 $1000$ nodes are distributed in the same area, but each node's communication range is $\Delta = 5m$. 
-We set the Gaussian distribution as $N(50,15^2)$ in our evaluation.
+We set the Gaussian distribution to $N(50,15^2)$ in our evaluation.
 We set the duty cycle of a node to be $0.1$ for symmetric nodes; 
 for asymmetric nodes, we set their duty cycle randomly from $0.05$ to $0.15$ with step $0.02$.
 These settings make the network more complicated and realistic than that in

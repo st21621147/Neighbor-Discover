@@ -7,21 +7,21 @@ In an energy-restricted network, nodes have limited energy and designing duty sc
 
 In the preceding section, energy constraint is not a crucial factor in Alano; and we are to modify Alano for both symmetric nodes and asymmetric nodes.
 %an overview of the motivation of the algorithm
-Our initiative idea is to align the slots that the radio is on with the neighbors in a bounded time; then invoke Alano algorithm to achieve low-latency neighbor discovery. 
+Our initiative idea is to synchronize the slots that the radio is on with the neighbors in a bounded time; then invoke Alano algorithm to achieve low-latency neighbor discovery. 
 
 
 \subsection{RDS-Alano for Symmetric Nodes}
 
 
 %Consider Global Duty Circle
-Symmetric nodes have the same duty cycle $\theta_i = \theta_j = \theta$, $\forall u_i, u_j$. We utilize Relax Difference Set (RDS) to align time slots that nodes are in transmitting or listening state.
+Symmetric nodes have the same duty cycle $\theta_i = \theta_j = \theta$, $\forall u_i, u_j$. We utilize Relax Difference Set (RDS) to synchronize time slots that nodes are in transmitting or listening state.
 
 
 %Introduction of RDS and the property
 %*High coincidence of another existing paper && to be altered later
 RDS is an efficient tool to construct cyclic quorum systems\cite{jiang2005quorum,luk1997two}. The definition is:
 \begin{definition}
-A set $R=\{a_1,a_2,...,a_k\} \subseteq Z_n$ (the set of all nonnegative integers less than $n$)
+A set $R=\{a_1,a_2,...,a_k\} \subseteq Z_n$ (the set of all non-negative integers less than $n$)
 is called a RDS if for every $d \neq 0$ (mod $n$),
 there exists at least one ordered pair $(a_i,a_j)$ such that $a_i - a_j \equiv d$ (mod $n$), where $a_i,a_j \in D$.
 \end{definition}
@@ -71,7 +71,7 @@ where $|R| = \lambda + \mu = \lceil \sqrt{N}  \rceil + \lceil \frac{\lceil \sqrt
 
 \begin{IEEEproof}
 Obviously, if there exists one ordered pair $(a_i,a_j)$ satisfying  $a_i - a_j \equiv d$ (mod $N$),
-an opposite pair $(a_j,a_i)$ exists such that
+an opposing pair $(a_j,a_i)$ exists such that
 $a_j - a_i \equiv (N-d)$ (mod $N$). Thus we only need to find
 at least one ordered pair $(a_i,a_j)$ for each $d \in [1, \lfloor N/2 \rfloor]$.
 
@@ -129,7 +129,7 @@ For any pair of neighbor nodes ($u_i$, $u_j$),
 we can find an ordered pair ($r_i$, $r_j$) from their respective RDS
 such that $r_i - r_j \equiv \delta_{ij}$ (mode $T$), where $\delta_{ij}$ is the time drift.
 This implies any neighbor nodes can turn on their radios in the same time slot for at least once during every period of length $T$. 
-Regarding each period of $T$ time slots as a `super' slot of Alano algorithm, we can derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta^2})$ slots with high probability by combining the analysis of Alano.
+Considering each period of $T$ time slots to be a `super' slot of Alano algorithm, we can derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta^2})$ slots with high probability by combining the analysis of Alano.
 \end{IEEEproof}
 
 \begin{remark}
@@ -144,7 +144,7 @@ Thus the latency bound can not be larger.
 
 
 %Consider Local Duty Circle
-Considering a more practical network where nodes can adjust their duty cycles, we present a traversing pointer method to align time slots that nodes are in transmitting or listening state for asymmetric nodes.
+Considering a more practical network where nodes can adjust their duty cycles, we present a traversing pointer method to synchronize time slots that nodes are in transmitting or listening state for asymmetric nodes.
 
 
 For a more practical scenario, the nodes in a wireless sensor networks
@@ -180,7 +180,7 @@ slot as \emph{traversing point}. The pointers are designed to guarantee that nod
 could turn on their radio simultaneously in very period of length $T_i T_j$. A sketch of the pointers is described in Fig. \ref{TP}.
 
 Note that, a period of $T$ slots is constructed as Line 1 where we try to \emph{find the smallest prime $\geq \frac{2}{\theta_i}$},
-then it is likely to make the duty cycle of each period smaller than the expected one. This can be easily solved by selecting some random slots to turn on the radio for listening in each period $T$ to conform to expected duty cycle.
+then it is likely to make the duty cycle of each period smaller than the expected one. This can be easily solved by selecting some random slots to turn on the radio for listening in each period $T$, to conform to the expected duty cycle.
 
 
 \begin{figure}[!h]
@@ -226,8 +226,8 @@ Otherwise, since the traversing point will traverse all the time slots once duri
 there exists a traversing point of $u_i$ and a fixed pointer
 of $u_j$ satisfying that both nodes turn on the radios simultaneously in every period of length $(T-1)T$; similarly a traversing point of $u_j$ and a fixed pointer of $i$ satisfying that they both turn on the radios.
 
-Thus for any pair of neighbor nodes ($u_i$, $u_j$), they turn on their radios for transmitting or listening for at least once in every period of length $T_iT_j$. Regarding
-the whole period $T_iT_j$ as a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta_i\theta_j})$ with high probability.
+Thus for any pair of neighbor nodes ($u_i$, $u_j$), they turn on their radios for transmitting or listening for at least once in every period of length $T_iT_j$. Considering
+the whole period $T_iT_j$ to be a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta_i\theta_j})$ with high probability.
 \end{IEEEproof}
 
 
