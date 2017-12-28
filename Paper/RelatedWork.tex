@@ -34,8 +34,8 @@ Existing neighbor discovery algorithms can be classified into two categories, de
 
 Deterministic algorithms adopt certain mathematic tools to ensure discovery between every two neighbors. The first tool is called quorum system~\cite{jiang2005quorum,luk1997two} : for any two intersected quorums, two neighboring nodes could choose any quorum in the system to design the discovery schedule. Hedis~\cite{chen2015heterogeneous} is a typical one. Another important tool is co-primality where two co-prime numbers are chosen by the neighbors to design the discovery schedule, and they can discover each other within a bounded latency by the Chinese Remainder Theorem~\cite{ding1996chinese}. Some representative algorithms are Disco~\cite{dutta2008practical}, U-Connect~\cite{kandhalu2010u}, and Todis~\cite{chen2015heterogeneous}. These algorithms hold an obvious advantage that they can guarantee fast discovery for two nodes within a bounded latency. 
 
-However, there are some weaknesses in these algorithms when applied to large-scale networks.
-Hedis {chen2015heterogeneous} only assumes when two nodes turn on the radio at the same time and they find each other. 
+However, there are some weaknesses in these deterministic algorithms when applied to large-scale networks.
+Hedis \cite{chen2015heterogeneous} only assumes when two nodes turn on the radio at the same time and they find each other. 
 But in reality neighbors play asymmetric roles that one is transmitting and the other is receiving.
 U-Connect~\cite{kandhalu2010u} consider the transmitting and receiving roles.
 However different from two-node scenario, collisions will happen when many nodes are transmitting simultaneously. 
