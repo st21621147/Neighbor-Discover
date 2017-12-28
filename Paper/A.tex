@@ -48,7 +48,7 @@ By computing the expected number of nodes, $u_i$ turn to be in transmitting stat
 \label{Alano}
 \begin{algorithmic}[1]
 %\STATE $\widetilde{n_i} = N\iint_{R_i} \varphi(x,y)\,dx\,dy$;
-\STATE Set tranmist probability $p_t^i := \frac{1}{\widetilde{n_i}+1}$, $t := 0$;  \label{pro}
+\STATE Set transmit probability $p_t^i := \frac{1}{\widetilde{n_i}+1}$, $t := 0$;  \label{pro}
 \WHILE {$t\leq T$}		\label{time}%Threshold 
 	\STATE Generate a random number $\epsilon \in (0,1)$;  
    	 \IF{$\epsilon < p_t$}
@@ -61,7 +61,7 @@ By computing the expected number of nodes, $u_i$ turn to be in transmitting stat
 \end{algorithmic}
 \end{algorithm}
 
-In the following parts, we first consider a general situation that nodes in the network are uniform distributed. We derive a proof that the probability chosen in Alano is the optimal one and show the discovery latency will not be much larger than its expectation. $T$ in Alg. \ref{Alano} Line \ref{time} is the time threshold and can be set as the latency bound. Then we analyze a more common situation that nodes obey Gaussian Distribution, we present an approximation analysis that the discovery latency is not be much larger than that of uniform distribution.
+In the following parts, we first consider a general situation that nodes in the network are uniform distributed. We derive a proof that the probability chosen in Alano is the optimal one and show the discovery latency will not be much larger than its expectation. $T$ in Alg. \ref{Alano} Line \ref{time} is the time threshold and can be set as the latency bound. Then we analyze a more common situation that nodes obey Gaussian Distribution, we present an approximation analysis that the discovery latency is not much larger than that of uniform distribution.
 
 
 \subsection{Analysis for Uniform Distribution}
@@ -146,7 +146,7 @@ where $H_n$ is the $n$-th Harmonic number, i.e., $H_n = lnn + \Theta(1)$. For a 
 \subsection{Analysis of Gaussian Distribution}
 \label{normal}
 %background
-Gaussian distribution is common adopted in wireless network. For instance, an intrusion detection application needs larger detection
+Gaussian distribution is commonly adopted in wireless network. For instance, an intrusion detection application needs larger detection
 probability around important entities\cite{wang2013gaussian}. We assume the positions of nodes obey 2D Gaussian distribution, and we present a theoretical proof that the discovery latency is not much larger than that of uniform distribution. Without loss of generality, we consider $(x,y) \sim N(0,1,0,1,0)$.
 
 \begin{theorem}

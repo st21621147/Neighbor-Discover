@@ -38,7 +38,7 @@ However, there are some weaknesses in these deterministic algorithms when applie
 Hedis \cite{chen2015heterogeneous} only assumes when two nodes turn on the radio at the same time and they find each other. 
 But in reality neighbors play asymmetric roles that one is transmitting and the other is receiving.
 U-Connect~\cite{kandhalu2010u} consider the transmitting and receiving roles.
-However different from two-node scenario, collisions will happen when many nodes are transmitting simultaneously. 
+However different from the two-node scenario, collisions will happen when many nodes are transmitting simultaneously. 
 Some deterministic algorithms propose a beacon-based transmission protocol.
 For example, Disco~\cite{dutta2008practical} assumes that a node has a capability to send a beacon (one or a few bits) at both beginning and end of an active time slot, and the assumption is adopted in 
 SearchLight~\cite{bakht2012searchlight}, and Hello~\cite{sun2014hello}.
@@ -56,7 +56,7 @@ birthday exceeds $\frac{1}{2}$ among $23$ people. Following that,
 smarter probabilistic algorithms are proposed, such as Aloha-like \cite{vasudevan2009neighbor, you2011aloha}, PND \cite{song2014probabilistic}. Particularly, Aloha-like \cite{vasudevan2009neighbor} does not consider the energy consumption, which is later extended to an energy-restricted network by \cite{you2011aloha}.
 
 The difference from deterministic algorithms is that,
-probabilistic algorithms show an significant strength for a network consisting of multiple nodes.
+probabilistic algorithms show a significant strength for a network consisting of multiple nodes.
 However, probabilistic algorithms only present an expectation discovery latency and they
 can not guarantee a good latency bound.
 In addition, most of the existing algorithms assume the network is a clique, which implies any two nodes are neighbors. 
