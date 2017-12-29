@@ -2,7 +2,7 @@
 \section{Evaluation}
 \label{Evaluation}
 
-In this section, we experimentally verify our basic analysis
+In this section, we experimentally verify our basic analysis.
 Then we evaluate the algorithms in simulated large-scale networks.
 
 \subsection{Experiments for Fundamental Observation}
@@ -124,7 +124,7 @@ The deterministic algorithms, Hello, Hedis and Searchlight, have high latency du
 
 We use discovery rate to evaluate Alano's quality.
 Discovery rate of a node $u_i$ is defined as the percentage of discovered neighbors over $u_i$'s all neighbors.
-In Fig. \ref{fig_timerate_large}, we increase the number of nodes from $500$ to $1000$ for the uniform distribution, and increase the number of nodes from $1000$ to $2000$ for the Gaussian distribution, the results show that Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions. It's remarkable that, the performance of Aloha-like is close to Alano in the Gaussian distribution. This is because a number of nodes gather around the center area which makes the network similar to a clique, and thus Aloha-like shows its strength.  
+In Fig. \ref{fig_timerate_large}, we increase the number of nodes from $500$ to $1000$ for the uniform distribution, and increase the number of nodes from $1000$ to $2000$ for the Gaussian distribution, the results show that Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions. In the uniform distribution, Aano achieves 80\% discovery rate twice as fast as Aloha-like. It's remarkable that, the performance of Aloha-like is close to Alano in the Gaussian distribution. This is because a number of nodes gather around the center area which makes the network similar to a clique, and thus Aloha-like shows its strength.  
 %Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because it is difficult for pure probabilistic algorithm to deal with the small amount of  undiscovered neighbors.
 
 

@@ -58,7 +58,7 @@ The protocol model is a popular one that enables the development of efficient al
 A node can only discover nodes that are within its range under the protocol model. In a large-scale network, two nodes may not be connected directly and we call two nodes connected by one-hop communication as \emph{neighbors}. Thus, a large-scale network is always \emph{partially-connected}, contrary to a fully-connected network in which any two nodes are neighbors.
 
 \textbf{Energy-restricted:}
-A node in the network has limited energy, and can turn on or off its radio to save energy~\cite{dunkels2011contikimac}. When a node turns on the radio, it can transmit a message including its identifier (ID), or listen on the channel to receive a neighbor's message.
+A node in the network has limited energy, and can turn on or off its radio to save energy~\cite{dunkels2011contikimac, zhang2017performance}. When a node turns on the radio, it can transmit a message including its identifier (ID), or listen on the channel to receive a neighbor's message.
 
 Technically speaking, we assume an energy-restricted large-scale network consisting of $N$ nodes as set $U=\{u_1,u_2,\ldots,u_N\}$.  Nodes are distributed in a large area and they can communicate through a fixed wireless channel. We assume the locations of the nodes obey some distributions, such as uniform distributions and Gaussian distribution\cite{wang2013gaussian}.
 Suppose a node has a fixed communication range $\Delta$ and two nodes $u_i, u_j$ are neighbors if their distance suits $d(u_i, u_j) \leq \Delta$. We can use a symmetric matrix $M_{N\times N}$ to represent nodes' neighboring relations as:
