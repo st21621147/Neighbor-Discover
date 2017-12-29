@@ -93,6 +93,19 @@ The deterministic algorithms, Hello, Hedis and Searchlight, have high latency du
 
 
 
+\begin{figure}[!h]
+
+\subfigure[Symmetric Nodes in Uniform Distribution]{\includegraphics[width=1.65in]{Figure/rate_uniform1}}
+\hspace{0.01in}
+\subfigure[Symmetric Nodes in Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/rate_normal1}}
+\hspace{0.01in}
+\subfigure[Asymmetric Nodes in Uniform Distribution]{\includegraphics[width=1.65in]{Figure/rate_local_uniform1}}
+\hspace{0.01in}
+\subfigure[Asymmetric Nodes in Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/rate_local_normal1}}
+\caption{Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions.}
+\label{fig_timerate_large}
+\end{figure}
+
 \subsubsection{Quality-Discovery Rate}
 
 % \begin{figure}[!h]
@@ -111,18 +124,7 @@ The deterministic algorithms, Hello, Hedis and Searchlight, have high latency du
 
 % Fig. \ref{fig_timerate} shows Alano with either global or local duty cycle, has higher discovery rate during the whole course of neighbor discovery in both uniform and normal distribution. The deterministic algorithms Hello, Hedis and Searchlight cannot discover all channels, because of the occurence of collisions. Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because it is difficult for pure probabilistic algorithm to deal with the small amount of undiscovered neighbors.
 
-\begin{figure}[!h]
 
-\subfigure[Symmetric Nodes in Uniform Distribution]{\includegraphics[width=1.65in]{Figure/rate_uniform1}}
-\hspace{0.01in}
-\subfigure[Symmetric Nodes in Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/rate_normal1}}
-\hspace{0.01in}
-\subfigure[Asymmetric Nodes in Uniform Distribution]{\includegraphics[width=1.65in]{Figure/rate_local_uniform1}}
-\hspace{0.01in}
-\subfigure[Asymmetric Nodes in Gaussian Distribution]{\includegraphics[width=1.65in]{Figure/rate_local_normal1}}
-\caption{Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions.}
-\label{fig_timerate_large}
-\end{figure}
 
 
 We use discovery rate to evaluate Alano's quality.
