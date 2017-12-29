@@ -147,15 +147,6 @@ Thus the latency bound can not be larger.
 Considering a more practical network where nodes can adjust their duty cycles, we present a traversing pointer method to synchronize time slots that nodes are in transmitting or listening state for asymmetric nodes.
 
 
-For a more practical scenario, the nodes in a wireless sensor networks
-for instance, are assigned to diverse tasks such as temperature measurement,
-sunshine collection, etc., and thus ought to have asymmetric capability of
-battery-management with local duty cycle $\theta_i$.
-
-Suppose the duty cycle of node $u_i$ is $\theta_i$, we present a traversing pointer based Alano (TP-Alano) algorithm as Alg. \ref{P-ND}.
-In each period of $T$ slots, a node turns on its radio in two different time slots, one of which is the
-first slot of each period and the other one is a traversing slot that changes from period to period (as described in Line. \ref{P-NDline1}).
-
 %Prime Based Neighbor Discovery Algorithm
 \begin{algorithm}[!h]
 \caption{Traversing Pointer Based Alano Algorithm}
@@ -175,6 +166,18 @@ first slot of each period and the other one is a traversing slot that changes fr
 \end{algorithmic}
 \end{algorithm}
 
+
+For a more practical scenario, the nodes in a wireless sensor networks
+for instance, are assigned to diverse tasks such as temperature measurement,
+sunshine collection, etc., and thus ought to have asymmetric capability of
+battery-management with local duty cycle $\theta_i$.
+
+Suppose the duty cycle of node $u_i$ is $\theta_i$, we present a traversing pointer based Alano (TP-Alano) algorithm as Alg. \ref{P-ND}.
+In each period of $T$ slots, a node turns on its radio in two different time slots, one of which is the
+first slot of each period and the other one is a traversing slot that changes from period to period (as described in Line. \ref{P-NDline1}).
+
+
+
 We call the first time slot of each period as \emph{fixed pointer} and the traversing
 slot as \emph{traversing point}. The pointers are designed to guarantee that nodes $u_i, u_j$
 could turn on their radio simultaneously in very period of length $T_i T_j$. A sketch of the pointers is described in Fig. \ref{TP}.
@@ -185,7 +188,7 @@ then it is likely to make the duty cycle of each period smaller than the expecte
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=3in]{./Figure/TP}
+\includegraphics[width=2.6in]{./Figure/TP}
 \caption{A sketch of TP construction in Alg. \ref{P-ND}}
 \label{TP}
 \end{figure}
