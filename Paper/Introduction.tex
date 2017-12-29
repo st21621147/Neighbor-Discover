@@ -44,7 +44,8 @@ We conduct experiments for fundamental observation and confirm this issue. We de
 %collisions caused by simultaneous transmissions result in the waste of time and energy. 
 %We consider a large-scale network with 2000 nodes obeying a uniform distribution. 
 As the number of neighbors increased, collisions of Hedis \cite{chen2015heterogeneous} happened as frequently as 10.1\% to 19.96\%, which called the CSMA \cite{bianchi1996performance} in MAC layer to wait for a random time. Hello \cite{sun2014hello} utilized beacon mechanism to avoid collisions but the time slot was 40 times larger and it resulted in 10 times higher latency.  Aloha-like \cite{you2011aloha} showed a high idle rate (none of the neighbors are transmitting) as 18.92\% of the time, which reduced the collisions excessively.  %and still results in a high latency. %This is the same with CSMA \cite{bianchi1996performance}, a general collision avoidance  technique in networks, the idle rate of which is XX\% by simulations. 
-That is because of failing to deal with collisions, these algorithms waste time and energy, and cannot achieve low latency and energy efficiency at the same time.
+%That is because of failing to deal with collisions, these algorithms waste time and energy, and cannot achieve low latency and energy efficiency at the same time.
+That is, these algorithms could not achieve low latency and energy efficiency at the same time since they failed to deal with collisions effectively. %Such failure also costed time and energy. 
 
 Our key idea is that, by estimating the expected number of neighbors of a node and synchronizing the time it turns on the radio with its neighbors, 
 we can achieve both low-latency and energy-efficiency for neighbor discovery. 

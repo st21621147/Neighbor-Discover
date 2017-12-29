@@ -65,6 +65,7 @@ mcglynn2001birthday, song2014probabilistic, vasudevan2009neighbor}.
 
 We evaluated Alano, Aloha-like~\cite{you2011aloha}, Hello~\cite{sun2014hello}, Hedis~\cite{chen2015heterogeneous}, and Searchlight~\cite{bakht2012searchlight} in the generated networks. %Besides, we evaluated G-Nihao(we choose the best parameters, $m=n$, $\alpha=0.054$)~\cite{qiu2016talk}, but $500$ symmetric nodes in uniform distribution can only discover $2\%$ neighbors, which is worse than other $3$ deterministic algorithms we choose. Thus, we didn't show its result in our figures.
 %Hedis only has two states $\{ON, OFF\}$ (representing the radio is on or off). To make the comparison more fair, we assume that when a node is in $\{ON\}$ state, it transmits or listens with equal probability $0.5$. 
+Since the neighbor discovery process will be stopped by CSMA after several failures, we set a latency threshold.
 Hello and Searchlight has a beacon transmission of $0.54ms$ at the beginning and end of each slot, and a beacon makes up about $1/40$ of a slot, so we divide each $\{ON\}$ slot into $40$ mini-slots, and the node transmits at the first and last mini-slot, and listens in other mini-slots.
 In the following parts, we show that Alano has lower latency, higher discovery rate, and better scalability. %, and better robustness.
 
@@ -82,12 +83,14 @@ In the following parts, we show that Alano has lower latency, higher discovery r
 \label{fig_latency}
 \end{figure}
 
+
 When nodes follow uniform distribution, we show the discovery latency comparison for both symmetric nodes and asymmetric nodes in Fig. \ref{fig_latency}(a).
-From the figure, Alano achieves $54.64\%$ to $1.95$ times lower discovery latency for symmetric nodes, and $85.25\%$ to $2.91$ times lower discovery latency for asymmetric nodes.
+From the figure, Alano achieves $54.64\%$ to $1.95$ times lower discovery latency for symmetric nodes, and $85.25\%$ to $2.91$ times lower discovery latency for asymmetric nodes. 
 When nodes follow Gaussian distribution, as depicted in Fig. \ref{fig_latency}(b), 
 Alano achieves $31.35\%$ to $1.21$ times lower discovery latency for symmetric nodes, 
 and $45.94\%$ to $1.88$ times lower discovery latency for asymmetric nodes.
 The deterministic algorithms, Hello, Hedis and Searchlight, have high latency due to either collisions or larger time slots. 
+
 
 
 \subsubsection{Quality-Discovery Rate}
@@ -124,7 +127,7 @@ The deterministic algorithms, Hello, Hedis and Searchlight, have high latency du
 
 We use discovery rate to evaluate Alano's quality.
 Discovery rate of a node $u_i$ is defined as the percentage of discovered neighbors over $u_i$'s all neighbors.
-In Fig. \ref{fig_timerate_large}, we increase the number of nodes from $500$ to $1000$ for the uniform distribution, and increase the number of nodes from $1000$ to $2000$ for the Gaussian distribution, the results show that Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions. In the uniform distribution, Aano achieves 80\% discovery rate twice as fast as Aloha-like. It's remarkable that, the performance of Aloha-like is close to Alano in the Gaussian distribution. This is because a number of nodes gather around the center area which makes the network similar to a clique, and thus Aloha-like shows its strength.  
+In Fig. \ref{fig_timerate_large}, we increase the number of nodes from $500$ to $2000$ for the uniform distribution, and increase the number of nodes from $1000$ to $3000$ for the Gaussian distribution, the results show that Alano has higher discovery rate during the whole process for both uniform and Gaussian distributions. In the uniform distribution, Aano achieves 90\% discovery rate twice as fast as Aloha-like. It's remarkable that, the performance of Aloha-like is close to Alano in the Gaussian distribution. This is because a number of nodes gather around the center area which makes the network similar to a clique, and thus Aloha-like shows its strength.  
 %Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because it is difficult for pure probabilistic algorithm to deal with the small amount of  undiscovered neighbors.
 
 
