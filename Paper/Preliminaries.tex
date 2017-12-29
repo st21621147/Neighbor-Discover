@@ -52,10 +52,10 @@ We introduce three important factors in an energy-restricted large-scale network
 
 \textbf{Communication:}
 When multiple nodes communicate simultaneously, transmission may fail due to the communicational interference. We adopt the protocol model (also called graph model, unit-disk model\cite{moscibroda2006complexity, wang2015connectivity}) to describe the process, which assumes a node $u_i$ can receive $u_j$'s message successfully if $u_j$ is the only transmitter that is within $u_i$'s communication range.
-The protocol model is a popular one that enables the development of efficient algorithms for crucial networking problems. Some other models, such as the signal to interference plus noise ratio (\emph{SINR}) model, are more complicated and lack good algorithmic features. In addition, it is shown that these models can be transformed to the protocol model by particular means in \cite{lebhar2009unit}.
+The protocol model is a popular one that enables the development of efficient algorithms for crucial networking problems. Some other models, such as the signal to interference plus noise ratio (\emph{SINR}) model, are more complicated and lack good algorithmic features. In addition, it is shown that these models can be transformed to the protocol model by particular means in \cite{lebhar2009unit, halldorsson2015well}.
 
 \textbf{Network connectivity:}
-A node can only discover nodes that are within its range under the protocol model. In a large-scale network, two nodes may not be connected directly and we call two nodes connected by one-hop communication as \emph{neighbors}. Thus, a large-scale network is always \emph{partially-connected}, contrary to a fully-connected network in which any two nodes are neighbors.
+A node can only discover nodes that are within its range under the protocol model. In a large-scale network, two nodes may not be connected directly and we call two nodes connected by one-hop communication as \emph{neighbors}. %Thus, a large-scale network is always \emph{partially-connected}, contrary to a fully-connected network in which any two nodes are neighbors.
 
 \textbf{Energy-restricted:}
 A node in the network has limited energy, and can turn on or off its radio to save energy~\cite{dunkels2011contikimac, zhang2017performance}. When a node turns on the radio, it can transmit a message including its identifier (ID), or listen on the channel to receive a neighbor's message.
