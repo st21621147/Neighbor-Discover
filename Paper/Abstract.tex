@@ -1,5 +1,6 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
+\iffalse
 \begin{abstract}
 
 Neighbor discovery is a fundamental step in constructing wireless sensor networks and many algorithms have been proposed to minimize discovery latency. However, few of them can be applied to an energy-restricted large-scale network, which is more appealing and promising due to the development of intelligent devices. 
@@ -7,6 +8,12 @@ In an energy-restricted large-scale network, a node has limited power supply and
 
 In this paper, we propose Alano, a nearly optimal algorithm for a large-scale network on the basis of nodes' distributions.
 When nodes have same energy constraints, we modify Alano by Relaxed Difference Set (RDS) (denote as RDS-Alano); while we present a Traversing Pointer (TP) based Alano (denote as TP-Alano) when the energy constraints are different. We compare Alano with the state-of-the-art algorithms through extensive evaluations, and the results show that Alano achieves at least $31.35\%$ lower discovery latency and it has higher performance regarding quality (discovery rate) and scalability.% and robustness.
+\end{abstract}
+\fi
+
+\begin{abstract}
+
+Neighbor discovery is a fundamental step in constructing wireless sensor networks and many algorithms have been proposed to minimize the latency of the implementation. Recent development of intelligent devices call for new algorithms, which are subject to energy restrictions. In energy-restricted large-scale networks, a node has limited power supply and can only discover nodes within its range. Additionally, the discovery process may fail if surplus communication exists on the wireless channel. These factors make neighbor discovery a very challenging task and only few of the proposed neighbor discovery algorithms can be applied to energy-restricted large-scale networks. In this paper, we propose Alano, a nearly optimal algorithm for a large-scale network on the basis of nodes' distributions. When nodes have same energy constraints, we modify Alano by Relaxed Difference Set (RDS), while we present a Traversing Pointer (TP) based Alano in case that the energy constraints are different. Besides, we compare Alano with the state-of-the-art algorithms through extensive evaluations, and the results show that Alano achieves at least $31.35\%$ lower discovery latency and it has higher performance regarding quality (discovery rate) and scalability.
 \end{abstract}
 
 % no keywords
