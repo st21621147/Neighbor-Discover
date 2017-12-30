@@ -41,7 +41,8 @@ large-scale scenario, where nodes are aware of their energy consumption and
 are connected via a multi-hop network.
 
 Despite extensive research, neighbor discovery in a large-scale network
-remains an open problem.??
+%remains an open problem.??
+remains a problem that is not fully solved.
 Existing algorithms can be classified into two categories: deterministic, and probabilistic.
 The algorithms presented in
 Refs.~\cite{dutta2008practical, kandhalu2010u, bakht2012searchlight,
@@ -69,11 +70,12 @@ To address the problems identified above, we looked into the existing
 neighbor discovery algorithms and found that the key issue lies in the
 way collisions are dealt with in large-scale networks.
 %(collisions result in CSMA \cite{bianchi1996performance} to wait for more time).
-This issue is due to three reasons.???
+%This issue is due to three reasons.???
+There are three aspects to this issue.
 First, transmission signals fade with distance and simultaneous
 transmissions will cause collisions. %among various nodes.
 Deterministic algorithms aiming at two nodes \cite{kandhalu2010u,
-chen2015heterogeneous} fail to reduce??? such collisions. Some beacon-based
+chen2015heterogeneous} fail to reduce such collisions. Some beacon-based
 algorithms \cite{dutta2008practical, bakht2012searchlight, sun2014hello,
 qiu2016talk} do not have this problem but their time slot is 40 times
 larger \cite{kandhalu2010u} and therefore resulting in long latency. 
@@ -139,7 +141,7 @@ algorithm (called TP-Alano).
 
 In the simulations, we have found that Alano achieves $31.35\%$ to $ 85.25\%$
 lower latency, higher discovery rate, and better scalability in large
-scale networks.??? %, and robustness,
+scale networks. %, and robustness,
 In comparison with the state-of-the-art algorithms \cite{you2011aloha, sun2014hello, chen2015heterogeneous, bakht2012searchlight}
 Alano reaches nearly $100\%$ discovery in twice as fast a speed. 
 When the number of nodes increases from 1000 to 9000, 
@@ -170,8 +172,9 @@ highlights the related works and their unsolved problems.
 Section \ref{sectionmodel} presents
 the system model and basic definitions.
 We introduce Alano and show the
-method to combine nodes' distribution in Section \ref{PCN}.??? We propose
-two modified??? algorithms (RDS-Alano, TP-Alano) for an energy-restricted
-large-scale network for both??? symmetric and asymmetric nodes in Section
+method to combine the nodes' distribution in the design
+in Section \ref{PCN}. We propose
+two modified algorithms (RDS-Alano, TP-Alano) for an energy-restricted
+large-scale network for both symmetric and asymmetric nodes in Section
 \ref{EEN}. The simulation results are given and discussed in Section
 \ref{Evaluation}, and we conclude the paper in Section \ref{Conclusion}.
