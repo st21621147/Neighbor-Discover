@@ -30,45 +30,73 @@
 
 
 
-Existing neighbor discovery algorithms can be classified into two categories, deterministic algorithms and probabilistic algorithms.
+Existing neighbor discovery algorithms can be classified into two
+categories: deterministic algorithms and probabilistic algorithms.
 
-Deterministic algorithms adopt certain mathematic tools to ensure discovery between every two neighbors. The first tool is called quorum system~\cite{jiang2005quorum,luk1997two} : for any two intersected quorums, two neighboring nodes could choose any quorum in the system to design the discovery schedule. Hedis~\cite{chen2015heterogeneous} is a typical one. Another important tool is co-primality where two co-prime numbers are chosen by the neighbors to design the discovery schedule, and they can discover each other within a bounded latency by the Chinese Remainder Theorem~\cite{ding1996chinese}. Some representative algorithms are Disco~\cite{dutta2008practical}, U-Connect~\cite{kandhalu2010u}, and Todis~\cite{chen2015heterogeneous}. These algorithms hold an obvious advantage that they can guarantee fast discovery for two nodes within a bounded latency. 
+Deterministic algorithms adopt certain mathematical tools to ensure
+discovery between every two neighbors. The first tool is the quorum
+system~\cite{jiang2005quorum,luk1997two}: for any two intersected
+quorums, two neighboring nodes could choose any quorum in the system to
+design the discovery schedule. Hedis~\cite{chen2015heterogeneous} is a
+typical one. Another important tool is co-primality where two co-prime
+numbers are chosen by the neighbors to design the discovery schedule,
+and they can discover each other within a bounded latency by the Chinese
+Remainder Theorem~\cite{ding1996chinese}. Some representative algorithms
+are Disco~\cite{dutta2008practical}, U-Connect~\cite{kandhalu2010u}, and
+Todis~\cite{chen2015heterogeneous}. These algorithms have the obvious
+advantage that they can guarantee fast discovery for two nodes within a
+bounded latency.
 
-However, there are some weaknesses in these deterministic algorithms when they are applied to large-scale networks.
-Hedis \cite{chen2015heterogeneous} only assumes that when two nodes turn on the radio at the same time and then they find each other. 
-Hoverve, in reality, neighbors play asymmetric roles that one is transmitting and the other is receiving.
+However, there are weaknesses in these deterministic algorithms when they are applied to large-scale networks.
+Hedis \cite{chen2015heterogeneous} only assumes that only when two nodes
+turn on the radio at the same time can they they then find each other.
+However, in reality, neighbors play asymmetric roles and one is
+transmitting while the other one is receiving.
 U-Connect~\cite{kandhalu2010u} considers the transmitting and receiving roles.
 Nevertheless, different from the two-node scenario, collisions will happen when many nodes are transmitting simultaneously. 
 Some deterministic algorithms propose a beacon-based transmission protocol.
-For example, Disco~\cite{dutta2008practical} assumes that a node has a capability to send a beacon (one or a few bits) at both the beginning and the end of an active time slot, and the assumption is adopted in 
-SearchLight~\cite{bakht2012searchlight}, Hello~\cite{sun2014hello}, and Nihao~\cite{qiu2016talk}.
-Under this assumption, the listening time slot is much larger than the transmitting time slot and collisions can be well avoided.
+For example, Disco~\cite{dutta2008practical} assumes that a node has a
+capability to send a beacon (comprising one or a few bits) at both the beginning
+and the end of an active time slot, and the assumption is adopted in 
+SearchLight~\cite{bakht2012searchlight}, Hello~\cite{sun2014hello}, and
+Nihao~\cite{qiu2016talk}.
+Under this assumption, the listening time slot is much larger than the
+transmitting time slot and collisions can thus be avoided.
 Nevertheless, this mechanism makes a complete slot 
-40 times larger than that of U-Connect~\cite{kandhalu2010u} and thus cannot promise an ideal discovery latency.
-%Under the assumption, these algorithms could guarantee discovery between two nodes within an ideal latency. But sending a beacon may not work well in a large-scale network since a node needs to distinguish its neighbors by the received messages, which implies a transmitted package should contain the sender node's information\cite{zhou2004impact}. 
-
+40 times larger than that of U-Connect~\cite{kandhalu2010u} and thus cannot
+promise a reasonable discovery latency.
+%Under the assumption, these algorithms could guarantee discovery
+%between two nodes within an ideal latency. But sending a beacon may not
+%work well in a large-scale network since a node needs to distinguish
+%its neighbors by the received messages, which implies a transmitted
+%package should contain the sender node's
+%information\cite{zhou2004impact}.
 
 Another category is probabilistic algorithms \cite{mcglynn2001birthday,
-vasudevan2009neighbor,you2011aloha,song2014probabilistic} which utilize probability techniques to promote the randomness
-of discovering the neighbors. 
+vasudevan2009neighbor,you2011aloha,song2014probabilistic} which utilize
+probability techniques to inject randomness into the discovery process. 
 Birthday protocol \cite{mcglynn2001birthday} is one of the earliest algorithms that works on the birthday
 paradox, i.e. the probability that two people have the same
 birthday exceeds $\frac{1}{2}$ among $23$ people. Following that,
-smarter probabilistic algorithms are proposed, such as Aloha-like \cite{vasudevan2009neighbor, you2011aloha}, PND \cite{song2014probabilistic}. Particularly, Aloha-like \cite{vasudevan2009neighbor} does not consider the energy consumption, which is later extended to an energy-restricted network by \cite{you2011aloha}.
+smarter probabilistic algorithms are proposed, such as an Aloha-like
+algorithm \cite{vasudevan2009neighbor, you2011aloha}, PND
+\cite{song2014probabilistic}. Particularly, the Aloha-like algorithm
+\cite{vasudevan2009neighbor} does not consider energy consumption,
+which was later extended to an energy-restricted network by
+\cite{you2011aloha}.
 
 Unlike deterministic algorithms,
-probabilistic algorithms show a significant strength for a network consisting of multiple nodes.
-However, probabilistic algorithms only present an expectation discovery latency and they
-can not guarantee a good latency bound.
+probabilistic algorithms show significant strength for a network consisting of multiple nodes.
+However, probabilistic algorithms can only give an expectation for the
+discovery latency and cannot guarantee a good latency bound.
 In addition, most of the existing algorithms assume the network is a clique, which implies any two nodes are neighbors. 
-This assumption can hardly depict a large-scale network due to the limited communication range of a node.
-Some work adopts the received signal strength to decide how far a node can transmit~\cite{daiya2011experimental}, and in the protocol model, it is simplified that two nodes can communicate if their distance is no larger than a threshold.
+This assumption can hardly match the situation of a large-scale network.
+%due to the limited communication range of a node.
+Some work uses the received signal strength to decide how far a node
+can transmit~\cite{daiya2011experimental}, and in the protocol model,
+this is simplified to be that two nodes can communicate if their distance is no
+larger than a threshold.
 
 
 %We implement some probabilistic protocols for a large-scale network and the results show that they have a poor performance (see Section \ref{Evaluation}).
 %To the best of our knowledge, neither deterministic nor probabilistic algorithms have good performance when they are adopted in an energy-restricted large-scale network.
-
-
-
-
-
