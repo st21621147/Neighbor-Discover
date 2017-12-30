@@ -7,21 +7,29 @@
 %Temperature 			#flammini2007real
 
 %background and instances
-In large-scale networks, nodes are not fully-connected and thus communications may fail due to concurrent transmissions. 
-When we do not consider the energy constraints of nodes, we propose a nearly optimal algorithm for a large-scale network, which implies $\theta_i = 1$ for all node $u_i$.
-Suppose the locations of nodes obey some distribution, we propose Alano algorithm and analyze its performance for two common used distribution (uniform distribution and Gaussian distribution).
+In large-scale networks, nodes are not fully-connected and thus
+communications may fail due to concurrent transmissions.
+When not considering the energy constraints of nodes, we propose a
+nearly optimal algorithm for a large-scale network, which implies
+$\theta_i = 1$ for all node $u_i$.
+Supposing the locations of nodes obey some distribution, we propose the Alano
+algorithm and analyze its performance for two commonly used distribution
+(uniform distribution and Gaussian distribution).
 
 \subsection{Alano Algorithm}
-Suppose the locations of nodes obey some distribution and each node $u_i$ is aware of its position coordinates $(x_i, y_i)$.
+Suppose the locations of nodes obey some distribution and each node
+$u_i$ is aware of its position $(x_i, y_i)$.
 Then $u_i$ could compute its local density by the following general function: % \cite{meester1996continuum, wang2015connectivity}.
 $$f(x,y)=
 \begin{cases}
 \varphi(x,y)& (x,y)\in D\\
 0& (x,y)\notin D
 \end{cases}$$
-where $(x,y)$ is a position coordinate, and $D$ is the network covering area.
+where $(x,y)$ is the position's coordinates,
+and $D$ is the network covering area.
 %For each node $u_i$ with position $(x_i,y_i)$, T
-Denote the range of $u_i$'s neighbors' positions as $R_i$,  and any neighbor with coordinates $(x,y) \in R_i$ suits:
+Denote the range of $u_i$'s neighbors' positions as $R_i$, and any
+neighbor with coordinates $(x,y) \in R_i$ suits:
 $$
 (x-x_i)^2+(y-y_i)^2 \leq \Delta^2.
 $$
@@ -30,7 +38,8 @@ $$
 \widetilde{n_i} = N\iint_{R_i} f(x,y)\,dx\,dy - 1.
 $$
 
-In a large-scale network, we ignore the boundary area of the network.  %and assume nodes in the network are of an enormous quantity. 
+In a large-scale network, we ignore the boundary area of the network.
+%and assume nodes in the network are of an enormous quantity.
 Note that, when the network covering area $D$ is much larger than the area $R_i$ of node $u_i$, we have:
 \begin{equation}
 \label{eqnNB}
@@ -40,7 +49,7 @@ Note that, when the network covering area $D$ is much larger than the area $R_i$
 
 %Alano
 We present \textbf{Alano}, a randomized algorithm for node $u_i$ in Alg. \ref{Alano}.
-By computing the expected number of nodes, $u_i$ turn to be in transmitting state or listening state according to the generated probability in Line \ref{pro}.
+By computing the expected number of nodes, $u_i$ enters transmitting state or listening state according to the generated probability in Line \ref{pro}.
 
 
 \begin{algorithm}
@@ -61,14 +70,24 @@ By computing the expected number of nodes, $u_i$ turn to be in transmitting stat
 \end{algorithmic}
 \end{algorithm}
 
-In the following parts, we first consider a general situation that nodes in the network are uniform distributed. We derive a proof that the probability chosen in Alano is the optimal one and show the discovery latency will not be much larger than its expectation. $T$ in Alg. \ref{Alano} Line \ref{time} is the time threshold and can be set as the latency bound. Then we analyze a more common situation that nodes obey Gaussian Distribution, we present an approximation analysis that the discovery latency is not much larger than that of uniform distribution.
+In the following, we first consider a general situation that nodes
+in the network are uniformly distributed. We derive a proof that the
+probability chosen in Alano is the optimal one and show that the discovery
+latency will not be much larger than its expectation. $T$ in Alg.
+\ref{Alano} Line \ref{time} is the time threshold and can be set as the
+latency bound. Then we analyze a more common situation where nodes obey
+the Gaussian Distribution; we present an approximation analysis showing that the
+discovery latency is not much larger than that of the uniform distribution.
 
 
 \subsection{Analysis for Uniform Distribution}
 \label{uniform}
 %background
-Uniform distribution is basically used in deployment of wireless networks.
-For instance, to monitor an unknown area, many sensors are deployed uniformly to collect information, such as temperature and humidity \cite{flammini2007real}. The nodes are evenly deployed and the density function is:
+Uniform distribution is used in most deployments of wireless networks.
+For instance, to monitor an unknown area, many sensors are deployed
+uniformly to collect information, such as temperature and humidity
+\cite{flammini2007real}. The nodes are evenly deployed and the density
+function is:
 $$f(x)=
 \begin{cases}
 \frac{1}{A}& (x,y)\in D\\
@@ -81,7 +100,6 @@ Alg. \ref{Alano} achieves optimal discovery latency for uniform distribution by 
 \end{lemma}
 \begin{IEEEproof}
 For any two nodes $u_i$ abd $u_j$ in the uniform distribution, we get $\widetilde{n_i} = \widetilde{n_j} = \widetilde{n}$ and $p_t^j = p_t^ i = p_t = \frac{1}{\widetilde{n}+1}$.
-
 
 
 From Alg. \ref{Alano}, the probability that node $u_i$ discovers a specific neighbor (such as $u_j$) successfully in a time slot (denote as $p_s$) is:
@@ -105,8 +123,13 @@ Alg. \ref{Alano} discovers all neighbors for node $u_i$ within $T=\Theta(n\ln n)
 \end{theorem}
 \begin{IEEEproof} First, we show that the expected discovery latency of a node $u_i$ is bounded by $O(n\ln n)$.
 
-Let $W$ be a random variable that denotes the time a node spends discovering all neighbors. Denote $W_j$ as a random variable representing the cost number of the time slots to discover a new neighbor after $j-1$ neighbors have been discovered. It is easy to check that $W_j$ follows Geometric distribution with parameter $p(j)$ where $p(j)=(\widetilde{n}-j+1)p_s$ \cite{Motwani1995Randomized}. The expectation
-of $W_j$ can be computed as:
+Let $W$ be a random variable that denotes the time a node spends
+discovering all neighbors. Denote $W_j$ as a random variable
+representing the cost number of the time slots to discover a new
+neighbor after $j-1$ neighbors have been discovered. It is easy to check
+that $W_j$ follows a geometric distribution with parameter $p(j)$ where
+$p(j)=(\widetilde{n}-j+1)p_s$ \cite{Motwani1995Randomized}. The
+expectation of $W_j$ can be computed as:
 $$
 E[W_j]=\frac{1}{p(j)}=\frac{1}{(\widetilde{n}-j+1)p_s}.
 $$
@@ -117,9 +140,9 @@ E[W] = \sum_{j=1}^{\widetilde{n}}E[W_j] \approx (\widetilde{n}+1)e(\ln (\widetil
 $$
 Thus the expected discovery latency is bounded by $O(n\ln n)$.
 
-Then, we show that node $u_i$ can discovery all neighbors bounded by $O(n\ln n)$ time slots.
+Then, we show that node $u_i$ can discover all neighbors bounded by $O(n\ln n)$ time slots.
 
-Since $W_j$ follows Geometric distribution, $Var[W_j]=\frac{1-p_j}{p_j^2}$, and the variance of discovery latency of $W$ is computed as:
+Since $W_j$ follows a geometric distribution, $Var[W_j]=\frac{1-p_j}{p_j^2}$, and the variance of discovery latency of $W$ is computed as:
 \begin{displaymath}
 \begin{split}
  Var[W] %& =Var[\sum_{j=1}^{p_nN}W_j]=\sum_{j=1}^{p_nN}Var[W_j]+\sum_{j\ne k}Cov[W_j,W_k] \\
@@ -129,7 +152,7 @@ Since $W_j$ follows Geometric distribution, $Var[W_j]=\frac{1-p_j}{p_j^2}$, and 
 \end{split}
 \end{displaymath}
 
-By \emph{Chebyshev's inequality}, the probability that the discovery latency is $2$ times larger than the expectation is
+By the \emph{Chebyshev's inequality}, the probability that the discovery latency is $2$ times larger than the expectation is
 \begin{displaymath}
 \begin{split}
 P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
@@ -138,23 +161,35 @@ P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
 \le\frac{\pi^2}{6H_{n}^2}-\frac{p_{s}}{H_n}.
 \end{split}
 \end{displaymath}
-where $H_n$ is the $n$-th Harmonic number, i.e., $H_n = lnn + \Theta(1)$. For a large $n$, $P[W\ge2E[W]]$ is close to $0$. That is, the time for a node to discover all neighbors is very likely to be smaller than $2$ times of the expectation. Therefore, $W$ is also bounded by $O(n\ln n)$ with high probability.
+where $H_n$ is the $n$-th Harmonic number, i.e., $H_n = lnn +
+\Theta(1)$. For a large $n$, $P[W\ge2E[W]]$ is close to $0$. That is,
+the time for a node to discover all neighbors is very likely to be
+smaller than $2$ times of the expectation. Therefore, $W$ is also
+bounded by $O(n\ln n)$ with high probability.
 \end{IEEEproof}
-
 
 
 \subsection{Analysis of Gaussian Distribution}
 \label{normal}
 %background
-Gaussian distribution is commonly adopted in wireless network. For instance, an intrusion detection application needs larger detection
-probability around important entities\cite{wang2013gaussian}. We assume the positions of nodes obey 2D Gaussian distribution, and we present a theoretical proof that the discovery latency is not much larger than that of uniform distribution. Without loss of generality, we consider $(x,y) \sim N(0,1,0,1,0)$.
+The Gaussian distribution is getting more commonly adopted in wireless
+networks, such as in
+an intrusion detection application which needs a larger detection
+probability around important entities\cite{wang2013gaussian}. We assume
+the positions of nodes obey a 2D Gaussian distribution, and we present a
+theoretical proof that the discovery latency is not much larger than
+that of the uniform distribution. Without loss of generality, we consider
+$(x,y) \sim N(0,1,0,1,0)$.
 
 \begin{theorem}
 Alg. \ref{Alano} discovers all neighbors for node $u_i$ within $T=\Theta(n\ln n)$ time slots with high probability.
 \end{theorem}
 
 \begin{IEEEproof}
-Denote the approximate neighbors of node $u_i$ as set $S_i = \{u_j | d(u_i, u_j) \leq \Delta \}$. When nodes obey Gaussian distribution, the probability that node $u_i$ discovers a certain neighbor node $u_{j}$ successfully in a time slot (denote as $p_{s}$) can be formulated as:
+Denote the approximate neighbors of node $u_i$ as set $S_i = \{u_j |
+d(u_i, u_j) \leq \Delta \}$. When nodes obey the Gaussian distribution, the
+probability that node $u_i$ discovers a certain neighbor node $u_{j}$
+successfully in a time slot (denote as $p_{s}$) can be formulated as:
 $$
 p_{s}^i = (1-p_t^i) \cdot p_t^{j} \cdot \prod_{u_j \in S_i, u_j \neq u_k}(1-p_t^{k}).
 $$
@@ -200,7 +235,5 @@ $$
 
 Thus $E[W]$ can be bounded within $O(n\ln n)$ time slots with high probability.
 Similarly the bounded latency can be proved to be $W=O(n\ln n)$ by \emph{Chebyshev's inequality} in the same way as
-uniform distribution.
+the uniform distribution.
 \end{IEEEproof}
-
-
