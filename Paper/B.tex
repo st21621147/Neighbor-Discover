@@ -3,12 +3,18 @@
 \section{Modified Alano for An Energy-Restricted Network}
 \label{EEN}
 %wireless sensor networks: duty cycle
-In an energy-restricted network, nodes have limited energy and designing duty schedule for a node needs to take its duty cycle into account. Obviously, a lower duty cycle implies a larger discovery latency since the node turns its radio off for more time during the schedule. 
+In an energy-restricted network, nodes have limited energy and designing
+duty schedule for a node needs to take its duty cycle into account.
+Obviously, a lower duty cycle implies a larger discovery latency since
+the node turns its radio off much of time during the schedule.
 
-In the preceding section, energy constraint is not a crucial factor in Alano; and we are to modify Alano for both symmetric nodes and asymmetric nodes.
+In the preceding section, energy constraint is not considered
+a crucial factor in the design Alano. Here, we would modify Alano for
+both symmetric nodes and asymmetric nodes as determined by their duty cycles.
 %an overview of the motivation of the algorithm
-Our key idea is to synchronize the slots that the radio is on with the neighbors in a bounded time; then invoke Alano algorithm to achieve low-latency neighbor discovery. 
-
+Our key idea is to synchronize the slots such that the radio is on for
+neighboring nodes in a bounded time, and then invoke Alano algorithm to achieve
+low-latency neighbor discovery.
 
 \subsection{RDS-Alano for Symmetric Nodes}
 
@@ -232,9 +238,3 @@ of $u_j$ satisfying that both nodes turn on the radios simultaneously in every p
 Thus for any pair of neighbor nodes ($u_i$, $u_j$), they turn on their radios for transmitting or listening for at least once in every period of length $T_iT_j$. Considering
 the whole period $T_iT_j$ to be a `super' slot of Alano, we derive that the discovery latency is bounded within $O(\frac{n\ln n}{\theta_i\theta_j})$ with high probability.
 \end{IEEEproof}
-
-
-
-
-
-
