@@ -24,10 +24,11 @@
 % Paper Logic Flow
 
 
-Wireless sensor networks\cite{akyildiz2002wireless} are deployed in
-a wide range of real-life applications today, such as volcanic investigation
-\cite{werner2006deploying}, seismic detection \cite{suzuki2007high},
-agriculture monitoring \cite{wang2010l3sn}, etc.
+Wireless sensor networks %~\cite{akyildiz2002wireless} 
+are deployed in
+a wide range of real-life applications today, such as volcanic investigation~\cite{werner2006deploying}, 
+seismic detection~\cite{suzuki2007high},
+agriculture monitoring~\cite{wang2010l3sn}, etc.
 The popularity of Internet of Things (IoT) will accelerate this trend
 and make wireless sensor networks even more pervasive.
 
@@ -52,14 +53,14 @@ Most deterministic algorithms however were designed for two
 nodes only, despite being then applied to a multi-node scenario.
 On the other hand,
 probabilistic algorithms handle neighbor discovery in a clique of $n$
-nodes\cite{mcglynn2001birthday, vasudevan2009neighbor, you2011aloha,
+nodes~\cite{mcglynn2001birthday, vasudevan2009neighbor, you2011aloha,
 song2014probabilistic}, i.e. every two nodes are neighbors, and utilize
 the global number $n$ to compute an optimal probability for action
 decisions. However, a large-scale network is generally not a clique and
 node to node communication could go through multiple hops.
 In addition, prominent existing
-algorithms such as Birthday \cite{mcglynn2001birthday} and Aloha-like
-\cite{vasudevan2009neighbor} do not consider energy consumption of the
+algorithms such as Birthday~\cite{mcglynn2001birthday} and Aloha-like~\cite{vasudevan2009neighbor} 
+do not consider energy consumption of the
 neighbor discovery process, which could have a negative impact on the
 energy state of the sensors.
 %Furthermore, in wireless sensor networks,
@@ -74,16 +75,15 @@ way collisions are dealt with in large-scale networks.
 There are three aspects to this issue.
 First, transmission signals fade with distance and simultaneous
 transmissions will cause collisions. %among various nodes.
-Deterministic algorithms aiming at two nodes \cite{kandhalu2010u,
+Deterministic algorithms aiming at two nodes~\cite{kandhalu2010u,
 chen2015heterogeneous} fail to reduce such collisions. Some beacon-based
-algorithms \cite{dutta2008practical, bakht2012searchlight, sun2014hello,
+algorithms~\cite{dutta2008practical, bakht2012searchlight, sun2014hello,
 qiu2016talk} do not have this problem but their time slot is 40 times
-larger \cite{kandhalu2010u} and therefore resulting in long latency. 
+larger~\cite{kandhalu2010u} and therefore resulting in long latency. 
 %There are many mature interference models to depict the communication collisions, and we choose the popular protocol model\cite{clark1990unit} to begin this research area.
 Second, a large-scale network is not one-hop network and a node can
 practically only discover those neighbors that are within its range.
-Probabilistic algorithms
-\cite{vasudevan2009neighbor, you2011aloha, song2014probabilistic}
+Probabilistic algorithms~\cite{vasudevan2009neighbor, you2011aloha, song2014probabilistic}
 assuming a small clique network fail to estimate the number of
 neighbors, and thus cannot reduce the collisions effectively since the
 number of neighbors provides an important hint on how many collisions
@@ -95,19 +95,19 @@ neighbor discovery are two conflicting goals in existing algorithms.
 ineffective.
 
 We have conducted experiments to confirm the issue in real actions.
-We deployed $16$ EZ$240$ sensors \cite{huang2012easipled} and
+We deployed $16$ EZ$240$ sensors~\cite{huang2012easipled} and
 found existing algorithms to be either insufficient or
 excessive in the way they deal with collisions, and
 both would result in long latency.
 %collisions caused by simultaneous transmissions result in the waste of time and energy. 
 %We consider a large-scale network with 2000 nodes obeying a uniform distribution. 
-As the number of neighbors increased, collisions of Hedis
-\cite{chen2015heterogeneous} happened as frequently as 10.1\% to
-19.96\%, evoking the CSMA \cite{bianchi1996performance} function in the MAC
-layer to wait for a random time. Hello \cite{sun2014hello} utilized a
+As the number of neighbors increased, collisions of 
+Hedis~\cite{chen2015heterogeneous} happened as frequently as 10.1\% to
+19.96\%, evoking the CSMA~\cite{bianchi1996performance} function in the MAC
+layer to wait for a random time. Hello~\cite{sun2014hello} utilized a
 beacon mechanism to avoid collisions but the time slot was 40 times
-larger and it resulted in 10 times longer latency. An Aloha-like method
-\cite{you2011aloha} showed a high idle rate (when no neighbors are
+larger and it resulted in 10 times longer latency. 
+An Aloha-like method~\cite{you2011aloha} showed a high idle rate (when no neighbors are
 transmitting) of 18.92\%, which reduced the collisions, but
 excessively.  %and still results in a high latency.
 %This is the same with CSMA \cite{bianchi1996performance}, a general collision avoidance  technique in networks, the idle rate of which is XX\% by simulations. 
@@ -120,16 +120,15 @@ neighbors of a node and synchronizing the times the nodes turn on the
 radio, %with its neighbors,
 both low-latency and energy-efficiency in neighbor discovery can be achieved. 
 We take the distribution of nodes into consideration. As studied
-in \cite{wang2013gaussian}, nodes in a wireless sensor network are
+in~\cite{wang2013gaussian}, nodes in a wireless sensor network are
 likely to follow a uniform or a Gaussian distribution.
 %for detecting aims. % (as shown in Fig. \ref{distribution})
 According to the local density, a node can estimate the number of
 neighbors and calculate an optimal probability for action decisions.
-Based on this, we propose Alano, %\footnote{Alano is the god of
-luck in Greek mythology.}
+Based on this, we propose Alano, \footnote{Alano is the god of luck in Greek mythology.}
 a nearly optimal probability based algorithm for a large-scale network.
-We play on the duty cycle mechanism
-\cite{zhang2017performance} which is the fraction of time the radio is on
+We play on the duty cycle mechanism~\cite{zhang2017performance} 
+which is the fraction of time the radio is on
 (i.e., the sensor is woken up), and deterministically
 synchronize the wake-up times between neighbors in Alano.
 Specifically, if all nodes have the same (symmetric) duty cycle, such as
@@ -142,7 +141,8 @@ algorithm (called TP-Alano).
 In the simulations, we have found that Alano achieves $31.35\%$ to $ 85.25\%$
 lower latency, higher discovery rate, and better scalability in large
 scale networks. %, and robustness,
-In comparison with the state-of-the-art algorithms \cite{you2011aloha, sun2014hello, chen2015heterogeneous, bakht2012searchlight}
+In comparison with the state-of-the-art 
+algorithms~\cite{you2011aloha, sun2014hello, chen2015heterogeneous, bakht2012searchlight}
 Alano reaches nearly $100\%$ discovery in twice as fast a speed. 
 When the number of nodes increases from 1000 to 9000, 
 Alano shows 4.68 times to 6.51 times lower latency for neighbor discovery.
@@ -169,12 +169,12 @@ IoT in the future.
 %% Remaining structure
 The remainder of the paper is organized as follows. The next section
 highlights the related works and their unsolved problems.
-Section \ref{sectionmodel} presents
+Section~\ref{sectionmodel} presents
 the system model and basic definitions.
 We introduce Alano and show the
 method to combine the nodes' distribution in the design
-in Section \ref{PCN}. We propose
+in Section~\ref{PCN}. We propose
 two modified algorithms (RDS-Alano, TP-Alano) for an energy-restricted
-large-scale network for both symmetric and asymmetric nodes in Section
-\ref{EEN}. The simulation results are given and discussed in Section
-\ref{Evaluation}, and we conclude the paper in Section \ref{Conclusion}.
+large-scale network for both symmetric and asymmetric nodes in Section~\ref{EEN}. 
+The simulation results are given and discussed in Section~\ref{Evaluation}, 
+and we conclude the paper in Section~\ref{Conclusion}.

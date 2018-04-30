@@ -3,7 +3,8 @@
 \label{Evaluation}
 
 We conduct experiments to verify our analytical results.
-Then we evaluate the algorithms in simulated large-scale networks.
+%Then we 
+and evaluate the algorithms in simulated large-scale networks.
 
 \subsection{Experiments for Fundamental Observation}
 
@@ -26,7 +27,7 @@ long latency.
 \centering
 \begin{tabular}{|l|c|c|c|c|} 
 \hline
-\textbf{Algorithms} & \textbf{Alano} & \textbf{Hedis} & \textbf{Searchlight} & \textbf{ALOHA} \\
+\textbf{Algorithms} & \textbf{Alano} & \textbf{Hello} & \textbf{Searchlight} & \textbf{ALOHA} \\
 \hline
 \textbf{Average latency} & \textbf{$1.278$} & \textbf{$1.847$} & \textbf{$8.58$} & \textbf{$10.07$} \\
 \hline
@@ -38,16 +39,20 @@ long latency.
 \label{Exp}
 \end{table}
 
-We compared Alano with Searchlight~\cite{bakht2012searchlight}, Hedis~\cite{chen2015heterogeneous}
-and an Aloha-like algorithm~\cite{you2011aloha} in the experiments. The
-result in the Table \ref{Exp} shows that Alano outperforms the other
-algorithms.
-Hedis shows a low latency which results from its ideal latency bound
+We compared Alano with Searchlight~\cite{bakht2012searchlight}, 
+Hello~\cite{sun2014hello} and an Aloha-like algorithm~\cite{you2011aloha} 
+in the experiments. Searchlight and Hello are two deterministic algorithms
+and Aloha-like is a typical probabilistic algorithm.
+
+The result in the Table \ref{Exp} shows that Alano outperforms 
+the other algorithms.
+Hello shows low latency which results from its ideal latency bound
 for two nodes,
 and its weakness in handling collisions is not obvious in a small-scale network. 
-However, as the number of neighbors increases, collisions of Hedis \cite{chen2015heterogeneous} happened as frequently as 10.1\% to 19.96\%.
+% However, as the number of neighbors increases, collisions 
+% of Hello \cite{chen2015heterogeneous} happened as frequently as 10.1\% to 19.96\%.
 Searchlight is a typical beacon-based algorithm with larger time slots,
-which results in a long latency.
+which results in long latency.
 Aloha-like is designed for a clique network and the probability adopted is not optimal.
 
 
@@ -149,14 +154,14 @@ latency due to either collisions or larger time slots.
 We use the discovery rate to evaluate Alano's quality.
 The discovery rate of a node $u_i$ is defined as the percentage of discovered neighbors over $u_i$'s all neighbors.
 In Fig. \ref{fig_timerate_large}, we increase the number of nodes from
-$500$ to $2000$ for the uniform distribution, and increase the number of
-nodes from $1000$ to $3000$ for the Gaussian distribution; the results
-show that Alano has higher discovery rate during the whole process for
+$500$ to $2000$ for the uniform distribution, and %increase the number of nodes 
+from $1000$ to $3000$ for the Gaussian distribution; the results
+show Alano has higher discovery rate during the whole process for
 both the uniform and Gaussian distributions. In the uniform distribution,
 Alano achieves 90\% discovery twice as fast as Aloha-like. It is
 remarkable that the performance of Aloha-like is close to Alano for the
 Gaussian distribution. This is because a number of nodes gather around
-the center area which makes the network similar to a clique, and thus
+the center area making the network similar to a clique. Thus
 Aloha-like shows its strength.
 %Aloha-like discovers more slowly than Alano when it has discovered a certain number of channels, such as $80\%$ channels in Uniform Distribution with Global Duty Cycle, because it is difficult for pure probabilistic algorithm to deal with the small amount of  undiscovered neighbors.
 
@@ -166,7 +171,8 @@ Aloha-like shows its strength.
 
 \subsubsection{Scalability-Duty Cycle and Network Density}
 
-We evaluated Alano's scalability regarding duty cycle and network density.
+We evaluated %Alano's 
+scalability regarding duty cycle and network density.
 
 \begin{figure}[!h]
 \centering

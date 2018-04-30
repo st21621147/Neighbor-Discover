@@ -9,7 +9,7 @@ Obviously, a lower duty cycle implies a larger discovery latency since
 the node turns its radio off much of time during the schedule.
 
 In the preceding section, energy constraint is not considered
-a crucial factor in the design Alano. Here, we would modify Alano for
+a crucial factor in the design of Alano. Here, we would modify Alano for
 both symmetric nodes and asymmetric nodes as determined by their duty cycles.
 %an overview of the motivation of the algorithm
 Our key idea is to synchronize the slots such that the radio is on for
@@ -20,21 +20,28 @@ low-latency neighbor discovery.
 
 
 %Consider Global Duty Circle
-Symmetric nodes have the same duty cycle $\theta_i = \theta_j = \theta$, $\forall u_i, u_j$. We utilize Relax Difference Set (RDS) to synchronize time slots that nodes are in transmitting or listening state.
+Symmetric nodes have the same duty cycle $\theta_i = \theta_j = \theta$, $\forall u_i, u_j$. 
+We utilize Relaxed Difference Set (RDS) to synchronize time slots that nodes are in transmitting 
+or listening state.
 
 
 %Introduction of RDS and the property
 %*High coincidence of another existing paper && to be altered later
-RDS is an efficient tool to construct cyclic quorum systems\cite{jiang2005quorum,luk1997two}. The definition is:
+RDS is an efficient tool to construct cyclic quorum 
+systems~\cite{luk1997two}. 
+% jiang2005quorum
+The definition is:
 \begin{definition}
-A set $R=\{a_1,a_2,...,a_k\} \subseteq Z_n$ (the set of all non-negative integers less than $n$)
-is called a RDS if for every $d \neq 0$ (mod $n$),
-there exists at least one ordered pair $(a_i,a_j)$ such that $a_i - a_j \equiv d$ (mod $n$), where $a_i,a_j \in D$.
+A set $R=\{a_1,a_2,...,a_k\} \subseteq Z_M$ (the set of all non-negative integers less than $M$)
+is called a relaxed difference set (RDS) if for every $d \not\equiv 0$ (mod $M$)
+there exists at least one ordered pair $(a_i,a_j)$, $a_i, a_j \in R$ such that 
+$a_i - a_j \equiv d$ (mod $M$).
 \end{definition}
 
 
 It has been proved that any RDS must have cardinality $|R| \geq \sqrt{N}$\cite{luk1997two}.
-We present a linear algorithm to construct a RDS with cardinality $\lceil \frac{3\sqrt{N}}{2}  \rceil$ under $Z_N$ in Alg. \ref{RDS}.
+We present a linear algorithm to construct a RDS with 
+cardinality $\lceil \frac{3\sqrt{N}}{2}  \rceil$ under $Z_N$ in Alg. \ref{RDS}.
 %*High coincidence
 
 

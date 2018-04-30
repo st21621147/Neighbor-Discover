@@ -6,8 +6,7 @@
 
 In this section, we first describe the system model of an
 energy-restricted large-scale network. Then we give a formulation of the Neighbor
-Discovery problem. The notations are listed in Table
-\ref{notations}.
+Discovery problem. The notations are listed in Table~\ref{notations}.
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -57,7 +56,7 @@ network.
 \textbf{Communication:}
 When multiple nodes communicate simultaneously, transmission may fail
 due to interference. We adopt the protocol model
-(also called the graph model or unit-disk model\cite{moscibroda2006complexity,
+(also called the graph model or unit-disk model~\cite{moscibroda2006complexity,
 wang2015connectivity}) to describe the process, which assumes a node
 $u_i$ can receive $u_j$'s message successfully if $u_j$ is the only
 transmitter that is within $u_i$'s communication range.
@@ -67,11 +66,12 @@ such as the signal to interference plus noise ratio (\emph{SINR}) model,
 are more complicated and lack good algorithmic features. %ha-ha!
 In addition, it
 is shown that these models can be transformed to the protocol model by
-particular means in \cite{lebhar2009unit, halldorsson2015well}.
+particular means in~\cite{halldorsson2015well}.
+%lebhar2009unit, 
 
 \textbf{Network connectivity:}
-A node can only discover nodes that are within its range under the
-protocol model. In a large-scale network, two nodes may not be connected
+A node can only discover nodes that are within its radio range. %under the protocol model. 
+In a large-scale network, two nodes may not be connected
 directly and we call two nodes that are connected by one-hop communication as
 \emph{neighbors}.
 %Thus, a large-scale network is always \emph{partially-connected}, contrary to a fully-connected network in which any two nodes are neighbors.
@@ -85,25 +85,26 @@ message.
 
 Technically speaking, we assume an energy-restricted large-scale network
 to be consisting of $N$ nodes in a set, $U=\{u_1,u_2,\ldots,u_N\}$.  Nodes are
-distributed in a large area and they can communicate through a fixed
+distributed in a large area and they communicate through a fixed
 wireless channel. We assume the locations of the nodes obey some
 distribution, such as the uniform distribution or the Gaussian
-distribution\cite{wang2013gaussian}.
-Suppose a node has a fixed communication range $\Delta$ and two nodes
+distribution~\cite{wang2013gaussian}.
+Suppose a node has a fixed radio range $\Delta$ and two nodes
 $u_i, u_j$ are neighbors if their distance suits $d(u_i, u_j) \leq
-\Delta$. We can use a symmetric matrix $M_{N\times N}$ to represent
-nodes' neighboring relations:
-$$ M_{i,j}=\left\{
-\begin{aligned}
-1  & & & & & & &{u_i ~and~ u_j ~are~ neighbors}\\
-0  & & & & & & &{otherwise}\\
-\end{aligned}
-\right.
-$$
+\Delta$. 
+% We can use a symmetric matrix $M_{N\times N}$ to represent
+% nodes' neighboring relations:
+% $$ M_{i,j}=\left\{
+% \begin{aligned}
+% 1  & & & & & & &{u_i ~and~ u_j ~are~ neighbors}\\
+% 0  & & & & & & &{otherwise}\\
+% \end{aligned}
+% \right.
+% $$
 
 %Time synchronization
-Suppose time is divided into slots of equal length $t_0$
-\cite{van2004lightweight}, which is assumed to be sufficient to finish a complete
+Suppose time is divided into slots of equal length $t_0$~\cite{van2004lightweight}, 
+which is assumed to be sufficient to finish a complete
 communication process (one node transmits a message including its ID and
 a neighbor receives the message).
 A node that has its radio on can choose to be in the transmitting state
@@ -140,7 +141,7 @@ a pair of neighbors $u_i, u_j$, i.e. $\delta_{ij} = t_i^s - t_j^s$.
 
 \subsection{Problem Definition}
 
-A node $u_i$ executes operations (turning off radio, transmitting, or
+A node $u_i$ executes operations (sleep, transmitting, or
 listening) according to the pre-defined duty schedule $S_i$.
 When $u_i$ starts the neighbor discovery process, denote $L(i,j)$ as the
 slot cost to find the neighbor $u_j$ and we define \textbf{discovery
@@ -151,7 +152,6 @@ $$
 It is important to note that neighbor discovery is not bidirectional and
 any pair of neighbors have to discover each other separately.
 We formulate the neighbor discovery problem for node $u_i$ as:
-%@@@to be modified
 \begin{problem}
 For a node $u_i$ and the set of its neighbors $S_i = \{u_j | d(u_i, u_j)\leq \Delta \}$, design duty schedules for all nodes such that:
 $\forall u_j \in S_i$ :
@@ -164,7 +164,7 @@ s_{j}(t) = T, and~
 \end{aligned}
 $$
 \end{problem}
-%@@@
+
 
 \begin{figure}[!h]
 \centering
@@ -177,8 +177,8 @@ Transmitting state and Listening state in wake-up pattern respectively.}
 %\vspace{-0.2in}
 \end{figure}
 
-Fig.\ref{NDexample} shows an example of $5$ nodes; the topology is
-depicted in Fig.\ref{NDexample}(a), and Fig.\ref{NDexample}(b) describes
+Fig.~\ref{NDexample} shows an example of $5$ nodes; the topology is
+depicted in Fig.~\ref{NDexample}(a), and Fig.~\ref{NDexample}(b) describes
 the neighbor discovery process. The duty cycle is set as $0.25$ and
 nodes start in different time slots.
 The designed duty schedule for node $u_1$ is $S_1 = \{ T, S, S, S, S, S, T, S, S, T, S, S, S, T, ... \}$.

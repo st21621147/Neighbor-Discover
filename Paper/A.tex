@@ -88,7 +88,7 @@ For instance, to monitor an unknown area, many sensors are deployed
 uniformly to collect information, such as temperature and humidity
 \cite{flammini2007real}. The nodes are evenly deployed and the density
 function is:
-$$f(x)=
+$$f(x,y)=
 \begin{cases}
 \frac{1}{A}& (x,y)\in D\\
 0& (x,y)\notin D
@@ -110,7 +110,7 @@ In order to compute the maximum probability to discover a node, we compute the d
 $$
 \frac{d(p_s)}{d(p_t)} = {(1-p_t)}^{\widetilde{n}}-\widetilde{n}p_t{(1-p_t)}^{\widetilde{n}-1}.
 $$
-It is easy to verify that when $p_t=\frac{1}{\widetilde{n}+1}$, $p_s$ gets the maximum value:
+When $p_t=\frac{1}{\widetilde{n}+1}$, $p_s$ gets the maximum value:
 $$p_s = \frac{1}{\widetilde{n}+1}{(1-\frac{1}{\widetilde{n}+1})}^{\widetilde{n}} \approx \frac{1}{(\widetilde{n}+1)e}.$$
 
 Therefore, the probability chosen in Alano algorithm for transmitting is optimal.
@@ -121,52 +121,99 @@ Therefore, the probability chosen in Alano algorithm for transmitting is optimal
 \begin{theorem}
 Alg. \ref{Alano} discovers all neighbors for node $u_i$ within $T=\Theta(n\ln n)$ time slots with high probability.
 \end{theorem}
-\begin{IEEEproof} First, we show that the expected discovery latency of a node $u_i$ is bounded by $O(n\ln n)$.
+\begin{IEEEproof}
+	Let the random variable $X$ denote the time a node spends
+	discovering all neighbors. Let $X_j$ denote the cost of time slots 
+	for $u_i$ to discover a new neighbor after $j-1$ neighbors have been discovered.
+	Obviously, $X = \sum_{j=1}^{\widetilde{n}}$ and $X_j$ follows Geometric distribution
+	$G(p(j))$, where $p(j)=(\widetilde{n}-j+1)p_s$.
+	We get 
+	\begin{equation*} 
+		E[X_j]=\frac{1}{p_j}, Var[X_j]= \frac{1-p_j}{p_j^2}.
+	\end{equation*} 
+	Therefore,
+	\begin{equation}
+		\label{exp}
+		E[X]=\sum_{j=1}^{\widetilde{n}} = \frac{C_n}{p_s}
+		\approx 
+		(\widetilde{n}+1)e(\ln (\widetilde{n}+1) + \Theta(1)) = \Theta(n\ln n).
+	\end{equation}
+	where $C_n = 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n}$.
+	Also we get
+	\begin{equation*}
+		Var[X] = \sum_{j=1}^{\widetilde{n}}Var[X_j] \le \frac{\pi^2}{6p_{s}^2}-\frac{C_n}{p_{s}}.
+	\end{equation*}
+	By the \emph{Chebyshev's inequality}, we get
+	\begin{equation*}
+		\begin{split}
+			P[X \geq 2E[X]] &\leq \frac{Var[X]}{{E[X]}^2} 
+			\leq \frac{\pi^2}{6C_n^2}-\frac{p_{s}}{C_n}.
+		\end{split}
+	\end{equation*}
+	% where $\alpha$ is an arbitrary constant larger than $1$.
+	Therefore,
+	\begin{equation}
+		\label{lim}
+		\lim_{n \to +\infty}P[X \geq 2E[X]] = 0.
+	\end{equation}
+	According to equation~(\ref{exp}) and~(\ref{lim}), we get
+	$X = O(n\ln n)$.
+	Thus $X$ is bounded by $O(n\ln n)$ with high probability.
 
-Let $W$ be a random variable that denotes the time a node spends
-discovering all neighbors. Denote $W_j$ as a random variable
-representing the cost number of the time slots to discover a new
-neighbor after $j-1$ neighbors have been discovered. It is easy to check
-that $W_j$ follows a geometric distribution with parameter $p(j)$ where
-$p(j)=(\widetilde{n}-j+1)p_s$ \cite{Motwani1995Randomized}. The
-expectation of $W_j$ can be computed as:
-$$
-E[W_j]=\frac{1}{p(j)}=\frac{1}{(\widetilde{n}-j+1)p_s}.
-$$
-
-Then, the expectation discovery latency of node $u_i$ is:
-$$
-E[W] = \sum_{j=1}^{\widetilde{n}}E[W_j] \approx (\widetilde{n}+1)e(\ln (\widetilde{n}+1) + \Theta(1)) = \Theta(n\ln n).
-$$
-Thus the expected discovery latency is bounded by $O(n\ln n)$.
-
-Then, we show that node $u_i$ can discover all neighbors bounded by $O(n\ln n)$ time slots.
-
-Since $W_j$ follows a geometric distribution, $Var[W_j]=\frac{1-p_j}{p_j^2}$, and the variance of discovery latency of $W$ is computed as:
-\begin{displaymath}
-\begin{split}
- Var[W] %& =Var[\sum_{j=1}^{p_nN}W_j]=\sum_{j=1}^{p_nN}Var[W_j]+\sum_{j\ne k}Cov[W_j,W_k] \\
- =\sum_{j=1}^{n}Var[W_j]
-%=\frac{1}{p_{suc}^2}\sum_{j=1}^{p_nN}\frac{1}{j^2}-\frac{1}{p_{suc}}\sum_{j=1}^{p_nN}\frac{1}{j} \\
- \le\frac{\pi^2}{6p_{s}^2}-\frac{H_n}{p_{s}}.
-\end{split}
-\end{displaymath}
-
-By the \emph{Chebyshev's inequality}, the probability that the discovery latency is $2$ times larger than the expectation is
-\begin{displaymath}
-\begin{split}
-P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
-\le\frac{Var[W]}{{E[W]}^2}
-%&\le\frac{\frac{\pi^2}{6p_{suc}^2}-\frac{H_{p_nN}}{p_{suc}}}{\frac{H_{p_nN}^2}{p_{suc}^2}}=
-\le\frac{\pi^2}{6H_{n}^2}-\frac{p_{s}}{H_n}.
-\end{split}
-\end{displaymath}
-where $H_n$ is the $n$-th Harmonic number, i.e., $H_n = lnn +
-\Theta(1)$. For a large $n$, $P[W\ge2E[W]]$ is close to $0$. That is,
-the time for a node to discover all neighbors is very likely to be
-smaller than $2$ times of the expectation. Therefore, $W$ is also
-bounded by $O(n\ln n)$ with high probability.
+	% For a large $n$, $P[X \geq \alpha E[X]]$ is close to $0$. 
+	% That is, the time for a node to discover all neighbors is very likely to be
+	% smaller than $\alpha$ times of the expectation (e.g., $\alpha = 2$). 
+	% Therefore, $W$ is bounded by $O(n\ln n)$ with high probability.
 \end{IEEEproof}
+		
+	
+% First, we show that the expected discovery latency of 
+% a node $u_i$ is bounded by $O(n\ln n)$.
+
+% Let $W$ be a random variable that denotes the time a node spends
+% discovering all neighbors. Denote $W_j$ as a random variable
+% representing the cost number of the time slots to discover a new
+% neighbor after $j-1$ neighbors have been discovered. It is easy to check
+% that $W_j$ follows a geometric distribution with parameter $p(j)$ where
+% $p(j)=(\widetilde{n}-j+1)p_s$ \cite{Motwani1995Randomized}. The
+% expectation of $W_j$ can be computed as:
+% $$
+% E[W_j]=\frac{1}{p(j)}=\frac{1}{(\widetilde{n}-j+1)p_s}.
+% $$
+
+% Then, the expectation discovery latency of node $u_i$ is:
+% $$
+% E[W] = \sum_{j=1}^{\widetilde{n}}E[W_j] \approx (\widetilde{n}+1)e(\ln (\widetilde{n}+1) + \Theta(1)) = \Theta(n\ln n).
+% $$
+% Thus the expected discovery latency is bounded by $O(n\ln n)$.
+
+% Then, we show that node $u_i$ can discover all neighbors bounded by $O(n\ln n)$ time slots.
+
+% Since $W_j$ follows a geometric distribution, $Var[W_j]=\frac{1-p_j}{p_j^2}$, and the variance of discovery latency of $W$ is computed as:
+% \begin{displaymath}
+% \begin{split}
+%  Var[W] %& =Var[\sum_{j=1}^{p_nN}W_j]=\sum_{j=1}^{p_nN}Var[W_j]+\sum_{j\ne k}Cov[W_j,W_k] \\
+%  =\sum_{j=1}^{n}Var[W_j]
+% %=\frac{1}{p_{suc}^2}\sum_{j=1}^{p_nN}\frac{1}{j^2}-\frac{1}{p_{suc}}\sum_{j=1}^{p_nN}\frac{1}{j} \\
+%  \le\frac{\pi^2}{6p_{s}^2}-\frac{H_n}{p_{s}}.
+% \end{split}
+% \end{displaymath}
+
+% By the \emph{Chebyshev's inequality}, the probability that the discovery latency is $2$ times larger than the expectation is
+% \begin{displaymath}
+% \begin{split}
+% P[W\ge2E[W]]%=P[|W-E[W]|\ge E[W]]
+% \le\frac{Var[W]}{{E[W]}^2}
+% %&\le\frac{\frac{\pi^2}{6p_{suc}^2}-\frac{H_{p_nN}}{p_{suc}}}{\frac{H_{p_nN}^2}{p_{suc}^2}}=
+% \le\frac{\pi^2}{6H_{n}^2}-\frac{p_{s}}{H_n}.
+% \end{split}
+% \end{displaymath}
+% where $H_n$ is the $n$-th Harmonic number, i.e., $H_n = lnn +
+% \Theta(1)$. For a large $n$, $P[W\ge2E[W]]$ is close to $0$. That is,
+% the time for a node to discover all neighbors is very likely to be
+% smaller than $2$ times of the expectation. Therefore, $W$ is also
+% bounded by $O(n\ln n)$ with high probability.
+% \end{IEEEproof}
 
 
 \subsection{Analysis of Gaussian Distribution}
@@ -191,7 +238,7 @@ d(u_i, u_j) \leq \Delta \}$. When nodes obey the Gaussian distribution, the
 probability that node $u_i$ discovers a certain neighbor node $u_{j}$
 successfully in a time slot (denote as $p_{s}$) can be formulated as:
 $$
-p_{s}^i = (1-p_t^i) \cdot p_t^{j} \cdot \prod_{u_j \in S_i, u_j \neq u_k}(1-p_t^{k}).
+p_{s}^i = (1-p_t^i) \cdot p_t^{j} \cdot \prod_{u_k \in S_i, u_k \neq u_j}(1-p_t^{k}).
 $$
 Denote $p_t^{max} = \max_{u_j \in S_i}\{p_t^{j}\}, p_t^{min} = \min_{u_j \in S_i}\{p_t^{j}\}$,
 for every $u_j \in S_i$, we have:
@@ -204,18 +251,18 @@ p_{s}^i \leq (1-p_t^i)p_t^{max}{(1-p_t^{min})}^{\widetilde{n_i}-1}.
 
 Denote: 
 \begin{align*}
-&P = (1-p_t^i)p_t^{min}{(1-p_t^{max})}^{\widetilde{n_i}-1}. \\
+&H = (1-p_t^i)p_t^{min}{(1-p_t^{max})}^{\widetilde{n_i}-1}. \\
 &Q = (1-p_t^i)p_t^{max}{(1-p_t^{min})}^{\widetilde{n_i}-1}.
 \end{align*}
 
-We derive the expectation of $W_j$ for $1 \leq j \leq n_i$ as:
+We derive the expectation of $X_j$ for $1 \leq j \leq n_i$ as:
 $$
-\frac{1}{(\widetilde{n_i}-j+1)Q} \quad \leq \quad E[W_j] \quad \leq \quad \frac{1}{(\widetilde{n_i}-j+1)P}.
+\frac{1}{(\widetilde{n_i}-j+1)Q} \quad \leq \quad E[X_j] \quad \leq \quad \frac{1}{(\widetilde{n_i}-j+1)H}.
 $$
 
 Combine the equations to derive:
 $$
-\frac{1}{Q}H_n  \quad \leq \quad E[\sum_{j=1}^{\widetilde{n_i}}W_j]  \quad \leq \quad \frac{1}{P}H_n.
+\frac{1}{Q}C_n  \quad \leq \quad E[\sum_{j=1}^{\widetilde{n_i}}W_j]  \quad \leq \quad \frac{1}{H}C_n.
 $$
 
 Since: $p_t^{min} = \frac{1}{\widetilde{n}_{max}+1}$, $p_t^{max} = \frac{1}{\widetilde{n}_{min}+1}.$
@@ -224,16 +271,60 @@ where $\widetilde{n}_{max} = \max\{\widetilde{n}_j | u_j\in S_i \}$, $\widetilde
 And $\widetilde{n}_{max}$, $\widetilde{n}_{min}$ can be computed as follows:
 \begin{align*}
 &\widetilde{n_i} \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{x_i^2+y_i^2}{2}}.							\\
-&\widetilde{n}_{max}  \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}-\Delta)}^2}{2}}  = \alpha\widetilde{n_i}.\\
-&\widetilde{n}_{min}  \simeq N\pi \Delta^2 \frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}+\Delta)}^2}{2}}  = \beta\widetilde{n_i}.
+&\widetilde{n}_{max}  \simeq N\pi \Delta^2 
+\frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}-\Delta)}^2}{2}}  
+= \alpha_{(x_i,y_i)}\widetilde{n_i}.\\
+&\widetilde{n}_{min}  \simeq N\pi \Delta^2 
+\frac{1}{2\pi}\mathrm{e}^{-\frac{{(\sqrt{x_i^2+y_i^2}+\Delta)}^2}{2}}  
+= \beta_{(x_i,y_i)}\widetilde{n_i}.
 \end{align*}
-where $\alpha = \mathrm{e}^{\frac{2\Delta\sqrt{x_i^2+y_i^2} - \Delta^2}{2}}$, 
-$\beta = \mathrm{e}^{-\frac{2\Delta\sqrt{x_i^2+y_i^2} + \Delta^2}{2}}$, both of which can be seen as constants. Therefore we get:
+where $\alpha_{(x_i,y_i)} = \mathrm{e}^{\frac{2\Delta\sqrt{x_i^2+y_i^2} - \Delta^2}{2}}$, 
+$\beta_{(x_i,y_i)} = \mathrm{e}^{-\frac{2\Delta\sqrt{x_i^2+y_i^2} + \Delta^2}{2}}$, both of which can be seen as constants. 
+Then we get:
 $$
-\frac{1}{Q}H_n \simeq \beta\mathrm{e}^{\frac{1}{\alpha}}n\ln n, \quad \frac{1}{P}H_n \simeq \alpha\mathrm{e}^{\frac{1}{\beta}}n\ln n. 
+\beta_{(x_i,y_i)}\mathrm{e}^{\frac{1}{\alpha_{(x_i,y_i)}}}n\ln n 
+\leq E[X] \leq \alpha_{(x_i,y_i)}\mathrm{e}^{\frac{1}{\beta_{(x_i,y_i)}}}n\ln n.
 $$
+Therefore, we get the non-uniform bound:
+\begin{equation}
+	\label{exp2}
+	E[X] = O(\psi(x_i,y_i)n\ln n).
+\end{equation}
+where $\psi(x_i,y_i) = \alpha_{(x_i,y_i)}\mathrm{e}^{\frac{1}{\beta_{(x_i,y_i)}}}$.
+We derive the upper bound of $Var[X]$:
+\begin{equation*}
+	\begin{split}
+		Var[X] &= \sum_{j=1}^{\widetilde{n_i}}Var[X_j]
+		= \sum_{j=1}^{\widetilde{n_i}} \frac{1-p_j}{p_j^2} \\
+		&\le \sum_{j=1}^{\widetilde{n_i}} 
+		\frac{1-(\widetilde{n_i}-j+1)H}{(\widetilde{n_i}-j+1)^2H^2}
+		\le \frac{\pi^2}{6H^2}-\frac{p_{s}}{H}.
+	\end{split}
+\end{equation*}
+By the \emph{Chebyshev's inequality}, we get
+\begin{equation*}
+	\begin{split}
+		P[X \geq 2E[X]] &\leq \frac{Var[X]}{{E[X]}^2} 
+		\leq \frac{\pi^2\alpha^2\mathrm{e}^{\frac{2}{\beta}-
+		\frac{2}{\alpha}}}{6\beta^2{\ln \widetilde{n_i}}^2}-
+		\frac{\alpha\mathrm{e}^{\frac{1}{\beta}}}{{\beta}^2\mathrm{e}^{\frac{2}{\alpha}}\widetilde{n_i}\ln \widetilde{n_i}}.
+	\end{split}
+\end{equation*}
+Therefore,
+\begin{equation}
+	\label{lim2}
+	\lim_{n \to +\infty}P[X \geq 2E[X]] = 0.
+\end{equation}
+According to equation~(\ref{exp2}) and~(\ref{lim2}), we get the non-uniform bound
+$X = O(\psi(x_i,y_i)n\ln n)$.
+Thus $X$ is bounded by $O(\psi(x_i,y_i)n\ln n)$ with high probability.
+	
+% $$
+% \frac{1}{Q}C_n \simeq \beta\mathrm{e}^{\frac{1}{\alpha}}n\ln n, \quad \frac{1}{H}C_n \simeq \alpha\mathrm{e}^{\frac{1}{\beta}}n\ln n. 
+% $$
 
-Thus $E[W]$ can be bounded within $O(n\ln n)$ time slots with high probability.
-Similarly the bounded latency can be proved to be $W=O(n\ln n)$ by \emph{Chebyshev's inequality} in the same way as
-the uniform distribution.
+% Thus $E[W]$ can be bounded within $O(\psi(x_i,y_i)n\ln n)$ time slots with high probability.
+% Similarly the bounded latency can be proved to be $W=O(n\ln n)$ by 
+% \emph{Chebyshev's inequality} in the same way as
+% the uniform distribution.
 \end{IEEEproof}
